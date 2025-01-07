@@ -249,6 +249,9 @@ int		layout_game_screen(t_game *game);
 /*----------------  update.c  ---------------*/
 int		update(t_game *game);
 
+/*----------------  parser.c  ---------------*/
+void	parse_all(t_game *data);
+
 int		raycast(t_game *game);
 void	put_column_to_win(t_game *game, int x);
 
