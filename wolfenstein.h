@@ -44,11 +44,6 @@ enum game_state
 
 enum xpm_images
 {
-	xpm_home_screen,
-	xpm_game_over,
-	xpm_menu,
-	xpm_map_focus,
-	xpm_inventory,
 	xpm_north,
 	xpm_south,
 	xpm_east,
