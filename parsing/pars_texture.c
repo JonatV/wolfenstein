@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   pars_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/14 16:54:00 by eschmitz         ###   ########.fr       */
+/*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
+/*   Updated: 2025/01/14 17:42:38 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolfenstein.h"
 
-void	parse_all(t_game *data, char *file)
+void	colours(t_game *data, char **str)
 {
-	int		fd;
-	int		checker;
-	char	*str;
-
-	checker = 1;
-	str = NULL;
-	if ((fd = open(file, O_DIRECTORY)) != -1)
-		error(data, "Error: file is a directory\n");
-	if ((fd = open(file, O_RDONLY)) == -1)
-		error(data, "Error: invalid file\n");
-	data->error = 0;
-	while (checker)
+	int	i;
+	
+	i = 0;
+	data->i = 1;
+	if (data->toutcequonrecuperecommeinfo == NULL)
+		data->error = 2;
+	if (*str[i] == 'R')
 	{
-		checker = get_next_line(fd, &str, data);
-		if (data->error == 2)
-			error(data, "Error: problem with map\n");
+		
 	}
 }

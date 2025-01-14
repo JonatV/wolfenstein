@@ -4,6 +4,9 @@
 #include "minilibx_linux/mlx.h"		// for mlx functions (handle window, image, etc)
 #include <X11/Xutil.h>				// for keycode Macro (XK_SPACE, XK_Escape, etc)
 # include <stdio.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
@@ -123,6 +126,7 @@ typedef struct s_player
 typedef struct s_map
 {
 	int		**map_grid;
+	char	**temp_grid;
 	int		width;
 	int		height;
 	int		tile_size;
@@ -153,6 +157,13 @@ typedef struct s_ray
 	enum wall_orientation	wall_orientation;
 	double	wall_height;
 }		t_raycast;
+
+// typedef struct s_pars
+// {
+// 	int		x;
+// 	int		y;
+// 	t_map	map;
+// }	t_pars;
 
 typedef struct s_game
 {
@@ -251,6 +262,21 @@ int		update(t_game *game);
 
 /*----------------  parser.c  ---------------*/
 void	parse_all(t_game *data);
+
+/*----------------  get_next_line.c --------------*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+char	*get_next_line(int fd);
+char	*read_line(int fd, char *save, char *buffer);
+char	*ft_save(char **save);
+
+int		ft_strlen(const char *str);
+char	*ft_strchr(char *str);
+char	*ft_strjoin(char *str, char *buffer);
+char	*ft_substr(char *s, int start, int len);
+char	*ft_strdup(char *str);
 
 int		raycast(t_game *game);
 void	put_column_to_win(t_game *game, int x);
