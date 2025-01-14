@@ -129,7 +129,14 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		tile_size;
+	// minimap data (little map on left top corner)
+	float		minimap_width;
+	float		minimap_height;
+	int		padding;
+	int		mini_tile_size;
+	// map focus data (full screen map)
 
+	// common data
 	int		floor_color;
 	int		wall_color;
 	int		empty_color;
@@ -256,4 +263,8 @@ int		raycast(t_game *game);
 void	put_column_to_win(t_game *game, int x);
 
 int	layout_map_screen(t_game *game);
+
+/*----------------  minimap.c  ---------------*/
+void	minimap(t_game *game);
+
 #endif

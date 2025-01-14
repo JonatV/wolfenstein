@@ -85,5 +85,10 @@ bool init_map_struct(t_game *game)
 		while (++x < game->map.width)
 			game->map.map_grid[y][x] = temp_map[y][x];
 	}
+	// init minimap data
+	game->map.padding = 10;
+	game->map.mini_tile_size = 20;
+	game->map.minimap_height = 150;
+	game->map.minimap_width = 150;
 	return (true);
 }
