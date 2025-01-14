@@ -72,6 +72,8 @@ typedef struct s_keys
 	bool	a;
 	bool	s;
 	bool	d;
+	bool	left;
+	bool	right;
 	bool	e;
 	bool	m;
 	bool	tab;

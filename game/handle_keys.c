@@ -1,57 +1,5 @@
 #include "../wolfenstein.h"
 
-// // void	move_forward(t_game *game)
-// // {
-// // 	int	x;
-// // 	int	y;
-
-// // 	x = floor(data->pos_x + data->dir_x * data->speed);
-// // 	y = floor(data->pos_y + data->dir_y * data->speed);
-// // 	if (data->map.map[y][(int)floor(data->pos_x)] != '1')
-// // 		data->pos_y += (data->dir_y * data->speed);
-// // 	if (data->map.map[(int)floor(data->pos_y)][x] != '1')
-// // 		data->pos_x += (data->dir_x * data->speed);
-// // }
-
-// // void	move_backward(t_game *data)
-// // {
-// // 	int	x;
-// // 	int	y;
-
-// // 	x = floor(data->pos_x - data->dir_x * data->speed);
-// // 	y = floor(data->pos_y - data->dir_y * data->speed);
-// // 	if (data->map.map[y][(int)floor(data->pos_x)] != '1')
-// // 		data->pos_y -= (data->dir_y * data->speed);
-// // 	if (data->map.map[(int)floor(data->pos_y)][x] != '1')
-// // 		data->pos_x -= (data->dir_x * data->speed);
-// // }
-
-// void	move_left(t_game *data)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = floor(data->pos_x - data->plane_x * data->speed);
-// 	y = floor(data->pos_y - data->plane_y * data->speed);
-// 	if (data->map.map[y][(int)floor(data->pos_x)] != '1')
-// 		data->pos_y -= (data->plane_y * data->speed);
-// 	if (data->map.map[(int)floor(data->pos_y)][x] != '1')
-// 		data->pos_x -= (data->plane_x * data->speed);
-// }
-
-// void	move_right(t_game *data)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = floor(data->pos_x + data->plane_x * data->speed);
-// 	y = floor(data->pos_y + data->plane_y * data->speed);
-// 	if (data->map.map[y][(int)floor(data->pos_x)] != '1')
-// 		data->pos_y += (data->plane_y * data->speed);
-// 	if (data->map.map[(int)floor(data->pos_y)][x] != '1')
-// 		data->pos_x += (data->plane_x * data->speed);
-// }
-
 void	rotate(t_game *game, bool lr)
 {
 	double	tmp_dir;
@@ -71,9 +19,10 @@ void	rotate(t_game *game, bool lr)
 }
 void	handle_keys(t_game *game)
 {
+	// quit game
 	if (game->keys.esc)
 		close_game(game);
-		
+	// homescreen to game screen
 	if (game->keys.enter)
 	{
 		if (game->state == home_screen)
@@ -81,6 +30,7 @@ void	handle_keys(t_game *game)
 	}
 	if (game->state == home_screen)
 		return ;
+	// Show inventory
 	if (game->keys.tab && !game->keys.tab_pressed)
 	{
 		game->keys.tab_pressed = true;
@@ -91,7 +41,7 @@ void	handle_keys(t_game *game)
 	}
 	else if (!game->keys.tab)
 		game->keys.tab_pressed = false;
-
+	// Show map
 	if (game->keys.space && !game->keys.space_pressed)
 	{
 		game->keys.space_pressed = true;
@@ -102,7 +52,7 @@ void	handle_keys(t_game *game)
 	}
 	else if (!game->keys.space)
 		game->keys.space_pressed = false;
-
+	// Show menu
 	if (game->keys.m && !game->keys.m_pressed)
 	{
 		game->keys.m_pressed = true;
@@ -117,10 +67,10 @@ void	handle_keys(t_game *game)
 	if (game->state == game_screen)
 	{
 		// look left
-		if (game->keys.a)
+		if (game->keys.left)
 			rotate(game, 1);
 		// look right
-		if (game->keys.d)
+		if (game->keys.right)
 			rotate(game, 0);
 		// move forward
 		if (game->keys.w)
@@ -138,6 +88,22 @@ void	handle_keys(t_game *game)
 			if (game->map.map_grid[(int)game->player.pos_y][(int)(game->player.pos_x - game->player.dir_x * game->player.speed)] == 0)
 				game->player.pos_x -= game->player.dir_x * game->player.speed;
 		}
-		
+		// straff left
+		if (game->keys.a)
+		{
+			if (game->map.map_grid[(int)(game->player.pos_y - game->player.plane_y * game->player.speed)][(int)game->player.pos_x] == 0)
+				game->player.pos_y -= game->player.plane_y * game->player.speed;
+			if (game->map.map_grid[(int)game->player.pos_y][(int)(game->player.pos_x - game->player.plane_x * game->player.speed)] == 0)
+				game->player.pos_x -= game->player.plane_x * game->player.speed;
+		}
+		// straff right
+		if (game->keys.d)
+		{
+			printf("straff right command\n");
+			if (game->map.map_grid[(int)(game->player.pos_y + game->player.plane_y * game->player.speed)][(int)game->player.pos_x] == 0)
+				game->player.pos_y += game->player.plane_y * game->player.speed;
+			if (game->map.map_grid[(int)game->player.pos_y][(int)(game->player.pos_x + game->player.plane_x * game->player.speed)] == 0)
+				game->player.pos_x += game->player.plane_x * game->player.speed;
+		}
 	}
 }

@@ -14,13 +14,23 @@ int	key_press(int keycode, t_game *game)
 	}
 	else if (keycode == XK_a)
 	{
-		printf("Keycode: [%d] (look left)\n", keycode);
+		printf("Keycode: [%d] (straff left)\n", keycode);
 		game->keys.a = true;
 	}
 	else if (keycode == XK_d)
 	{
-		printf("Keycode: [%d] (look right)\n", keycode);
+		printf("Keycode: [%d] (straff right)\n", keycode);
 		game->keys.d = true;
+	}
+	else if (keycode == XK_Left)
+	{
+		printf("keycode: [%d] (look left)\n", keycode);
+		game->keys.left = true;
+	}
+	else if (keycode == XK_Right)
+	{
+		printf("keycode: [%d] (look right)\n", keycode);
+		game->keys.right = true;
 	}
 	else if (keycode == XK_e)
 	{
@@ -65,6 +75,10 @@ int	key_release(int keycode, t_game *game)
 		game->keys.a = false;
 	else if (keycode == XK_d)
 		game->keys.d = false;
+	else if (keycode == XK_Left)
+		game->keys.left = false;
+	else if (keycode == XK_Right)
+		game->keys.right = false;
 	else if (keycode == XK_e)
 		game->keys.e = false;
 	else if (keycode == XK_Return)
