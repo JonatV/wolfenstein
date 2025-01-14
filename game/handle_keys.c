@@ -13,10 +13,10 @@ void	rotate(t_game *game, bool lr)
 	game->player.dir_x = game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
 	game->player.dir_y = tmp_dir * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
 	tmp_plane = game->player.plane_x;
-	game->player.plane_x = game->player.plane_x * cos(rot_speed)
-		- game->player.plane_y * sin(rot_speed);
+	game->player.plane_x = game->player.plane_x * cos(rot_speed) - game->player.plane_y * sin(rot_speed);
 	game->player.plane_y = tmp_plane * sin(rot_speed) + game->player.plane_y * cos(rot_speed);
 }
+
 void	handle_keys(t_game *game)
 {
 	// quit game

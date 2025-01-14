@@ -25,7 +25,7 @@
 #define C_DARK_RED	0x311F1F
 #define C_DEEP_RED	0x8C2B36
 #define C_RED		0xF53F39
-#define C_DARK_GREY	0x535353
+#define C_DARK_GREY	0x2e2e2e
 #define C_GREY		0xABABAB
 
 #define NS false
@@ -54,6 +54,7 @@ enum xpm_images
 	xpm_east,
 	xpm_west,
 	xpm_walls,
+	xpm_minimap_player,
 	xpm_null,
 	// add more here
 };
