@@ -13,9 +13,9 @@ int	layout_map_screen(t_game *game)
 		while (x < game->map.width)
 		{
 			if (game->map.map_grid[y][x] == 1)
-				color = C_RED;
+				color = C_BLACK;
 			else if (game->map.map_grid[y][x] == 0)
-				color = C_DARK_GREY;
+				color = C_GREY;
 			else
 				color = C_BLACK;
 			draw_rect(&game->xpm_images[xpm_map_focus], 100 + (x * 20), 100 + (y * 20), 20, 20, color);

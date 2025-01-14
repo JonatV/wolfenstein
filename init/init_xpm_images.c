@@ -11,6 +11,7 @@ bool	init_xpm_images(t_game *game)
 	game->xpm_images[xpm_south] = set_new_xpm("assets/SOUTH.xpm", &game->win);
 	game->xpm_images[xpm_east] = set_new_xpm("assets/EAST.xpm", &game->win);
 	game->xpm_images[xpm_west] = set_new_xpm("assets/WEST.xpm", &game->win);
-	game->xpm_images[xpm_walls] = set_new_xpm("assets/walls.xpm", &game->win);
+	game->xpm_images[xpm_walls] = set_new_xpm("assets/wallsv2.xpm", &game->win);
+	game->xpm_images[xpm_minimap_player] = set_new_xpm("assets/minimap_player.xpm", &game->win);
 	return (true);
 }
