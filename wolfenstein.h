@@ -1,8 +1,9 @@
 #ifndef WOLFENSTEIN_H
 #define WOLFENSTEIN_H
 
-#include "minilibx_linux/mlx.h"		// for mlx functions (handle window, image, etc)
-#include <X11/Xutil.h>				// for keycode Macro (XK_SPACE, XK_Escape, etc)
+# include "libft/libft.h"			// for libft functions
+# include "minilibx_linux/mlx.h"		// for mlx functions (handle window, image, etc)
+# include <X11/Xutil.h>				// for keycode Macro (XK_SPACE, XK_Escape, etc)
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
