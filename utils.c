@@ -44,9 +44,10 @@ t_img	set_new_xpm(char *path, t_win *window)
 	if (!img.mlx_img)
 	{
 		printf("Error: can't read this image file\n");
-		exit(1);
+		exit(1);// !to change
 	}
 	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len, &img.endian);
+	printf("name: %s\n", path);
 	printf("img: %p\n", img.mlx_img);
 	printf("x: %d\n", img.width);
 	printf("y: %d\n", img.height);
