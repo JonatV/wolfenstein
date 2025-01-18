@@ -43,7 +43,7 @@ t_img	set_new_xpm(char *path, t_win *window)
 	img.mlx_img = mlx_xpm_file_to_image(window->mlx_ptr, path, &img.width, &img.height);
 	if (!img.mlx_img)
 	{
-		printf("Error: can't read this image file\n");
+		printf("Error: can't read this image file\n"); 
 		exit(1);// !to change
 	}
 	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len, &img.endian);
@@ -126,6 +126,23 @@ int	close_game(void *p)
 		i++;
 	}
 
+	// destroy the player marker lst
+	t_lst *current = game->map.player_marker_sprite.animation_sequence;
+	t_lst *next = NULL;
+	while(current)
+	{
+		next = current->next;
+		mlx_destroy_image(game->win.mlx_ptr, ((t_player_marker *)current->content)->frame.mlx_img);
+		free((t_player_marker *)current->content);
+		free(current);
+		if (next == game->map.player_marker_sprite.animation_sequence)
+			break;
+		current = next;
+	}
+	game->map.player_marker_sprite.animation_sequence = NULL;
+	free(game->map.player_marker_sprite.file_path);
+	free(game->map.player_marker_sprite.name);
+	mlx_destroy_image(game->win.mlx_ptr, game->map.player_marker_sprite.sprite_img.mlx_img);
 	// destroy window
 	if (game->win.win_ptr)
 		mlx_destroy_window(game->win.mlx_ptr, game->win.win_ptr);
