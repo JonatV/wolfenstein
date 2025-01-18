@@ -6,35 +6,34 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:52:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/14 17:03:18 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:55:40 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-static void draw_minimap_player(t_game *game)
+static void find_current_player_marker( t_sprite *player_sprite, t_player player)
 {
 	//calcul point to adjust to the rotation of the player
-	float angle = atan2(game->player.dir_y, game->player.dir_x);
-	printf("player dir x: %f\n", game->player.dir_x);
-	printf("player dir y: %f\n", game->player.dir_y);
-	printf("angle: %f\n", angle);
-	
+	float angle = atan2(player.dir_y, player.dir_x);
+	float angle_degrees = angle * (180.0 / M_PI);
+	if (angle_degrees < 0)
+		angle_degrees += 360;
+	float to_find = (floor(angle_degrees / 15) * 15) + 7.500f;
+	while(((t_player_marker *)player_sprite->current_node->content)->min_angle != to_find)
+		player_sprite->current_node = player_sprite->current_node->next;
 }
 
 void	minimap(t_game *game)
 {
-	// int	x;
-	// int	y;
 	float	start_x;
 	float	start_y;
 	int		i;
 	int		j;
-	(void)i, (void)j, (void)start_x, (void)start_y;
-
+	
 	start_x = game->player.pos_x * game->map.mini_tile_size  - game->map.minimap_width/2;
 	start_y = game->player.pos_y * game->map.mini_tile_size - game->map.minimap_height/2;
-	i = 0;
+	i = 0;	
 	while (i < game->map.minimap_height)
 	{
 		j = 0;
@@ -60,6 +59,7 @@ void	minimap(t_game *game)
 		}
 		i++;
 	}
-	put_img_to_img(&game->win.screen, &game->xpm_images[xpm_minimap_player], game->map.minimap_width/2 + game->map.padding - game->xpm_images[xpm_minimap_player].width/2, game->map.minimap_height/2 + game->map.padding - game->xpm_images[xpm_minimap_player].width/2);
-	draw_minimap_player(game);
+	find_current_player_marker(&game->map.player_marker_sprite, game->player);
+	t_img *frame = &((t_player_marker *)game->map.player_marker_sprite.current_node->content)->frame;
+	put_img_to_img(&game->win.screen, frame, game->map.minimap_width/2 + game->map.padding - frame->width/2, game->map.minimap_height/2 + game->map.padding - frame->height/2);
 }
