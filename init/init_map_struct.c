@@ -91,5 +91,23 @@ bool init_map_struct(t_game *game)
 	game->map.minimap_height = 150;
 	game->map.minimap_width = 150;
 	game->map.player_marker_sprite = (t_sprite){0};
+	// init map focus data
+	game->map.max_map_width = 1008;
+	game->map.max_map_height = 402;
+	game->map.focus_tile_size = FOCUS_TILE_SIZE;
+	game->map.dynamic_map = false;
+	if (game->map.height * game->map.focus_tile_size > game->map.max_map_height \
+		|| game->map.width * game->map.focus_tile_size > game->map.max_map_width)
+		game->map.dynamic_map = true;
+	if (game->map.dynamic_map)
+	{
+		game->map.start_x = 96;
+		game->map.start_y = 99;
+	}
+	else
+	{
+		game->map.start_x = (game->win_w - (game->map.width * game->map.focus_tile_size))/2;
+		game->map.start_y = (game->win_h - (game->map.height * game->map.focus_tile_size))/2;
+	}
 	return (true);
 }

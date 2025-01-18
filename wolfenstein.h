@@ -21,6 +21,7 @@
 #define MAP_H 13
 #define MAP_W 24
 #define TILE_SIZE 32
+#define FOCUS_TILE_SIZE 25
 
 #define C_BLACK		0x1A1A1A
 #define C_DARK_RED	0x311F1F
@@ -169,6 +170,12 @@ typedef struct s_map
 	int			mini_tile_size;
 	t_sprite	player_marker_sprite;
 	// map focus data (full screen map)
+	int			max_map_width;
+	int			max_map_height;
+	bool		dynamic_map;
+	int			focus_tile_size;
+	int			start_x;
+	int			start_y;
 
 	// common data
 	int		floor_color;
