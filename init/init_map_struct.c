@@ -90,5 +90,6 @@ bool init_map_struct(t_game *game)
 	game->map.mini_tile_size = 20;
 	game->map.minimap_height = 150;
 	game->map.minimap_width = 150;
+	game->map.player_marker_sprite = (t_sprite){0};
 	return (true);
 }

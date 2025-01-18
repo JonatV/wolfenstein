@@ -15,7 +15,7 @@
 #define TITLE "Wolfenstein"
 #define WIN_W 1200
 #define WIN_H 600
-#define FPS 45
+#define FPS 32
 
 // has to be define in the parsing latter
 #define MAP_H 13
@@ -55,7 +55,6 @@ enum xpm_images
 	xpm_east,
 	xpm_west,
 	xpm_walls,
-	xpm_minimap_player,
 	xpm_null,
 	// add more here
 };
@@ -124,6 +123,39 @@ typedef struct s_player
 	double	plane_y;
 }		t_player;
 
+typedef struct s_sprite_slice_data
+{
+	int x;
+	int y;
+	int width;
+	int height;
+}	t_sprite_slice_data;
+
+typedef struct s_player_marker
+{
+	t_img	frame;
+	float	min_angle;		// to set the image orientation property
+}	t_player_marker;
+
+typedef struct s_lst
+{
+	void			*content;
+	struct s_lst	*next;
+	struct s_lst	*prev;
+}	t_lst;
+
+typedef struct s_sprite
+{
+	void	*animation_sequence;	// void because it can be either the frames list (player marker)
+									//or the structure that content the info of the animation + the frames list 
+	t_lst	*current_node;
+	char	*name;
+	char	*file_path;
+	t_img	sprite_img;
+	int	width;
+	int	height;
+}	t_sprite;
+
 typedef struct s_map
 {
 	int		**map_grid;
@@ -133,8 +165,9 @@ typedef struct s_map
 	// minimap data (little map on left top corner)
 	float		minimap_width;
 	float		minimap_height;
-	int		padding;
-	int		mini_tile_size;
+	int			padding;
+	int			mini_tile_size;
+	t_sprite	player_marker_sprite;
 	// map focus data (full screen map)
 
 	// common data
@@ -267,5 +300,16 @@ int	layout_map_screen(t_game *game);
 
 /*----------------  minimap.c  ---------------*/
 void	minimap(t_game *game);
+
+/*----------------  animation_tools.c  ---------------*/
+t_sprite	new_sprite(char *name, char *file_path, t_win *win);
+
+/*----------------  init_animation_struct.c  ---------------*/
+bool	init_animation_struct(t_game *game);
+
+/*----------------  animation_utils.c  ---------------*/
+t_lst	*lst_new_double(void *content);
+void	lstadd_back_double(t_lst **lst, t_lst *new);
+t_lst	*lstlast(t_lst *lst);
 
 #endif
