@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/19 18:55:50 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/19 23:08:31 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,17 @@ int	is_map(t_game *data, char *str)
 
 void	map_check(t_game *data, char *str)
 {
-	static int	nbrlinesstat = 0;
-	static int	sizelinestat = 0;
+	static int	nbrlines = 0;
+	static int	sizeline = 0;
 
 	if (is_map(data, str) == 1)
 	{
 		if (data_check(data))
 			data->error = 2;
-		if (ft_strlen(str) > sizelinestat)
-			sizelinestat = ft_strlen(str);
-		nblinesstat += 1;
+		if (ft_strlen(str) > sizeline)
+			sizeline = ft_strlen(str);
+		nbrlines += 1;
 	}
-	data->sizeline = sizelinestat;
-	data->nbrlines = nbrlinesstat;
+	data->sizeline = sizeline;
+	data->nbrlines = nbrlines;
 }
