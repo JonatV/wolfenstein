@@ -18,10 +18,10 @@
 #define FPS 32
 
 // has to be define in the parsing latter
-#define MAP_H 13
-#define MAP_W 24
+#define MAP_H 28
+#define MAP_W 35
 #define TILE_SIZE 32
-#define FOCUS_TILE_SIZE 25
+#define FOCUS_TILE_SIZE 20
 
 #define C_BLACK		0x1A1A1A
 #define C_DARK_RED	0x311F1F
@@ -29,6 +29,7 @@
 #define C_RED		0xF53F39
 #define C_DARK_GREY	0x2e2e2e
 #define C_GREY		0xABABAB
+#define C_TRANSPARENT	0xFF000000
 
 #define NS false
 #define EW true
@@ -176,6 +177,8 @@ typedef struct s_map
 	int			focus_tile_size;
 	int			start_x;
 	int			start_y;
+	t_img		focus_map_dynamic;
+	bool		focus_rendered;
 
 	// common data
 	int		floor_color;
@@ -303,7 +306,7 @@ int		update(t_game *game);
 int		raycast(t_game *game);
 void	put_column_to_win(t_game *game, int x);
 
-int	layout_map_screen(t_game *game);
+int layout_map_screen(t_game *game);
 
 /*----------------  minimap.c  ---------------*/
 void	minimap(t_game *game);

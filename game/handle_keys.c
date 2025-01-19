@@ -48,7 +48,10 @@ void	handle_keys(t_game *game)
 		if (game->state == game_screen)
 			game->state = map_focus;
 		else if (game->state == map_focus)
+		{
+			game->map.focus_rendered = false;
 			game->state = game_screen;
+		}
 	}
 	else if (!game->keys.space)
 		game->keys.space_pressed = false;
