@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/19 18:50:32 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/19 18:55:50 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ int	wall_check(t_game *data) //checke si la map est bien entouree de 1, a implem
 	while (data->map[0][++i] && data->map[data->nbrlines -1][i])
 		if (data->map[0][i] != '1' && data->map[data->nbrlines -1][i] != '1')
 			return (1);
+	return (0);
+}
+
+int	depart(t_game *data, int i, int j, char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	{
+		data->depart_dir = c; //pour donner la direction de depart du joueur
+		data->x_position = j; //pour donner les coordonnees du depart du joueur
+		data->y_position = i;
+		return (1);
+	}
 	return (0);
 }
 

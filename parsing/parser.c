@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/19 18:10:06 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/19 19:14:21 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	parse_all(t_game *data, char *file)
 	while (checker)
 	{
 		checker = get_next_line(fd, &str, data);
-		if (data->error == 2)
+		if (data->error == 1)
 			error(data, "Error: problem with map\n");
 		colours(data, &str);
 		texture();
