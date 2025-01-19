@@ -125,7 +125,8 @@ int	close_game(void *p)
 			mlx_destroy_image(game->win.mlx_ptr, game->xpm_images[i].mlx_img);
 		i++;
 	}
-
+	// destroy img of the dynamic map
+	mlx_destroy_image(game->win.mlx_ptr, game->map.focus_map_dynamic.mlx_img);
 	// destroy the player marker lst
 	t_lst *current = game->map.player_marker_sprite.animation_sequence;
 	t_lst *next = NULL;
