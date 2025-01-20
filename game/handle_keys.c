@@ -78,35 +78,60 @@ void	handle_keys(t_game *game)
 		// move forward
 		if (game->keys.w)
 		{
-			if (game->map.map_grid[(int)(game->player.pos_y + game->player.dir_y * game->player.speed)][(int)game->player.pos_x] == 0)
+			// Move forward
+			if (game->map.map_grid[(int)(game->player.pos_y + game->player.dir_y * game->player.speed + 0.21)][(int)(game->player.pos_x)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y + game->player.dir_y * game->player.speed - 0.21)][(int)(game->player.pos_x)] == 0)
+			{
 				game->player.pos_y += game->player.dir_y * game->player.speed;
-			if (game->map.map_grid[(int)game->player.pos_y][(int)(game->player.pos_x + game->player.dir_x * game->player.speed)] == 0)
+			}
+			if (game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x + game->player.dir_x * game->player.speed + 0.21)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x + game->player.dir_x * game->player.speed - 0.21)] == 0)
+			{
 				game->player.pos_x += game->player.dir_x * game->player.speed;
+			}
 		}
-		// move backward
 		if (game->keys.s)
 		{
-			if (game->map.map_grid[(int)(game->player.pos_y - game->player.dir_y * game->player.speed)][(int)game->player.pos_x] == 0)
+			// Move backward
+			if (game->map.map_grid[(int)(game->player.pos_y - game->player.dir_y * game->player.speed + 0.21)][(int)(game->player.pos_x)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y - game->player.dir_y * game->player.speed - 0.21)][(int)(game->player.pos_x)] == 0)
+			{
 				game->player.pos_y -= game->player.dir_y * game->player.speed;
-			if (game->map.map_grid[(int)game->player.pos_y][(int)(game->player.pos_x - game->player.dir_x * game->player.speed)] == 0)
+			}
+			if (game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x - game->player.dir_x * game->player.speed + 0.21)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x - game->player.dir_x * game->player.speed - 0.21)] == 0)
+			{
 				game->player.pos_x -= game->player.dir_x * game->player.speed;
+			}
 		}
-		// straff left
 		if (game->keys.a)
 		{
-			if (game->map.map_grid[(int)(game->player.pos_y - game->player.plane_y * game->player.speed)][(int)game->player.pos_x] == 0)
+			// Strafe left
+			if (game->map.map_grid[(int)(game->player.pos_y - game->player.plane_y * game->player.speed + 0.21)][(int)(game->player.pos_x)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y - game->player.plane_y * game->player.speed - 0.21)][(int)(game->player.pos_x)] == 0)
+			{
 				game->player.pos_y -= game->player.plane_y * game->player.speed;
-			if (game->map.map_grid[(int)game->player.pos_y][(int)(game->player.pos_x - game->player.plane_x * game->player.speed)] == 0)
+			}
+			if (game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x - game->player.plane_x * game->player.speed + 0.21)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x - game->player.plane_x * game->player.speed - 0.21)] == 0)
+			{
 				game->player.pos_x -= game->player.plane_x * game->player.speed;
+			}
 		}
-		// straff right
 		if (game->keys.d)
 		{
-			printf("straff right command\n");
-			if (game->map.map_grid[(int)(game->player.pos_y + game->player.plane_y * game->player.speed)][(int)game->player.pos_x] == 0)
+			// Strafe right
+			if (game->map.map_grid[(int)(game->player.pos_y + game->player.plane_y * game->player.speed + 0.21)][(int)(game->player.pos_x)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y + game->player.plane_y * game->player.speed - 0.21)][(int)(game->player.pos_x)] == 0)
+			{
 				game->player.pos_y += game->player.plane_y * game->player.speed;
-			if (game->map.map_grid[(int)game->player.pos_y][(int)(game->player.pos_x + game->player.plane_x * game->player.speed)] == 0)
+			}
+			if (game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x + game->player.plane_x * game->player.speed + 0.21)] == 0 &&
+				game->map.map_grid[(int)(game->player.pos_y)][(int)(game->player.pos_x + game->player.plane_x * game->player.speed - 0.21)] == 0)
+			{
 				game->player.pos_x += game->player.plane_x * game->player.speed;
+			}
+		}
 		}
 	}
 }
