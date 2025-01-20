@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 14:23:34 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:07:40 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ void	parse_all(t_pars *data, char *file)
 	checker = 1;
 	str = NULL;
 	if ((fd = open(file, O_DIRECTORY)) != -1)
-		error(data, "Error: file is a directory\n");
+		ft_errors(data, "Error: file is a directory\n");
 	if ((fd = open(file, O_RDONLY)) == -1)
-		error(data, "Error: invalid file\n");
+		ft_errors(data, "Error: invalid file\n");
 	data->error = 0;
 	while (checker)
 	{
 		checker = get_next_line(fd, &str, data);
 		if (data->error == 1)
-			error(data, "Error: problem with map\n");
+			ft_errors(data, "Error: problem with map\n");
 		get_colours(data, &str);
 		get_texture();
 		map_check();
@@ -66,6 +66,6 @@ void	parse_all(t_pars *data, char *file)
 	}
 	close (fd);
 	if (!data->sizeline || !data->nbrlines)
-		error(data, "Error: no map given\n");
+		ft_errors(data, "Error: no map given\n");
 	map_pars(data, file);
 }

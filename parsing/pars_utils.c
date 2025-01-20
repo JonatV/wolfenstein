@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:01 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 14:03:18 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:56:57 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,20 @@ int	data_check(t_pars *data)
 		return (1);
 	return (0);
 }
+
+int	detect_char(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+

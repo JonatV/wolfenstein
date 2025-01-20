@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 14:28:26 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:07:07 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ int	wall_check(t_pars *data)
 
 ft_exit() //faut faire une fonction exit qui free tout le bordel et ecrit le bon message d'erreur
 
-void	ft_errors(t_pars *data)
+void	ft_errors(t_pars *data, char *str)
 {
+	if (str && str[0])
+		ft_exit(data, str);
 	if (wall_check(data))
 		ft_exit(data, "Map is not surrounded by walls\n");
 	if (!data->start_dir || !data->start_x || !data->start_dir)
