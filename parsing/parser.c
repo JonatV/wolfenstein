@@ -6,13 +6,13 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/19 19:14:21 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:23:34 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolfenstein.h"
+#include "../wolfenstein.h"
 
-void	map_pars(t_game *data, char *file)
+void	map_pars(t_pars *data, char *file)
 {
 	int		check;
 	int		fd;
@@ -37,10 +37,11 @@ void	map_pars(t_game *data, char *file)
 		free(str);
 	}
 	close(fd);
+	ft_errors(data);
 	init_sprite(data);
 }
 
-void	parse_all(t_game *data, char *file)
+void	parse_all(t_pars *data, char *file)
 {
 	int		fd;
 	int		checker;
@@ -58,13 +59,13 @@ void	parse_all(t_game *data, char *file)
 		checker = get_next_line(fd, &str, data);
 		if (data->error == 1)
 			error(data, "Error: problem with map\n");
-		colours(data, &str);
-		texture();
+		get_colours(data, &str);
+		get_texture();
 		map_check();
 		free(str);
 	}
 	close (fd);
-	if (!data->linesize || !data->nbrline)
+	if (!data->sizeline || !data->nbrlines)
 		error(data, "Error: no map given\n");
-	map_pars();
+	map_pars(data, file);
 }

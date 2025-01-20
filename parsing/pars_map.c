@@ -6,67 +6,55 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/19 23:08:31 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:24:01 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolfenstein.h"
+#include "../wolfenstein.h"
 
-int	wall_check(t_game *data) //checke si la map est bien entouree de 1, a implementer dans une fonction errors
+int	start(t_pars *data, int i, int j, char c)
 {
-	int	i;
-
-	i = -1;
-	while (++i < data->nbrlines)
-		if (data->map[i][0] != '1' || data->map[i][data->sizeline - 1] != '1')
-			return (1);
-	i = -1;
-	if (wall_utils(data->map[0]) == 1 || wall_utils(data->map[data->nbrlines - 1]) == 1)
-		return (1);
-	while (data->map[0][++i] && data->map[data->nbrlines -1][i])
-		if (data->map[0][i] != '1' && data->map[data->nbrlines -1][i] != '1')
-			return (1);
-	return (0);
-}
-
-int	depart(t_game *data, int i, int j, char c)
-{
+	static int	checker = 0;
+	
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
-		data->depart_dir = c; //pour donner la direction de depart du joueur
+		if (checker)
+		{
+			data->error = 1;
+		}
+		data->start_dir = c; //pour donner la direction de depart du joueur
 		data->x_position = j; //pour donner les coordonnees du depart du joueur
 		data->y_position = i;
+		checker = 1;
 		return (1);
 	}
 	return (0);
 }
 
-void	create_map(t_game *data, char *str)
+void	create_map(t_pars *data, char *str)
 {
 	int			i;
 	static int	j = 0;
 
 	i = 0;
-	data->map[j] = NULL;
 	if (!(data->map[j] = malloc(data->sizeline + 1)))
 		return ;
 	while (str[i])
 	{
-		if (depart(data, j, i, str[i]) == 1)
-			data->map[j][i] = '0';
+		if (start(data, j, i, str[i]))
+			data->map[j][i] = 0;
 		else if (str[i] == 32)
-			data->map[j][i] = '1';
+			data->map[j][i] = 1;
 		else
-			data->map[j][i] = str[i];
+			data->map[j][i] = ft_itoa(str[i]);
 		i++;
 	}
 	while (i <= (data->sizeline - 1))
 		data->map[j][i++] = '1';
-	data->map[j][i] = '\0';
 	j++;
 }
 
-int	is_map(t_game *data, char *str)
+int	is_map(t_pars *data, char *str)
 {
 	int	i;
 
@@ -80,7 +68,7 @@ int	is_map(t_game *data, char *str)
 			if (is_special(str[++i]))
 			{
 				if (data->in_map == 1)
-					data->wrongcharmap = 1; //pour de futurs messages d'erreur au besoin genre caractere incorrect
+					data->wrongchar = 1; //pour de futurs messages d'erreur au besoin genre caractere incorrect
 				return (0);
 			}
 		}
@@ -89,7 +77,7 @@ int	is_map(t_game *data, char *str)
 	return (0);
 }
 
-void	map_check(t_game *data, char *str)
+void	map_check(t_pars *data, char *str)
 {
 	static int	nbrlines = 0;
 	static int	sizeline = 0;

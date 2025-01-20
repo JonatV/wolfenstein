@@ -158,12 +158,25 @@ typedef struct s_ray
 	double	wall_height;
 }		t_raycast;
 
-// typedef struct s_pars
-// {
-// 	int		x;
-// 	int		y;
-// 	t_map	map;
-// }	t_pars;
+typedef struct s_pars
+{
+	int		**map;
+	int		error;
+	int		sizeline;
+	int		nbrlines;
+	int		empty_line;
+	int		wrongchar;
+	int		in_map;
+	int		start_x;
+	int		start_y;
+	char	start_dir;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f;
+	int		c;
+}	t_pars;
 
 typedef struct s_game
 {
@@ -178,6 +191,7 @@ typedef struct s_game
 	uint64_t	created_at;
 	uint64_t	updated_at;
 	int			fps;
+	t_pars		data;
 
 	// array of xpm images
 	t_img		xpm_images[xpm_null];
