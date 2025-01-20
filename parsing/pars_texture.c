@@ -6,11 +6,20 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/14 17:42:38 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:24:32 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolfenstein.h"
+
+void	texture(t_game *data, char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == 'S' && str[i + 1] == 'O')
+		get_texture(data, data->no, 
+}
 
 void	colours(t_game *data, char **str)
 {
