@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/14 18:24:32 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:55:58 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ void	colours(t_game *data, char **str)
 	i = 0;
 	data->i = 1;
 	if (data->toutcequonrecuperecommeinfo == NULL)
-		data->error = 2;
+		data->error = 1;
 	if (*str[i] == 'R')
 	{
 		
 	}
 }
+ 
