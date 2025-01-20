@@ -7,7 +7,6 @@ int	layout_game_screen(t_game *game)
 		raycast(game);
 		minimap(game);
 	}
-		// draw_rect(&game->win.screen, 0, 0, game->win.width, game->win.height, C_GREY);
 	else if (game->state == inventory)
 		put_img_to_img(&game->win.screen, &game->xpm_images[xpm_inventory], 0, 0);
 	else if (game->state == map_focus)

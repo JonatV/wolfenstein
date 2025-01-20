@@ -18,8 +18,10 @@
 #define FPS 32
 
 // has to be define in the parsing latter
-#define MAP_H 28
-#define MAP_W 35
+// #define MAP_H 28
+#define MAP_H 19
+#define MAP_W 29
+// #define MAP_W 35
 #define TILE_SIZE 32
 #define FOCUS_TILE_SIZE 20
 
@@ -164,12 +166,14 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		tile_size;
+
 	// minimap data (little map on left top corner)
 	float		minimap_width;
 	float		minimap_height;
 	int			padding;
 	int			mini_tile_size;
 	t_sprite	player_marker_sprite;
+
 	// map focus data (full screen map)
 	int			max_map_width;
 	int			max_map_height;
@@ -177,6 +181,8 @@ typedef struct s_map
 	int			focus_tile_size;
 	int			start_x;
 	int			start_y;
+	int			focus_start_x;
+	int			focus_start_y;
 	t_img		focus_map_dynamic;
 	bool		focus_rendered;
 

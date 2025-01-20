@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:52:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/18 13:55:40 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:30:07 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	minimap(t_game *game)
 			{
 				if (game->map.map_grid[grid_y][grid_x] == 1)
 					img_pix_put(&game->win.screen, j + game->map.padding, i + game->map.padding, C_DARK_GREY);
+				else if (game->map.map_grid[grid_y][grid_x] == 3)
+					img_pix_put(&game->win.screen, j + game->map.padding, i + game->map.padding, C_DEEP_RED);
 				else
 					img_pix_put(&game->win.screen, j + game->map.padding, i + game->map.padding, C_GREY);
 			}

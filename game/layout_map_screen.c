@@ -1,7 +1,32 @@
 #include "../wolfenstein.h"
 #include "wolfenstein.h"
 
-static void print_loop_dynamic_map(t_game *game, int start_pos_x, int start_pos_y);
+static void print_loop_dynamic_map(t_game *game, int start_pos_x, int start_pos_y)
+{
+	int x;
+	int y;
+	int color;
+
+	y = 0;
+	while (y < MAP_H)
+	{
+		x = 0;
+		while (x < MAP_W)
+		{
+			if (game->map.map_grid[y][x] == 1)
+				color = C_DARK_GREY;
+			else if (game->map.map_grid[y][x] == 0)
+				color = C_GREY;
+			else if (game->map.map_grid[y][x] == 3)
+				color = C_DEEP_RED;
+			else
+				color = C_BLACK;
+			draw_rect(&game->map.focus_map_dynamic, start_pos_x + (x * game->map.focus_tile_size), start_pos_y + (y * game->map.focus_tile_size), game->map.focus_tile_size, game->map.focus_tile_size, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 static void fixed_focus_map(t_game *game)
 {
@@ -9,7 +34,7 @@ static void fixed_focus_map(t_game *game)
 	int	y;
 	int	color;
 	int	size;
-	
+
 	size = game->map.focus_tile_size;
 	y = 0;
 	while (y < game->map.height)
@@ -21,9 +46,11 @@ static void fixed_focus_map(t_game *game)
 				color = C_BLACK;
 			else if (game->map.map_grid[y][x] == 0)
 				color = C_GREY;
+			else if (game->map.map_grid[y][x] == 3)
+				color = C_DEEP_RED;
 			else
 				color = C_BLACK;
-			draw_rect(&game->xpm_images[xpm_map_focus], game->map.start_x + (x * size), game->map.start_y + (y * size), size, size, color);
+			draw_rect(&game->map.focus_map_dynamic, game->map.focus_start_x + (x * size), game->map.focus_start_y + (y * size), size, size, color);
 			x++;
 		}
 		y++;
@@ -56,8 +83,7 @@ int	layout_map_screen(t_game *game)
 	img = &marker->frame; // Get the address of the frame
 	if (!game->map.focus_rendered)
 	{
-		printf("\e[4;32mRendering map focus\e[0m\n");
-		// check if map will be out of bounds
+		draw_rect(&game->map.focus_map_dynamic, 0, 0, 1008, 402, C_BLACK); // to reset the map
 		if (game->map.dynamic_map)
 			dynamic_focus_map(game);
 		else
@@ -66,32 +92,10 @@ int	layout_map_screen(t_game *game)
 	}
 	put_img_to_img(&game->win.screen, &game->xpm_images[xpm_map_focus], 0, 0);
 	put_img_to_img(&game->win.screen, &game->map.focus_map_dynamic, 96, 99);
-	put_img_to_img(&game->win.screen, img, WIN_W/2 - img->width/2, WIN_H/2 - img->height/2);
+	if (game->map.dynamic_map)
+		put_img_to_img(&game->win.screen, img, WIN_W/2 - img->width/2, WIN_H/2 - img->height/2);
+	else
+		put_img_to_img(&game->win.screen, img, game->map.start_x + (game->player.pos_x * game->map.focus_tile_size) - img->width/2, game->map.start_y + (game->player.pos_y * game->map.focus_tile_size) - img->height/2);
 	return (0);
 }
 
-static void print_loop_dynamic_map(t_game *game, int start_pos_x, int start_pos_y)
-{
-	int x;
-	int y;
-	int color;
-
-	draw_rect(&game->map.focus_map_dynamic, 0, 0, 1008, 402, C_BLACK);
-	y = 0;
-	while (y < MAP_H)
-	{
-		x = 0;
-		while (x < MAP_W)
-		{
-			if (game->map.map_grid[y][x] == 1)
-				color = C_DARK_GREY;
-			else if (game->map.map_grid[y][x] == 0)
-				color = C_GREY;
-			else
-				color = C_RED;
-			draw_rect(&game->map.focus_map_dynamic, start_pos_x + (x * game->map.focus_tile_size), start_pos_y + (y * game->map.focus_tile_size), game->map.focus_tile_size, game->map.focus_tile_size, color);
-			x++;
-		}
-		y++;
-	}
-}
