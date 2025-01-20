@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 14:24:01 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:12:34 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	map_check(t_pars *data, char *str)
 	if (is_map(data, str) == 1)
 	{
 		if (data_check(data))
-			data->error = 2;
+			data->error = 1;
 		if (ft_strlen(str) > sizeline)
 			sizeline = ft_strlen(str);
 		nbrlines += 1;
