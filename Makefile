@@ -22,7 +22,7 @@ SRC = main.c \
 		$(DRAW)draw_vertex.c $(DRAW)draw_rectangle.c $(DRAW)draw_circle.c $(DRAW)draw_line.c \
 		$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_errors.c $(PARS)pars_utils.c $(PARS)pars_map.c $(PARS)pars_texture.c \
 		$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
- 
+
 OBJ = $(SRC:.c=.o)
 
 CC = clang
