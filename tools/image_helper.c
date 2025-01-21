@@ -1,26 +1,16 @@
-#include "wolfenstein.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image_helper.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 15:56:33 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/21 15:57:05 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-uint64_t	gettimeofday_ms(void)
-{
-	static struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
-}
-
-uint64_t	timestamp_in_ms(t_game *game)
-{
-	if (!game)
-		return 0;
-	if (game->created_at == 0)
-		game->created_at = gettimeofday_ms();
-	return (gettimeofday_ms() - game->created_at);
-}
-
-int		encode_rgb(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
+#include "../wolfenstein.h"
 
 t_img	new_img(int w, int h, t_win *window)
 {
@@ -38,7 +28,7 @@ t_img	new_img(int w, int h, t_win *window)
 t_img	set_new_xpm(char *path, t_win *window)
 {
 	t_img	img;
-	
+
 	img.win = window;
 	img.mlx_img = mlx_xpm_file_to_image(window->mlx_ptr, path, &img.width, &img.height);
 	if (!img.mlx_img)
@@ -98,66 +88,4 @@ void	copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_
 		dst_addr = dst_img.addr + (dst_y * dst_img.line_len + dst_x * (dst_img.bpp / 8));
 		*(unsigned int *)dst_addr = color;
 	}
-}
-
-/* IN GENERAL:
-** Destroy image and xpm images
-** Destroy display
-** Destroy window
-** Destroy map grid
-** Free mlx_ptr
-** Free main game struct
-*/
-int	close_game(void *p)
-{
-	t_game	*game;
-	int		i;
-
-	game = (t_game *)p;
-	i = 0;
-
-	// destroy all the images and xpm images
-	if (game->win.screen.mlx_img)
-		mlx_destroy_image(game->win.mlx_ptr, game->win.screen.mlx_img);
-	while (i < xpm_null)
-	{
-		if (game->xpm_images[i].mlx_img)
-			mlx_destroy_image(game->win.mlx_ptr, game->xpm_images[i].mlx_img);
-		i++;
-	}
-	// destroy img of the dynamic map
-	mlx_destroy_image(game->win.mlx_ptr, game->map.focus_map_dynamic.mlx_img);
-	// destroy the player marker lst
-	t_lst *current = game->map.pos_sprite.anim;
-	t_lst *next = NULL;
-	while(current)
-	{
-		next = current->next;
-		mlx_destroy_image(game->win.mlx_ptr, ((t_marker *)current->content)->frame.mlx_img);
-		free((t_marker *)current->content);
-		free(current);
-		if (next == game->map.pos_sprite.anim)
-			break;
-		current = next;
-	}
-	game->map.pos_sprite.anim = NULL;
-	free(game->map.pos_sprite.file_path);
-	free(game->map.pos_sprite.name);
-	mlx_destroy_image(game->win.mlx_ptr, game->map.pos_sprite.sprite_img.mlx_img);
-	// destroy window
-	if (game->win.win_ptr)
-		mlx_destroy_window(game->win.mlx_ptr, game->win.win_ptr);
-
-	// destroy display
-	if (game->win.mlx_ptr)
-		mlx_destroy_display(game->win.mlx_ptr);
-
-	// destroy map grid
-	i = 0;
-	while (i < game->map.height)
-		free(game->map.map_grid[i++]);
-	free(game->map.map_grid);
-
-	free(game);
-	exit(0);
 }

@@ -279,15 +279,22 @@ bool		init_window_struct(t_game **game);
 /*----------------  init_game_struct.c  ---------------*/
 bool		init_game_struct(t_game **game);
 
-/*----------------  utils.c  ---------------*/
+/*----------------  close.c  ---------------*/
+int		close_game(void *p);
+
+/*----------------  fps.c  ---------------*/
 uint64_t		gettimeofday_ms(void);
 uint64_t		timestamp_in_ms(t_game *game);
+
+/*----------------  colors.c  ---------------*/
 int		encode_rgb(int r, int g, int b);
+
+/*----------------  image_helpers.c  ---------------*/
 t_img		new_img(int w, int h, t_win *window);
 t_img		set_new_xpm(char *path, t_win *window);
 void		put_img_to_img(t_img *dst, t_img *src, int x, int y);
 void		copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_x, int dst_y);
-int		close_game(void *p);
+
 
 /*----------------  handle_keys.c  ---------------*/
 void		handle_keys(t_game *game);
