@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 16:11:30 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:01:06 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	get_colours(t_pars *data, char **str)
 	int	i;
 
 	i = 0;
+	if (!data->no || !data->we || !data->ea || !data->so)
+		ft_errors(data, "Not enough textures were given\n");
 	if (*str[i] == 'F')
 		data->f = ft_atoi_c(data, *str);
 	else if (*str[i] == 'C')
