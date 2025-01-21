@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 16:14:58 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:21:12 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ int	wall_check(t_pars *data)
 	int	i;
 
 	i = -1;
-	while (++i < data->nbrlines)
-		if (data->map[i][0] != '1' || data->map[i][data->sizeline - 1] != '1')
+	while (++i < data->map_h)
+		if (data->map[i][0] != '1' || data->map[i][data->map_w - 1] != '1')
 			return (1);
 	i = -1;
 	if (wall_utils(data->map[0]) == 1
-		|| wall_utils(data->map[data->nbrlines - 1]) == 1)
+		|| wall_utils(data->map[data->map_h - 1]) == 1)
 		return (1);
-	while (data->map[0][++i] && data->map[data->nbrlines -1][i])
-		if (data->map[0][i] != '1' && data->map[data->nbrlines -1][i] != '1')
+	while (data->map[0][++i] && data->map[data->map_h -1][i])
+		if (data->map[0][i] != '1' && data->map[data->map_h -1][i] != '1')
 			return (1);
 	return (0);
 }

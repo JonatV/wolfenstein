@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:01 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 15:52:44 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:21:53 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_special(char c)
 {
-	if (c != ' ' && c != '0' && c != '1' && c != '2' && c != 'N' c != 'S'
+	if (c != ' ' && c != '0' && c != '1' && c != '2' && c != 'N' && c != 'S'
 		&& c != 'W' && c != 'E' && c != '\n' && c != '\t')
 		return (1);
 	return (0);
@@ -53,12 +53,12 @@ void	map_check(t_pars *data, char *str)
 	{
 		if (data_check(data))
 			data->error = 1;
-		if (ft_strlen(str) > sizeline)
+		if ((int)ft_strlen(str) > sizeline)
 			sizeline = ft_strlen(str);
 		nbrlines += 1;
 	}
-	data->sizeline = sizeline;
-	data->nbrlines = nbrlines;
+	data->map_w = sizeline;
+	data->map_h = nbrlines;
 }
 
 int	check_fd(t_pars *data, char *file)

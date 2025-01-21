@@ -233,8 +233,8 @@ typedef struct s_pars
 {
 	int		**map;
 	int		error;
-	int		sizeline;
-	int		nbrlines;
+	int		map_w;
+	int		map_h;
 	int		empty_line;
 	int		wrongchar;
 	int		in_map;
@@ -263,7 +263,6 @@ typedef struct s_game
 	uint64_t	updated_at;
 	int			fps;
 	t_pars		data;
-
 	// array of xpm images
 	t_img		xpm_images[xpm_null];
 	// t_img		xpm_images[xpm_null];
@@ -355,9 +354,10 @@ void	ft_errors(t_pars *d, char *str);
 
 /*----------------  pars_map.c  ---------------*/
 void	map_pars(t_pars *data, char *file);
+int		is_map(t_pars *data, char *str);
 
 /*----------------  pars_texture.c  ---------------*/
-void	get_texture(t_pars *data, char *file);
+void	get_texture(t_pars *data, char *file, char *str);
 
 /*----------------  pars_utils.c  ---------------*/
 int		check_fd(t_pars *data, char *file);

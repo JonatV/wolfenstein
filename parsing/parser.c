@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 15:52:38 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:22:26 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ void	parse_all(t_pars *data, char *file)
 		if (data->error == 1)
 			ft_errors(data, "Error: problem with map\n");
 		get_colours(data, &str);
-		get_texture(data, file);
+		get_texture(data, file, str);
 		map_check(data, file);
 		free(str);
 	}
 	close (fd);
-	if (!data->sizeline || !data->nbrlines)
+	if (!data->map_w || !data->map_h)
 		ft_errors(data, "Error: no map given\n");
 	map_pars(data, file);
+	ft_errors(data, NULL);
 }
