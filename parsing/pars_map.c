@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 15:52:07 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:57:47 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	is_map(t_pars *data, char *str)
 	i = -1;
 	if (!str)
 		return (0);
-	if (find_char(str, '1') == 1 || find_char(str, '0') == 1)
+	if (detect_char(str, '1') == 1 || detect_char(str, '0') == 1)
 	{
 		while (str[i])
 		{

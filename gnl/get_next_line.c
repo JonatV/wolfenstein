@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:22:41 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/14 17:55:30 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:06:53 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int		ft_eof(int ret, char **buff, char **line)
 	return (0);
 }
 
-int		ft_free_buff(char **buff, t_game *data)
+int		ft_free_buff(char **buff, t_pars *data)
 {
-	if (data->erreur == 2 && *buff)
+	if (data->error == 1 && *buff)
 	{
 		free(*buff);
 		return (1);
@@ -79,7 +79,7 @@ int		ft_free_buff(char **buff, t_game *data)
 	return (0);
 }
 
-int		get_next_line(int fd, char **line, t_game *data)
+int		get_next_line(int fd, char **line, t_pars *data)
 {
 	static char	*buff = NULL;
 	int			ret;

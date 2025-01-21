@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 15:40:44 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:11:30 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	line_checker(t_pars *data, char *str)
 	}
 }
 
-int	ft_atoi(t_pars *data, char *str)
+int	ft_atoi_c(t_pars *data, char *str)
 {
 	int	checker;
 	int	ret;
@@ -42,8 +42,7 @@ int	ft_atoi(t_pars *data, char *str)
 	if (str[1] != 32)
 		data->error = 1;
 	line_checker(data, str);
-	while (str[i] == 32 || str[i] == '\t' || str[i] == ',' || str[i] == '\n'
-		|| str[i] '\r' || str[i] == '\v' || str[i] == '\f')
+	while (str[i] == 32 || str[i] == '\t' || str[i] == ',' || str[i] == '\n')
 	{
 		i++;
 		checker = 0;
@@ -64,10 +63,8 @@ void	get_colours(t_pars *data, char **str)
 	int	i;
 
 	i = 0;
-	if (data->toutcequonrecuperecommeinfo == NULL)
-		data->error = 1;
-	else if (*str[i] == 'F')
-		data->f = ft_atoi(data, *str);
+	if (*str[i] == 'F')
+		data->f = ft_atoi_c(data, *str);
 	else if (*str[i] == 'C')
-		data->c = ft_atoi(data, *str);
+		data->c = ft_atoi_c(data, *str);
 }

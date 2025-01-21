@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 15:39:09 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:59:24 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	get_text_len(char *str)
 	return (j);
 }
 
-void	get_texture(t_pars *data, char **text, char *str, int j)
+void	find_texture(t_pars *data, char **text, char *str, int j)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ void	get_texture(t_pars *data, char **text, char *str, int j)
 	(*text)[i] = '\0';
 }
 
-void	texture(t_pars *data, char *file)
+void	get_texture(t_pars *data, char *file)
 {
 	int			i;
 	static int	j = 0;

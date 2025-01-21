@@ -275,22 +275,35 @@ int		layout_game_screen(t_game *game);
 int		update(t_game *game);
 
 /*----------------  parser.c  ---------------*/
-void	parse_all(t_game *data);
+void	parse_all(t_pars *data, char *file);
+
+/*----------------  pars_colours.c  ---------------*/
+void	get_colours(t_pars *data, char **str);
+
+/*----------------  pars_errors.c  ---------------*/
+void	ft_errors(t_pars *d, char *str);
+
+/*----------------  pars_map.c  ---------------*/
+void	map_pars(t_pars *data, char *file);
+
+/*----------------  pars_texture.c  ---------------*/
+void	get_texture(t_pars *data, char *file);
+
+/*----------------  pars_utils.c  ---------------*/
+int		check_fd(t_pars *data, char *file);
+void	map_check(t_pars *data, char *str);
+int		detect_char(char *str, char c);
+int		data_check(t_pars *data);
+int		is_special(char c);
 
 /*----------------  get_next_line.c --------------*/
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
 
-char	*get_next_line(int fd);
-char	*read_line(int fd, char *save, char *buffer);
-char	*ft_save(char **save);
+int		get_next_line(int fd, char **line, t_pars *data);
+char	*ft_subbuff(char *buff, int start, int len);
 
-int		ft_strlen(const char *str);
-char	*ft_strchr(char *str);
-char	*ft_strjoin(char *str, char *buffer);
-char	*ft_substr(char *s, int start, int len);
-char	*ft_strdup(char *str);
 
 int		raycast(t_game *game);
 void	put_column_to_win(t_game *game, int x);

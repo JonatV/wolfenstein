@@ -6,11 +6,25 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 15:39:40 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:14:58 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
+
+int	wall_utils(int *value)
+{
+	int	i;
+
+	i = 0;
+	while (value[i])
+	{
+		if (value[i] != 1)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	wall_check(t_pars *data)
 {
@@ -50,7 +64,7 @@ void	ft_exit(t_pars *data, char *str)
 		free(data->ea);
 	if (data->map)
 	{
-		while (data->mapo[++i])
+		while (data->map[++i])
 			free(data->map[i]);
 		free(data->map);
 	}

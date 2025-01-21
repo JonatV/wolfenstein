@@ -9,6 +9,7 @@ HOOK = hook/
 GAME = game/
 DRAW = drawing_tools/
 PARS = parsing/
+GNL = gnl/
 
 INCLUDES = $(MLX_PATH)mlx.h \
 			wolfenstein.h
@@ -19,8 +20,9 @@ SRC = main.c \
 		$(HOOK)expose_hook.c $(HOOK)key_hook.c $(HOOK)mouse_hook.c \
 		$(GAME)update.c $(GAME)handle_keys.c $(GAME)layout_home_screen.c $(GAME)layout_game_screen.c $(GAME)layout_map_screen.c $(GAME)display.c $(GAME)raycast.c \
 		$(DRAW)draw_vertex.c $(DRAW)draw_rectangle.c $(DRAW)draw_circle.c $(DRAW)draw_line.c \
-		$(PARS)parser.c
-		
+		$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_errors.c $(PARS)pars_utils.c $(PARS)pars_map.c $(PARS)pars_texture.c \
+		$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
+
 OBJ = $(SRC:.c=.o)
 
 CC = clang
