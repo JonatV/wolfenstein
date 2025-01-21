@@ -6,13 +6,13 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:15:56 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 16:16:17 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:58:35 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-int		encode_rgb(int r, int g, int b)
+int	encode_rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }

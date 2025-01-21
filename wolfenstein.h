@@ -122,6 +122,16 @@ typedef struct s_rect
 	int		color;
 }	t_rect;
 
+typedef struct s_copy_pixel
+{
+	t_img	src_img;
+	int		src_x;
+	int		src_y;
+	t_img	dst_img;
+	int		dst_x;
+	int		dst_y;
+}	t_copy_pix;
+
 typedef struct s_win
 {
 	char	*title;
@@ -294,6 +304,7 @@ t_img		new_img(int w, int h, t_win *window);
 t_img		set_new_xpm(char *path, t_win *window);
 void		put_img_to_img(t_img *dst, t_img *src, int x, int y);
 void		copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_x, int dst_y);
+// void		copy_pixel_img(t_copy_pix c);
 
 
 /*----------------  handle_keys.c  ---------------*/
