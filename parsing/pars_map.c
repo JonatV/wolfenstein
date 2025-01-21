@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 19:12:34 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:36:22 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	create_map(t_pars *data, char *str)
 	static int	j = 0;
 
 	i = 0;
-	if (!(data->map[j] = malloc(data->sizeline + 1)))
+	if (!(data->map[j] = malloc(sizeof(int) * data->sizeline + 1)))
 		return ;
 	while (str[i])
 	{
@@ -68,7 +68,7 @@ int	is_map(t_pars *data, char *str)
 			if (is_special(str[++i]))
 			{
 				if (data->in_map == 1)
-					data->wrongchar = 1; //pour de futurs messages d'erreur au besoin genre caractere incorrect
+					data->wrongchar = 1;
 				return (0);
 			}
 		}

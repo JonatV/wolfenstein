@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 19:07:40 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:35:43 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	map_pars(t_pars *data, char *file)
 	str = NULL;
 	fd = open(file, O_RDONLY);
 
-	if (!(data->map = malloc(sizeof(char *) * data->nbrlines)))
+	if (!(data->map = malloc(sizeof(int *) * data->nbrlines)))
 		return ;
 	while (check)
 	{
@@ -38,7 +38,7 @@ void	map_pars(t_pars *data, char *file)
 	}
 	close(fd);
 	ft_errors(data);
-	init_sprite(data);
+	//faire une fonction pour initialiser les textures et sprites
 }
 
 void	parse_all(t_pars *data, char *file)

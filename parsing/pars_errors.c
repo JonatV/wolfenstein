@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 19:07:07 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:49:39 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,31 @@ int	wall_check(t_pars *data)
 	return (0);
 }
 
-ft_exit() //faut faire une fonction exit qui free tout le bordel et ecrit le bon message d'erreur
+void	ft_exit(t_pars *data, char *str)
+{
+	int	i;
+
+	i = -1;
+	if (str)
+	{
+		write (1, "Error: ", 7);
+		write(1, &str, ft_strlen(str));
+	}
+	if (data->no)
+		free(data->no);
+	if (data->so)
+		free(data->so);
+	if (data->we)
+		free(data->we);
+	if (data->ea)
+		free(data->ea);
+	if (data->map)
+	{
+		while (data->mapo[++i])
+			free(data->map[i]);
+		free(data->map);
+	}
+}
 
 void	ft_errors(t_pars *data, char *str)
 {
@@ -44,4 +68,6 @@ void	ft_errors(t_pars *data, char *str)
 		ft_exit(data, "Empty line in map\n");
 	if (data->wrongchar)
 		ft_exit(data, "Wrong character in map\n");
+	if (!data->no || !data->so || !data->we || !data->ea || !data->c || !data->f)
+		ft_exit(data, "Texture or colour informations missing\n");
 }
