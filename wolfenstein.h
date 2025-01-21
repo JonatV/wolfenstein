@@ -5,6 +5,9 @@
 # include "minilibx_linux/mlx.h"		// for mlx functions (handle window, image, etc)
 # include <X11/Xutil.h>				// for keycode Macro (XK_SPACE, XK_Escape, etc)
 # include <stdio.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
@@ -190,6 +193,7 @@ typedef struct s_sprite
 typedef struct s_map
 {
 	int		**map_grid;
+	char	**temp_grid;
 	int		width;
 	int		height;
 	// minimap data (little map on left top corner)
@@ -225,6 +229,26 @@ typedef struct s_ray
 	double	wall_height;
 }		t_raycast;
 
+typedef struct s_pars
+{
+	int		**map;
+	int		error;
+	int		sizeline;
+	int		nbrlines;
+	int		empty_line;
+	int		wrongchar;
+	int		in_map;
+	int		start_x;
+	int		start_y;
+	char	start_dir;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f;
+	int		c;
+}	t_pars;
+
 typedef struct s_game
 {
 	t_win		win;
@@ -238,6 +262,7 @@ typedef struct s_game
 	uint64_t	created_at;
 	uint64_t	updated_at;
 	int			fps;
+	t_pars		data;
 
 	// array of xpm images
 	t_img		xpm_images[xpm_null];
@@ -318,6 +343,37 @@ int		layout_game_screen(t_game *game);
 
 /*----------------  update.c  ---------------*/
 int		update(t_game *game);
+
+/*----------------  parser.c  ---------------*/
+void	parse_all(t_pars *data, char *file);
+
+/*----------------  pars_colours.c  ---------------*/
+void	get_colours(t_pars *data, char **str);
+
+/*----------------  pars_errors.c  ---------------*/
+void	ft_errors(t_pars *d, char *str);
+
+/*----------------  pars_map.c  ---------------*/
+void	map_pars(t_pars *data, char *file);
+
+/*----------------  pars_texture.c  ---------------*/
+void	get_texture(t_pars *data, char *file);
+
+/*----------------  pars_utils.c  ---------------*/
+int		check_fd(t_pars *data, char *file);
+void	map_check(t_pars *data, char *str);
+int		detect_char(char *str, char c);
+int		data_check(t_pars *data);
+int		is_special(char c);
+
+/*----------------  get_next_line.c --------------*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+int		get_next_line(int fd, char **line, t_pars *data);
+char	*ft_subbuff(char *buff, int start, int len);
+
 
 int		raycast(t_game *game);
 void	put_column_to_win(t_game *game, int x);

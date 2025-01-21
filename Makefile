@@ -9,6 +9,8 @@ INIT		=	init/
 HOOK		=	hook/
 GAME		=	game/
 DRAW		=	drawing_tools/
+PARS		=	parsing/
+GNL			=	gnl/
 ANIM		=	animation/
 TOOL		=	tools/
 
@@ -22,9 +24,11 @@ SRC			=	main.c \
 				$(GAME)update.c $(GAME)handle_keys.c $(GAME)layout_home_screen.c $(GAME)layout_game_screen.c $(GAME)layout_map_screen.c $(GAME)display.c $(GAME)raycast.c $(GAME)minimap.c \
 				$(DRAW)draw_rectangle.c \
 				$(ANIM)animation_tools.c $(ANIM)animation_utils.c \
-				$(TOOL)close.c $(TOOL)fps.c $(TOOL)image_helper.c $(TOOL)colors.c
+				$(TOOL)close.c $(TOOL)fps.c $(TOOL)image_helper.c $(TOOL)colors.c \
+				$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_errors.c $(PARS)pars_utils.c $(PARS)pars_map.c $(PARS)pars_texture.c \
+				$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
 
-OBJ			=	$(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 CC			=	clang
 INCS		=	-I./
