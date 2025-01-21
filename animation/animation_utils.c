@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:04:35 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/18 13:56:34 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:28:12 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_lst	*lst_new_double(void *content)
 {
 	t_lst	*node;
-	
+
 	node = (t_lst *)malloc(sizeof(t_lst));
 	if (node == NULL)
 		return (NULL);
@@ -28,6 +28,7 @@ t_lst	*lst_new_double(void *content)
 void	lstadd_back_double(t_lst **lst, t_lst *new)
 {
 	t_lst	*last;
+
 	if (lst == NULL)
 		return ;
 	if (*lst == NULL)
@@ -38,7 +39,7 @@ void	lstadd_back_double(t_lst **lst, t_lst *new)
 	last = *lst;
 	while (last->next)
 		last = last->next;
-	last->next = new;	
+	last->next = new;
 	new->prev = last;
 }
 

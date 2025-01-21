@@ -1,67 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 11:25:29 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/21 11:26:12 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../wolfenstein.h"
 
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == XK_w)
-	{
-		printf("Keycode: [%d] (move forward)\n", keycode);
 		game->keys.w = true;
-	}
 	else if (keycode == XK_s)
-	{
-		printf("Keycode: [%d] (move backward)\n", keycode);
 		game->keys.s = true;
-	}
 	else if (keycode == XK_a)
-	{
-		printf("Keycode: [%d] (straff left)\n", keycode);
 		game->keys.a = true;
-	}
 	else if (keycode == XK_d)
-	{
-		printf("Keycode: [%d] (straff right)\n", keycode);
 		game->keys.d = true;
-	}
 	else if (keycode == XK_Left)
-	{
-		printf("keycode: [%d] (look left)\n", keycode);
 		game->keys.left = true;
-	}
 	else if (keycode == XK_Right)
-	{
-		printf("keycode: [%d] (look right)\n", keycode);
 		game->keys.right = true;
-	}
 	else if (keycode == XK_e)
-	{
-		printf("Keycode: [%d] (interact)\n", keycode);
 		game->keys.e = true;
-	}
 	else if (keycode == XK_Return)
-	{
-		printf("Keycode: [%d] (enter)\n", keycode);
 		game->keys.enter = true;
-	}
 	else if (keycode == XK_space)
-	{
-		printf("Keycode: [%d] (map(space))\n", keycode);
 		game->keys.space = true;
-	}
 	else if (keycode == XK_Tab)
-	{
-		printf("Keycode: [%d] (inventory)\n", keycode);
 		game->keys.tab = true;
-	}
 	else if (keycode == XK_m)
-	{
-		printf("Keycode: [%d] (menu)\n", keycode);
 		game->keys.m = true;
-	}
 	else if (keycode == XK_Escape)
-	{
-		printf("Keycode: [%d] (close game)\n", keycode);
 		game->keys.esc = true;
-	}
 	return (0);
 }
 

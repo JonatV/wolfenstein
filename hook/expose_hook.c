@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expose_hook.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 11:24:18 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/21 11:24:29 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../wolfenstein.h"
 
 int	expose_hook(t_game *game)
 {
-	printf("expose_hook\n");
 	layout_home_screen(game);
 	return (0);
 }

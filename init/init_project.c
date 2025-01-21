@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_project.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 11:28:40 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/21 11:28:47 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../wolfenstein.h"
 
 bool	init_project(t_game **game)
@@ -17,6 +29,5 @@ bool	init_project(t_game **game)
 	if (!init_keys_struct(*game))
 		return (printf("Error: init_keys\n"), false);
 	init_hooks_logics(*game);
-	printf("Project initialized\n");
 	return (true);
 }

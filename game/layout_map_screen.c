@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   layout_map_screen.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 10:46:59 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/21 14:34:13 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../wolfenstein.h"
-#include "wolfenstein.h"
 
-static void print_loop_dynamic_map(t_game *game, int start_pos_x, int start_pos_y)
+static void	print_loop_dynamic_map(t_game *game, int start_pos_x, \
+	int start_pos_y)
 {
-	int x;
-	int y;
-	int color;
+	int	x;
+	int	y;
+	int	color;
 
-	y = 0;
-	while (y < MAP_H)
+	y = -1;
+	while (++y < MAP_H)
 	{
-		x = 0;
-		while (x < MAP_W)
+		x = -1;
+		while (++x < MAP_W)
 		{
 			if (game->map.map_grid[y][x] == 1)
 				color = C_DARK_GREY;
@@ -21,26 +33,27 @@ static void print_loop_dynamic_map(t_game *game, int start_pos_x, int start_pos_
 				color = C_DEEP_RED;
 			else
 				color = C_BLACK;
-			draw_rect(&game->map.focus_map_dynamic, start_pos_x + (x * game->map.focus_tile_size), start_pos_y + (y * game->map.focus_tile_size), game->map.focus_tile_size, game->map.focus_tile_size, color);
-			x++;
+			draw_rect((t_rect){&game->map.focus_map_dynamic, start_pos_x + (x * \
+			FOC_SIZE), start_pos_y + \
+			(y * FOC_SIZE), FOC_SIZE, \
+			FOC_SIZE, color});
 		}
-		y++;
 	}
 }
 
-static void fixed_focus_map(t_game *game)
+static void	fixed_focus_map(t_game *game)
 {
 	int	x;
 	int	y;
 	int	color;
 	int	size;
 
-	size = game->map.focus_tile_size;
-	y = 0;
-	while (y < game->map.height)
+	size = FOC_SIZE;
+	y = -1;
+	while (++y < game->map.height)
 	{
-		x = 0;
-		while (x < game->map.width)
+		x = -1;
+		while (++x < game->map.width)
 		{
 			if (game->map.map_grid[y][x] == 1)
 				color = C_BLACK;
@@ -50,14 +63,14 @@ static void fixed_focus_map(t_game *game)
 				color = C_DEEP_RED;
 			else
 				color = C_BLACK;
-			draw_rect(&game->map.focus_map_dynamic, game->map.focus_start_x + (x * size), game->map.focus_start_y + (y * size), size, size, color);
-			x++;
+			draw_rect((t_rect){&game->map.focus_map_dynamic, \
+			game->map.f_startx + (x * size), \
+			game->map.f_starty + (y * size), size, size, color});
 		}
-		y++;
 	}
 }
 
-static void dynamic_focus_map(t_game *game)
+static void	dynamic_focus_map(t_game *game)
 {
 	int	tile_pos_x;
 	int	tile_pos_y;
@@ -66,36 +79,42 @@ static void dynamic_focus_map(t_game *game)
 
 	tile_pos_x = (int)game->player.pos_x;
 	tile_pos_y = (int)game->player.pos_y;
-	start_pos_x = 1008/2 - (tile_pos_x * game->map.focus_tile_size); //todo clean magic numbers
-	start_pos_y = 402/2 - (tile_pos_y * game->map.focus_tile_size);
+	start_pos_x = MAX_M_W / 2 - \
+	(tile_pos_x * FOC_SIZE);
+	start_pos_y = MAX_M_H / 2 - \
+	(tile_pos_y * FOC_SIZE);
 	print_loop_dynamic_map(game, start_pos_x, start_pos_y);
 }
-/*
-   * info:	max size of the map is 1008x402
-   * 		position of the map top left corner is x: 96, y: 99
-   */
-int	layout_map_screen(t_game *game)
-{
-	t_player_marker *marker;
-	t_img *img;
 
-	marker = (t_player_marker *)game->map.player_marker_sprite.current_node->content;
-	img = &marker->frame; // Get the address of the frame
-	if (!game->map.focus_rendered)
+/*
+* info:	max size of the map is 1008x402 (MAX_M_W x MAX_M_H)
+* 		position of the map top left corner is x: 96, y: 99
+*/
+void	layout_map_screen(t_game *game)
+{
+	t_marker	*current;
+	t_img			*img;
+	t_map			m;
+
+	m = game->map;
+	current = (t_marker *)m.pos_sprite.cur_node->content;
+	img = &current->frame;
+	if (!m.focus_rendered)
 	{
-		draw_rect(&game->map.focus_map_dynamic, 0, 0, 1008, 402, C_BLACK); // to reset the map
-		if (game->map.dynamic_map)
+		draw_rect((t_rect){&m.focus_map_dynamic, 0, 0, MAX_M_W, MAX_M_H, C_BLACK});
+		if (m.dynamic_map)
 			dynamic_focus_map(game);
 		else
 			fixed_focus_map(game);
-		game->map.focus_rendered = true;
+		m.focus_rendered = true;
 	}
 	put_img_to_img(&game->win.screen, &game->xpm_images[xpm_map_focus], 0, 0);
-	put_img_to_img(&game->win.screen, &game->map.focus_map_dynamic, 96, 99);
-	if (game->map.dynamic_map)
-		put_img_to_img(&game->win.screen, img, WIN_W/2 - img->width/2, WIN_H/2 - img->height/2);
+	put_img_to_img(&game->win.screen, &m.focus_map_dynamic, 96, 99);
+	if (m.dynamic_map)
+		put_img_to_img(&game->win.screen, img, WIN_W / 2 - \
+		img->width / 2, WIN_H / 2 - img->height / 2);
 	else
-		put_img_to_img(&game->win.screen, img, game->map.start_x + (game->player.pos_x * game->map.focus_tile_size) - img->width/2, game->map.start_y + (game->player.pos_y * game->map.focus_tile_size) - img->height/2);
-	return (0);
+		put_img_to_img(&game->win.screen, img, m.start_x + \
+		(game->player.pos_x * FOC_SIZE) - img->width / 2, m.start_y \
+		+ (game->player.pos_y * FOC_SIZE) - img->height / 2);
 }
-

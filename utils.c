@@ -128,22 +128,22 @@ int	close_game(void *p)
 	// destroy img of the dynamic map
 	mlx_destroy_image(game->win.mlx_ptr, game->map.focus_map_dynamic.mlx_img);
 	// destroy the player marker lst
-	t_lst *current = game->map.player_marker_sprite.animation_sequence;
+	t_lst *current = game->map.pos_sprite.anim;
 	t_lst *next = NULL;
 	while(current)
 	{
 		next = current->next;
-		mlx_destroy_image(game->win.mlx_ptr, ((t_player_marker *)current->content)->frame.mlx_img);
-		free((t_player_marker *)current->content);
+		mlx_destroy_image(game->win.mlx_ptr, ((t_marker *)current->content)->frame.mlx_img);
+		free((t_marker *)current->content);
 		free(current);
-		if (next == game->map.player_marker_sprite.animation_sequence)
+		if (next == game->map.pos_sprite.anim)
 			break;
 		current = next;
 	}
-	game->map.player_marker_sprite.animation_sequence = NULL;
-	free(game->map.player_marker_sprite.file_path);
-	free(game->map.player_marker_sprite.name);
-	mlx_destroy_image(game->win.mlx_ptr, game->map.player_marker_sprite.sprite_img.mlx_img);
+	game->map.pos_sprite.anim = NULL;
+	free(game->map.pos_sprite.file_path);
+	free(game->map.pos_sprite.name);
+	mlx_destroy_image(game->win.mlx_ptr, game->map.pos_sprite.sprite_img.mlx_img);
 	// destroy window
 	if (game->win.win_ptr)
 		mlx_destroy_window(game->win.mlx_ptr, game->win.win_ptr);

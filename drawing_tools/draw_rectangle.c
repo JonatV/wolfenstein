@@ -1,18 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_rectangle.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/21 10:30:31 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/21 11:47:18 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../wolfenstein.h"
 
-void	draw_rect(t_img *img, int x, int y, int w, int h, int color)
+void	draw_rect(t_rect rect)
 {
 	int	i;
 	int	j;
 
-	printf("draw rect: x=%d, y=%d, w=%d, h=%d, color=%#x\n", x, y, w, h, color);
 	i = 0;
-	while (i < h && i + y < img->height)
+	while (i < rect.h && i + rect.y < rect.img->height)
 	{
 		j = 0;
-		while (j < w && j + x < img->width)
+		while (j < rect.w && j + rect.x < rect.img->width)
 		{
-			img_pix_put(img, j + x, i + y, color);
+			img_pix_put(rect.img, j + rect.x, i + rect.y, rect.color);
 			j++;
 		}
 		i++;

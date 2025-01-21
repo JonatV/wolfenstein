@@ -22,8 +22,6 @@
 #define MAP_H 19
 #define MAP_W 29
 // #define MAP_W 35
-#define TILE_SIZE 32
-#define FOCUS_TILE_SIZE 20
 
 #define C_BLACK		0x1A1A1A
 #define C_DARK_RED	0x311F1F
@@ -35,6 +33,15 @@
 
 #define NS false
 #define EW true
+
+// Map Macro
+#define PADDING 10
+#define MINI_SIZE 20
+#define FOC_SIZE 20
+#define MINI_H 150
+#define MINI_W 150
+#define MAX_M_W 1008
+#define MAX_M_H 402
 
 enum game_state
 {
@@ -105,6 +112,16 @@ typedef struct s_img
 	struct s_win	*win;
 }		t_img;
 
+typedef struct s_rect
+{
+	t_img	*img;
+	int		x;
+	int		y;
+	int		w;
+	int		h;
+	int		color;
+}	t_rect;
+
 typedef struct s_win
 {
 	char	*title;
@@ -135,11 +152,11 @@ typedef struct s_sprite_slice_data
 	int height;
 }	t_sprite_slice_data;
 
-typedef struct s_player_marker
+typedef struct s_marker
 {
 	t_img	frame;
 	float	min_angle;		// to set the image orientation property
-}	t_player_marker;
+}	t_marker;
 
 typedef struct s_lst
 {
@@ -150,9 +167,9 @@ typedef struct s_lst
 
 typedef struct s_sprite
 {
-	void	*animation_sequence;	// void because it can be either the frames list (player marker)
+	void	*anim;	// void because it can be either the frames list (player marker)
 									//or the structure that content the info of the animation + the frames list 
-	t_lst	*current_node;
+	t_lst	*cur_node;
 	char	*name;
 	char	*file_path;
 	t_img	sprite_img;
@@ -165,32 +182,16 @@ typedef struct s_map
 	int		**map_grid;
 	int		width;
 	int		height;
-	int		tile_size;
-
 	// minimap data (little map on left top corner)
-	float		minimap_width;
-	float		minimap_height;
-	int			padding;
-	int			mini_tile_size;
-	t_sprite	player_marker_sprite;
-
+	t_sprite	pos_sprite;
 	// map focus data (full screen map)
-	int			max_map_width;
-	int			max_map_height;
 	bool		dynamic_map;
-	int			focus_tile_size;
 	int			start_x;
 	int			start_y;
-	int			focus_start_x;
-	int			focus_start_y;
+	int			f_startx;
+	int			f_starty;
 	t_img		focus_map_dynamic;
 	bool		focus_rendered;
-
-	// common data
-	int		floor_color;
-	int		wall_color;
-	int		empty_color;
-	int		player_color;
 }		t_map;
 
 typedef struct s_ray
@@ -248,17 +249,8 @@ int		key_release(int keycode, t_game *game);
 int		main(void);
 
 /*----------------  draw_rectangle.c  ---------------*/
-void		draw_rect(t_img *img, int x, int y, int w, int h, int color);
-
-/*----------------  draw_circle.c  ---------------*/
-void		draw_circle(t_img *img, int x, int y, int radius, int color);
-
-/*----------------  draw_vertex.c  ---------------*/
-int		draw_vertex(t_img *img, int x_start, int y_start, int x_end, int y_end, int color);
-
-/*----------------  draw_line.c  ---------------*/
-void		draw_line_vertical(t_img *img, int x, int y, int h, int color);
-void		draw_line_horizontal(t_img *img, int x, int y, int w, int color);
+// void		draw_rect(t_img *img, int x, int y, int w, int h, int color);
+void		draw_rect(t_rect rect);
 
 /*----------------  optimization.c  ---------------*/
 void		img_pix_put(t_img *img, int x, int y, int color);
@@ -312,7 +304,7 @@ int		update(t_game *game);
 int		raycast(t_game *game);
 void	put_column_to_win(t_game *game, int x);
 
-int layout_map_screen(t_game *game);
+void	layout_map_screen(t_game *game);
 
 /*----------------  minimap.c  ---------------*/
 void	minimap(t_game *game);

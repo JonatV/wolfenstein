@@ -6,17 +6,17 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:32:20 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/16 13:50:10 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:27:16 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
-
 
 t_sprite	new_sprite(char *name, char *file_path, t_win *win)
 {
 	t_img	img;
 
 	img = set_new_xpm(file_path, win);
-	return ((t_sprite){NULL, NULL, ft_strdup(name), ft_strdup(file_path), img, img.width, img.height});
+	return ((t_sprite){NULL, NULL, ft_strdup(name), \
+	ft_strdup(file_path), img, img.width, img.height});
 }
