@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 15:40:12 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:52:07 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	create_map(t_pars *data, char *str)
 		else if (str[i] == 32)
 			data->map[j][i] = 1;
 		else
-			data->map[j][i] = ft_itoa(str[i]);
+			data->map[j][i] = ft_atoi(str[i]);
 		i++;
 	}
 	while (i <= (data->sizeline - 1))
@@ -78,19 +78,31 @@ int	is_map(t_pars *data, char *str)
 	return (0);
 }
 
-void	map_check(t_pars *data, char *str)
+void	map_pars(t_pars *data, char *file)
 {
-	static int	nbrlines = 0;
-	static int	sizeline = 0;
+	int		check;
+	int		fd;
+	char	*str;
 
-	if (is_map(data, str) == 1)
+	check = 1;
+	str = NULL;
+	fd = open(file, O_RDONLY);
+	data->map = malloc(sizeof(int *) * data->nbrlines;
+	if (!(data->map)))
+		return ;
+	while (check)
 	{
-		if (data_check(data))
-			data->error = 1;
-		if (ft_strlen(str) > sizeline)
-			sizeline = ft_strlen(str);
-		nbrlines += 1;
+		check = get_next_line(fd, &str, data);
+		if (data->in_map && !empty_line(str) && data->count < data->nbrlines)
+			data->empty_line = 1;
+		data->in_map = is_map(data, str);
+		if (data->in_map)
+		{
+			data->count++;
+			create_map(data, str);
+		}
+		free(str);
 	}
-	data->sizeline = sizeline;
-	data->nbrlines = nbrlines;
+	close(fd);
+	ft_errors(data);
 }
