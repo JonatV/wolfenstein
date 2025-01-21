@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/20 18:46:05 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:40:44 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	line_checker(t_pars *data, char *str)
 	}
 	if (j > 2)
 	{
-		data->error = 1;	
+		data->error = 1;
 		ft_errors(data, "Too many comas\n");
 	}
 }
@@ -43,7 +43,7 @@ int	ft_atoi(t_pars *data, char *str)
 		data->error = 1;
 	line_checker(data, str);
 	while (str[i] == 32 || str[i] == '\t' || str[i] == ',' || str[i] == '\n'
-			|| str[i] '\r' || str[i] == '\v' || str[i] == '\f')
+		|| str[i] '\r' || str[i] == '\v' || str[i] == '\f')
 	{
 		i++;
 		checker = 0;
@@ -62,7 +62,7 @@ int	ft_atoi(t_pars *data, char *str)
 void	get_colours(t_pars *data, char **str)
 {
 	int	i;
-	
+
 	i = 0;
 	if (data->toutcequonrecuperecommeinfo == NULL)
 		data->error = 1;
@@ -71,4 +71,3 @@ void	get_colours(t_pars *data, char **str)
 	else if (*str[i] == 'C')
 		data->c = ft_atoi(data, *str);
 }
- 

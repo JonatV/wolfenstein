@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 10:36:22 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:40:12 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	start(t_pars *data, int i, int j, char c)
 {
 	static int	checker = 0;
-	
+
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
 		if (checker)
@@ -37,7 +37,8 @@ void	create_map(t_pars *data, char *str)
 	static int	j = 0;
 
 	i = 0;
-	if (!(data->map[j] = malloc(sizeof(int) * data->sizeline + 1)))
+	data->map[j] = malloc(sizeof(int) * data->sizeline + 1);
+	if (!(data->map[j]))
 		return ;
 	while (str[i])
 	{

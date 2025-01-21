@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 10:49:39 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:39:40 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,18 @@ void	ft_exit(t_pars *data, char *str)
 	}
 }
 
-void	ft_errors(t_pars *data, char *str)
+void	ft_errors(t_pars *d, char *str)
 {
 	if (str && str[0])
-		ft_exit(data, str);
-	if (wall_check(data))
-		ft_exit(data, "Map is not surrounded by walls\n");
-	if (!data->start_dir || !data->start_x || !data->start_dir)
-		ft_exit(data, "Player informations inexistant or wrong\n");
-	if (data->empty_line)
-		ft_exit(data, "Empty line in map\n");
-	if (data->wrongchar)
-		ft_exit(data, "Wrong character in map\n");
-	if (!data->no || !data->so || !data->we || !data->ea || !data->c || !data->f)
-		ft_exit(data, "Texture or colour informations missing\n");
+		ft_exit(d, str);
+	if (wall_check(d))
+		ft_exit(d, "Map is not surrounded by walls\n");
+	if (!d->start_dir || !d->start_x || !d->start_dir)
+		ft_exit(d, "Player informations inexistant or wrong\n");
+	if (d->empty_line)
+		ft_exit(d, "Empty line in map\n");
+	if (d->wrongchar)
+		ft_exit(d, "Wrong character in map\n");
+	if (!d->no || !d->so || !d->we || !d->ea || !d->c || !d->f)
+		ft_exit(d, "Texture or colour informations missing\n");
 }
