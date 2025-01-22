@@ -45,6 +45,7 @@
 #define MINI_W 150
 #define MAX_M_W 1008
 #define MAX_M_H 402
+#define ID_DOOR 2
 
 enum game_state
 {
@@ -69,6 +70,7 @@ enum xpm_images
 	xpm_east,
 	xpm_west,
 	xpm_walls,
+	xpm_door,
 	xpm_null,
 	// add more here
 };
@@ -389,7 +391,7 @@ char	*ft_subbuff(char *buff, int start, int len);
 
 
 int		raycast(t_game *game);
-void	put_column_to_win(t_game *game, int x);
+void	put_column_to_win(t_game *game, int x, int number_of_the_wall_hitted);
 
 void	layout_map_screen(t_game *game);
 

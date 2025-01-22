@@ -1,6 +1,6 @@
 #include "../wolfenstein.h"
 
-static void	pixel_put_wall(t_game *game, int x, int y)
+static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 {
 	int		px;
 	int		px2;
@@ -8,7 +8,10 @@ static void	pixel_put_wall(t_game *game, int x, int y)
 	int		y2;
 	t_img	*wall;
 
-	wall = &game->xpm_images[xpm_walls];
+	if (the_wall == 2)
+		wall = &game->xpm_images[xpm_door]; 
+	else
+		wall = &game->xpm_images[xpm_walls];
 	// if (game->raycast.wall_orientation == NORTH)
 	// 	wall = &game->xpm_images[xpm_north];
 	// else if (game->raycast.wall_orientation == SOUTH)
@@ -51,7 +54,7 @@ static void	pixel_put_sky(t_game *game, int x, int y)
 	*(unsigned int *)dst = C_DARK_RED; // sky color
 }
 
-void	put_column_to_win(t_game *game, int x)
+void	put_column_to_win(t_game *game, int x, int number_of_the_wall_hitted)
 {
 	int	y;
 	int	draw_end;
@@ -66,7 +69,7 @@ void	put_column_to_win(t_game *game, int x)
 	if (draw_end >= (int)game->win_h)
 		draw_end = game->win_h;
 	while (y < draw_end)
-		pixel_put_wall(game, x, y++);
+		pixel_put_wall(game, x, y++, number_of_the_wall_hitted);
 	while (y < (int)game->win_h)
 		pixel_put_floor(game, x, y++);
 }

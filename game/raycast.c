@@ -3,7 +3,9 @@
 int	raycast(t_game *game)
 {
 	int	current_x;
+	int	number_of_the_wall_hitted;
 
+	number_of_the_wall_hitted = 0;
 	current_x = 0;
 	while (current_x < (int)game->win_w)
 	{
@@ -64,7 +66,10 @@ int	raycast(t_game *game)
 					game->raycast.wall_orientation = NORTH; // todo check to be sure
 			}
 			if (game->map.map_grid[(int)game->raycast.map_y][(int)game->raycast.map_x] > 0) // for now eveything is a wall
+			{
 				game->raycast.hit = true;
+				number_of_the_wall_hitted = game->map.map_grid[(int)game->raycast.map_y][(int)game->raycast.map_x];
+			}
 		}
 		// END DDA
 		// START we need to calculate the distance to the wall
@@ -84,7 +89,7 @@ int	raycast(t_game *game)
 		// END height of the wall strip
 		game->raycast.wall_x -= floor(game->raycast.wall_x); // this is to get the texture x coordinate from the fractional part of wall_x
 		// START we need to calculate the color of the wall strip
-		put_column_to_win(game, current_x); // this function will draw the wall strip
+		put_column_to_win(game, current_x, number_of_the_wall_hitted); // this function will draw the wall strip
 		// END color of the wall strip
 		current_x++;
 	}
