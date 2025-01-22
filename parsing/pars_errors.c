@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 11:26:42 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:48:45 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	ft_errors(t_pars *d, char *str)
 {
 	if (d->error && str && str[0])
 		ft_exit(d, str);
+	if (!str)
+	{
 	if (wall_check(d))
 		ft_exit(d, "Map is not surrounded by walls\n");
 	if (!d->start_dir || !d->start_x || !d->start_dir)
@@ -86,4 +88,5 @@ void	ft_errors(t_pars *d, char *str)
 		ft_exit(d, "Wrong character in map\n");
 	if (!d->no || !d->so || !d->we || !d->ea || !d->c || !d->f)
 		ft_exit(d, "Texture or colour informations missing\n");
+	}
 }
