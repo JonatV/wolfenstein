@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:46:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 14:34:13 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:09:12 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	print_loop_dynamic_map(t_game *game, int start_pos_x, \
 				color = C_DEEP_RED;
 			else
 				color = C_BLACK;
-			draw_rect((t_rect){&game->map.focus_map_dynamic, start_pos_x + (x * \
+			draw_rect((t_rect){&game->map.f_map_dynamic, start_pos_x + (x * \
 			FOC_SIZE), start_pos_y + \
 			(y * FOC_SIZE), FOC_SIZE, \
 			FOC_SIZE, color});
@@ -63,7 +63,7 @@ static void	fixed_focus_map(t_game *game)
 				color = C_DEEP_RED;
 			else
 				color = C_BLACK;
-			draw_rect((t_rect){&game->map.focus_map_dynamic, \
+			draw_rect((t_rect){&game->map.f_map_dynamic, \
 			game->map.f_startx + (x * size), \
 			game->map.f_starty + (y * size), size, size, color});
 		}
@@ -93,15 +93,15 @@ static void	dynamic_focus_map(t_game *game)
 void	layout_map_screen(t_game *game)
 {
 	t_marker	*current;
-	t_img			*img;
-	t_map			m;
+	t_img		*img;
+	t_map		m;
 
 	m = game->map;
 	current = (t_marker *)m.pos_sprite.cur_node->content;
 	img = &current->frame;
 	if (!m.focus_rendered)
 	{
-		draw_rect((t_rect){&m.focus_map_dynamic, 0, 0, MAX_M_W, MAX_M_H, C_BLACK});
+		draw_rect((t_rect){&m.f_map_dynamic, 0, 0, MAX_M_W, MAX_M_H, C_BLACK});
 		if (m.dynamic_map)
 			dynamic_focus_map(game);
 		else
@@ -109,7 +109,7 @@ void	layout_map_screen(t_game *game)
 		m.focus_rendered = true;
 	}
 	put_img_to_img(&game->win.screen, &game->xpm_images[xpm_map_focus], 0, 0);
-	put_img_to_img(&game->win.screen, &m.focus_map_dynamic, 96, 99);
+	put_img_to_img(&game->win.screen, &m.f_map_dynamic, 96, 99);
 	if (m.dynamic_map)
 		put_img_to_img(&game->win.screen, img, WIN_W / 2 - \
 		img->width / 2, WIN_H / 2 - img->height / 2);
