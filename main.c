@@ -46,9 +46,15 @@
 // 	printf(BOLD BLUE "=========================================\n" RESET);
 // }
 
-int main(void)
+int main(int argc, char **argv)
 {
 	t_game	*game;
+	t_pars	*data;
+
+	if (argc != 2)
+		return (write(1, "Wrong number of arguments\n", 26), 0);
+	init_pars(&data);
+	parse_all(data, argv[1]);
 	if (!init_project(&game))
 		return (1);
 	printf("Initialization successful, entering mlx_loop\n");

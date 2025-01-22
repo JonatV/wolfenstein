@@ -280,7 +280,7 @@ int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
 
 /*----------------  main.c  ---------------*/
-int		main(void);
+int		main(int argc, char **argv);
 
 /*----------------  draw_rectangle.c  ---------------*/
 // void		draw_rect(t_img *img, int x, int y, int w, int h, int color);
@@ -312,6 +312,9 @@ bool		init_window_struct(t_game **game);
 
 /*----------------  init_game_struct.c  ---------------*/
 bool		init_game_struct(t_game **game);
+
+/*----------------  init_pars_struct.c  ---------------*/
+void		init_pars(t_pars **data);
 
 /*----------------  close.c  ---------------*/
 int		close_game(void *p);
