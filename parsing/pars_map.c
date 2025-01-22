@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 18:22:55 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:52:02 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	create_map(t_pars *data, char *str, int michel)
 
 	i = 0;
 	(void)michel;
-	data->map[j] = malloc(sizeof(int) * data->map_w + 1);
+	// printf("%d %d\n", j, data->map_w);
+	data->map[j] = malloc(sizeof(int) * (data->map_w + 1));
 	if (!(data->map[j]))
 		return ;
 	while (str[i])
@@ -60,19 +61,21 @@ int	is_map(t_pars *data, char *str)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (!str)
 		return (0);
 	if (detect_char(str, '1') == 1 || detect_char(str, '0') == 1)
 	{
+		// printf("Str check: %s\n", str);
 		while (str[i])
 		{
-			if (is_special(str[++i]))
+			if (is_special(str[i]))
 			{
 				if (data->in_map == 1)
 					data->wrongchar = 1;
 				return (0);
 			}
+			i++;
 		}
 		return (1);
 	}
@@ -81,10 +84,10 @@ int	is_map(t_pars *data, char *str)
 
 void	map_pars(t_pars *data, char *file)
 {
-	int		check;
-	int		fd;
-	char	*str;
-	int		i;
+	int			check;
+	int			fd;
+	static char	*str;
+	int			i;
 
 	i = 0;
 	check = 1;

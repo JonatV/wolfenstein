@@ -360,7 +360,7 @@ void	map_pars(t_pars *data, char *file);
 int		is_map(t_pars *data, char *str);
 
 /*----------------  pars_texture.c  ---------------*/
-void	get_texture(t_pars *data, char *file, char *str);
+void	get_texture(t_pars *data, char *str);
 
 /*----------------  pars_utils.c  ---------------*/
 int		check_fd(t_pars *data, char *file);

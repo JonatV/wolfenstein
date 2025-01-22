@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 13:01:38 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:59:30 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,19 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 	while (str && str[j])
 	{
 		(*text)[i] = str[j];
-		printf("Comparison: %c / %c\n", (*text)[i], str[j]);
+		// printf("Comparison: %c / %c\n", (*text)[i], str[j]);
 		i++;
 		j++;
 	}
 	(*text)[i] = '\0';
 }
 
-void	get_texture(t_pars *data, char *file, char *str)
+void	get_texture(t_pars *data, char *str)
 {
 	int			i;
 	static int	j = 0;
 
 	i = 0;
-	(void)file;
 	if (str[i] == 'N' && str[i + 1] == 'O')
 		find_texture(data, &data->no, str, 2); // ? why init j = 2 then j = 0 inside the find_texture()
 	else if (str[i] == 'S' && str[i + 1] == 'O')
