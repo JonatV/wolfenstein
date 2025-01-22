@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:07 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 16:14:20 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:00:03 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ static void	destroy_map_struct(t_game *game)
 
 static void	destroy_marker_struct(t_game *game)
 {
-	t_lst *current = game->map.pos_sprite.anim;
-	t_lst *next = NULL;
+	t_lst *current;
+	t_lst *next;
+
+	next = NULL;
+	current = game->map.pos_sprite.anim;
 	while(current)
 	{
 		next = current->next;
