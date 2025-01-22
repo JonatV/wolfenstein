@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 11:23:19 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:26:42 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_exit(t_pars *data, char *str)
 	int	i;
 
 	i = -1;
-	if (str)
+	if (str && str[0])
 	{
 		write (1, "Error: ", 7);
 		write(1, &str, ft_strlen(str));
@@ -74,7 +74,7 @@ void	ft_exit(t_pars *data, char *str)
 
 void	ft_errors(t_pars *d, char *str)
 {
-	if (str && str[0])
+	if (d->error && str && str[0])
 		ft_exit(d, str);
 	if (wall_check(d))
 		ft_exit(d, "Map is not surrounded by walls\n");
