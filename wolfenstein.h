@@ -150,7 +150,7 @@ typedef struct s_win
 	char	*title;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	screen;
+	t_img	scr;
 	int		width;
 	int		height;
 }		t_win;
@@ -293,7 +293,6 @@ int		key_release(int keycode, t_game *game);
 int		main(int argc, char **argv);
 
 /*----------------  draw_rectangle.c  ---------------*/
-// void		draw_rect(t_img *img, int x, int y, int w, int h, int color);
 void		draw_rect(t_rect rect);
 
 /*----------------  optimization.c  ---------------*/
@@ -345,6 +344,7 @@ void		copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst
 
 
 /*----------------  handle_keys.c  ---------------*/
+void	rotate(t_game *game, bool lr);
 void		handle_keys(t_game *game);
 
 /*----------------  layout_home_screen.c  ---------------*/
@@ -406,5 +406,19 @@ bool	init_animation_struct(t_game *game);
 t_lst	*lst_new_double(void *content);
 void	lstadd_back_double(t_lst **lst, t_lst *new);
 t_lst	*lstlast(t_lst *lst);
+
+/*---------------- key_*.c  ---------------*/
+void	key_esc(t_game *game);
+void	key_enter(t_game *game);
+void	key_tab(t_game *game);
+void	key_space(t_game *game);
+void	key_m(t_game *game);
+void	key_left(t_game *game);
+void	key_right(t_game *game);
+void	key_w(t_game *game);
+void	key_s(t_game *game);
+void	key_a(t_game *game);
+void	key_d(t_game *game);
+void	key_e(t_game *game);
 
 #endif

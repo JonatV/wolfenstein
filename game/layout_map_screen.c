@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:46:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 14:09:12 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:31 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ void	layout_map_screen(t_game *game)
 			fixed_focus_map(game);
 		m.focus_rendered = true;
 	}
-	put_img_to_img(&game->win.screen, &game->xpm_images[xpm_map_focus], 0, 0);
-	put_img_to_img(&game->win.screen, &m.f_map_dynamic, 96, 99);
+	put_img_to_img(&game->win.scr, &game->xpm_images[xpm_map_focus], 0, 0);
+	put_img_to_img(&game->win.scr, &m.f_map_dynamic, 96, 99);
 	if (m.dynamic_map)
-		put_img_to_img(&game->win.screen, img, WIN_W / 2 - \
+		put_img_to_img(&game->win.scr, img, WIN_W / 2 - \
 		img->width / 2, WIN_H / 2 - img->height / 2);
 	else
-		put_img_to_img(&game->win.screen, img, m.start_x + \
+		put_img_to_img(&game->win.scr, img, m.start_x + \
 		(game->player.pos_x * FOC_SIZE) - img->width / 2, m.start_y \
 		+ (game->player.pos_y * FOC_SIZE) - img->height / 2);
 }

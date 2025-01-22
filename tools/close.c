@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:07 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 14:09:12 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:31 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	close_game(void *p)
 	game = (t_game *)p;
 	i = 0;
 	// destroy all the images and xpm images
-	if (game->win.screen.mlx_img)
-		mlx_destroy_image(game->win.mlx_ptr, game->win.screen.mlx_img);
+	if (game->win.scr.mlx_img)
+		mlx_destroy_image(game->win.mlx_ptr, game->win.scr.mlx_img);
 	while (i < xpm_null)
 	{
 		if (game->xpm_images[i].mlx_img)

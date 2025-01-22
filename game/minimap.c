@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:52:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 14:07:57 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:31 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ static void	draw_minimap_cell(t_game *game, t_cell_param p)
 		(p.x >= 0 && p.x < game->map.width))
 	{
 		if (game->map.map_grid[p.y][p.x] == 1)
-			img_pix_put(&game->win.screen, p.j + \
+			img_pix_put(&game->win.scr, p.j + \
 			PADDING, p.i + PADDING, C_DARK_GREY);
 		else if (game->map.map_grid[p.y][p.x] == 3)
-			img_pix_put(&game->win.screen, p.j + \
+			img_pix_put(&game->win.scr, p.j + \
 			PADDING, p.i + PADDING, C_DEEP_RED);
 		else
-			img_pix_put(&game->win.screen, p.j + \
+			img_pix_put(&game->win.scr, p.j + \
 			PADDING, p.i + PADDING, C_GREY);
 	}
 	else
-		img_pix_put(&game->win.screen, p.j + PADDING, p.i + PADDING, C_BLACK);
+		img_pix_put(&game->win.scr, p.j + PADDING, p.i + PADDING, C_BLACK);
 }
 
 static void	draw_minimap_grid(t_game *game, float start_x, float start_y)
@@ -90,6 +90,6 @@ void	minimap(t_game *game)
 	draw_minimap_grid(game, start_x, start_y);
 	find_current_marker(&game->map.pos_sprite, game->player);
 	frame = &((t_marker *)game->map.pos_sprite.cur_node->content)->frame;
-	put_img_to_img(&game->win.screen, frame, MINI_W / 2 + PADDING - \
+	put_img_to_img(&game->win.scr, frame, MINI_W / 2 + PADDING - \
 	frame->width / 2, MINI_H / 2 + PADDING - frame->height / 2);
 }

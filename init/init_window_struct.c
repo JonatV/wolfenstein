@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:12:57 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 15:13:24 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:31 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	init_window_struct(t_game **game)
 	(*game)->win.title = TITLE;
 	(*game)->win.width = WIN_W;
 	(*game)->win.height = WIN_H;
-	(*game)->win.screen = new_img((*game)->win.width, \
+	(*game)->win.scr = new_img((*game)->win.width, \
 	(*game)->win.height, &(*game)->win);
 	return (true);
 }

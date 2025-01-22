@@ -24,21 +24,21 @@ static void	pixel_put_wall(t_game *game, int x, int y)
 	x2 = (int)(game->raycast.wall_x * (double)wall->width);
 	if (game->raycast.wall_orientation == NORTH || game->raycast.wall_orientation == EAST)
 		x2 = wall->width - x2 - 1;
-	px = game->win.screen.line_len * y + x * game->win.screen.bpp / 8;
+	px = game->win.scr.line_len * y + x * game->win.scr.bpp / 8;
 	y = y - (game->win_h / 2 - (int)game->raycast.wall_height / 2);
 	y2 = (int)((double)y * (double)wall->height / game->raycast.wall_height);
 	px2 = wall->line_len * y2 + x2 * wall->bpp / 8;
-	game->win.screen.addr[px + 2] = (char)wall->addr[px2 + 2];
-	game->win.screen.addr[px + 1] = (char)wall->addr[px2 + 1];
-	game->win.screen.addr[px] = (char)wall->addr[px2];
+	game->win.scr.addr[px + 2] = (char)wall->addr[px2 + 2];
+	game->win.scr.addr[px + 1] = (char)wall->addr[px2 + 1];
+	game->win.scr.addr[px] = (char)wall->addr[px2];
 }
 
 static void	pixel_put_floor(t_game *game, int x, int y)
 {
 	char	*dst;
 
-	dst = game->win.screen.addr + y * game->win.screen.line_len
-		+ x * game->win.screen.bpp / 8;
+	dst = game->win.scr.addr + y * game->win.scr.line_len
+		+ x * game->win.scr.bpp / 8;
 	*(unsigned int *)dst = C_DARK_GREY; // floor color
 }
 
@@ -46,8 +46,8 @@ static void	pixel_put_sky(t_game *game, int x, int y)
 {
 	char	*dst;
 
-	dst = game->win.screen.addr + y * game->win.screen.line_len
-		+ x * game->win.screen.bpp / 8;
+	dst = game->win.scr.addr + y * game->win.scr.line_len
+		+ x * game->win.scr.bpp / 8;
 	*(unsigned int *)dst = C_DARK_RED; // sky color
 }
 

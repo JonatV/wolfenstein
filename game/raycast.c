@@ -88,6 +88,6 @@ int	raycast(t_game *game)
 		// END color of the wall strip
 		current_x++;
 	}
-	mlx_put_image_to_window(game->win.mlx_ptr, game->win.win_ptr, game->win.screen.mlx_img, 0, 0);
+	mlx_put_image_to_window(game->win.mlx_ptr, game->win.win_ptr, game->win.scr.mlx_img, 0, 0);
 	return (0);
 }
