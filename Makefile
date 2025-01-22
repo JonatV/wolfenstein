@@ -46,7 +46,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make --no-print-directory all -C libft
 	$(CC) $(OBJ) $(LIBFT) -o $@ $(LDFLAGS)
-	./$(NAME)
+	# ./$(NAME)
 
 %.o: %.c
 	$(CC) -c $< -o $@ $(CFLAGS)

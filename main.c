@@ -51,6 +51,7 @@ int main(int argc, char **argv)
 	t_game	*game;
 	t_pars	*data;
 
+	data = malloc(sizeof(t_pars));
 	if (argc != 2)
 		return (write(1, "Wrong number of arguments\n", 26), 0);
 	init_pars(&data);

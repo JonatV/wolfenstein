@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 18:22:26 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:19:41 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_all(t_pars *data, char *file)
 	checker = 1;
 	str = NULL;
 	fd = check_fd(data, file);
-	data->error = 0;
+	// data->error = 0;
 	while (checker)
 	{
 		checker = get_next_line(fd, &str, data);

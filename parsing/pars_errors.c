@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 18:21:12 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:23:19 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_exit(t_pars *data, char *str)
 			free(data->map[i]);
 		free(data->map);
 	}
+	if (data)
+		free(data);
 }
 
 void	ft_errors(t_pars *d, char *str)
