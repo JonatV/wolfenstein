@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:02:30 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 15:15:48 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:09:12 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ bool init_map_struct(t_game *game)
 		game->map.f_startx = MAX_M_W / 2 - (game->map.width * FOC_SIZE) / 2;
 		game->map.f_starty = MAX_M_H / 2 - (game->map.height * FOC_SIZE) / 2;
 	}
-	game->map.focus_map_dynamic = new_img(MAX_M_W, MAX_M_H, &game->win);
+	game->map.f_map_dynamic = new_img(MAX_M_W, MAX_M_H, &game->win);
 	game->map.focus_rendered = false;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:07 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 12:00:03 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:09:12 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	destroy_map_struct(t_game *game)
 	while (i < game->map.height)
 		free(game->map.map_grid[i++]);
 	free(game->map.map_grid);
-	mlx_destroy_image(game->win.mlx_ptr, game->map.focus_map_dynamic.mlx_img);
+	mlx_destroy_image(game->win.mlx_ptr, game->map.f_map_dynamic.mlx_img);
 }
 
 static void	destroy_marker_struct(t_game *game)

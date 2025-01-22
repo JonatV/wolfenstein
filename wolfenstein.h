@@ -135,6 +135,16 @@ typedef struct s_copy_pixel
 	int		dst_y;
 }	t_copy_pix;
 
+typedef struct s_cell_param
+{
+	int		x;
+	int		y;
+	int		i;
+	int		j;
+	float		start_x;
+	float		start_y;
+}	t_cell_param;
+
 typedef struct s_win
 {
 	char	*title;
@@ -204,7 +214,7 @@ typedef struct s_map
 	int			start_y;
 	int			f_startx;
 	int			f_starty;
-	t_img		focus_map_dynamic;
+	t_img		f_map_dynamic;
 	bool		focus_rendered;
 }		t_map;
 
