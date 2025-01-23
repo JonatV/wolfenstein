@@ -3,7 +3,7 @@
 
 # include "libft/libft.h"			// for libft functions
 # include "minilibx_linux/mlx.h"		// for mlx functions (handle window, image, etc)
-# include <X11/Xutil.h>				// for keycode Macro (XK_SPACE, XK_Escape, etc)
+# include <X11/Xutil.h>			// for keycode Macro (XK_SPACE, XK_Escape, etc)
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -396,6 +396,7 @@ void	get_colours(t_pars *data, char **str);
 
 /*----------------  pars_errors.c  ---------------*/
 void	ft_errors(t_pars *d, char *str);
+int		ft_empty_line(char *str);
 
 /*----------------  pars_map.c  ---------------*/
 void	map_pars(t_pars *data, char *file);

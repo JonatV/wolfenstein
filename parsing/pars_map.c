@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/23 16:53:36 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:51:56 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	create_map(t_pars *data, char *str, int michel)
 	data->map[j] = malloc(sizeof(int) * (data->map_w));
 	if (!(data->map[j]))
 		return ;
-	printf(BOLD BLUE"Check line: %s\n"RESET, str);
 	while (str[++i])
 	{
 		if (start(data, j, i, str[i]))
@@ -59,12 +58,9 @@ void	create_map(t_pars *data, char *str, int michel)
 		else if (str[i] == 32)
 			data->map[j][i] = 1;
 		else
-		{
-			printf(BOLD YELLOW"Check data: %d\n"RESET, cast_char(str[i]));
 			data->map[j][i] = cast_char(str[i]);
-		}
 	}
-	while (i <= (data->map_w))
+	while (i < (data->map_w))
 		data->map[j][i++] = 1;
 	j++;
 }
@@ -110,7 +106,7 @@ void	map_pars(t_pars *data, char *file)
 	while (check)
 	{
 		check = get_next_line(fd, &str, data);
-		if (data->in_map && !data->empty_line && i < data->map_h)
+		if (data->in_map && !ft_empty_line(str) && i < data->map_h)
 			data->empty_line = 1;
 		data->in_map = is_map(data, str);
 		if (data->in_map)
