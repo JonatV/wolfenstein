@@ -18,7 +18,7 @@ bool	init_animation_struct(t_game *game)
 {
 	if (!init_anim_minimap(game))
 		return (false);
-	if (!init_anim_player(game))
+	if (!init_anim_hand(game))
 		return (false);
 	return (true);
 }

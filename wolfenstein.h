@@ -202,6 +202,27 @@ typedef struct s_sprite
 	int	height;
 }	t_sprite;
 
+typedef struct s_frame
+{
+	t_img			frame;
+	struct s_frame	*next;
+}	t_frame;
+
+typedef struct s_animation
+{
+	t_frame	current_frame;
+	t_frame	*sequence;
+	t_img	sprite_img;
+	int		delay;
+	int		tmp_delay;
+	int		current_frame_num;
+	int		total_frame;
+	int		w;
+	int		h;
+	int		x;
+	int		y;
+}	t_animation;
+
 typedef struct s_map
 {
 	int		**map_grid;
@@ -277,7 +298,7 @@ typedef struct s_game
 	t_pars		data;
 	// array of xpm images
 	t_img		xpm_images[xpm_null];
-	// t_img		xpm_images[xpm_null];
+	t_animation	anim_h;
 }	t_game;
 
 /*----------------  expose_hook.c  ---------------*/
@@ -404,7 +425,7 @@ t_sprite	new_sprite(char *name, char *file_path, t_win *win);
 /*----------------  init_animation_struct.c  ---------------*/
 bool	init_animation_struct(t_game *game);
 bool	init_anim_minimap(t_game *game);
-bool	init_anim_player(t_game *game);
+bool	init_anim_hand(t_game *game);
 
 /*----------------  animation_utils.c  ---------------*/
 t_lst	*lst_new_double(void *content);
