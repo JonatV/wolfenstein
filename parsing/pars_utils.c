@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:01 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 13:47:49 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:23:27 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,12 @@ void	map_check(t_pars *data, char *str)
 
 	if (is_map(data, str) == 1)
 	{
-		printf("goes in\n");
 		if (data_check(data))
 			data->error = 1;
 		if ((int)ft_strlen(str) > sizeline)
 			sizeline = ft_strlen(str);
 		nbrlines += 1;
 	}
-	// printf("Sizeline: %d\nNumber lines: %d\n", sizeline, nbrlines);
 	data->map_w = sizeline;
 	data->map_h = nbrlines;
 }

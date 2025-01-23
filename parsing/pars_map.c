@@ -6,11 +6,21 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 13:52:02 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:53:36 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
+int	cast_char(char c)
+{
+	int	ret;
+
+	ret = 0;
+	if (c > '9' || c < '0')
+		exit(1);
+	ret = c - 48;
+	return (ret);
+}
 
 int	start(t_pars *data, int i, int j, char c)
 {
@@ -36,24 +46,26 @@ void	create_map(t_pars *data, char *str, int michel)
 	int			i;
 	static int	j = 0;
 
-	i = 0;
+	i = -1;
 	(void)michel;
-	// printf("%d %d\n", j, data->map_w);
-	data->map[j] = malloc(sizeof(int) * (data->map_w + 1));
+	data->map[j] = malloc(sizeof(int) * (data->map_w));
 	if (!(data->map[j]))
 		return ;
-	while (str[i])
+	printf(BOLD BLUE"Check line: %s\n"RESET, str);
+	while (str[++i])
 	{
 		if (start(data, j, i, str[i]))
 			data->map[j][i] = 0;
 		else if (str[i] == 32)
 			data->map[j][i] = 1;
 		else
-			data->map[j][i] = ft_atoi(&str[i]);
-		i++;
+		{
+			printf(BOLD YELLOW"Check data: %d\n"RESET, cast_char(str[i]));
+			data->map[j][i] = cast_char(str[i]);
+		}
 	}
-	while (i <= (data->map_w - 1))
-		data->map[j][i++] = '1';
+	while (i <= (data->map_w))
+		data->map[j][i++] = 1;
 	j++;
 }
 
@@ -66,7 +78,6 @@ int	is_map(t_pars *data, char *str)
 		return (0);
 	if (detect_char(str, '1') == 1 || detect_char(str, '0') == 1)
 	{
-		// printf("Str check: %s\n", str);
 		while (str[i])
 		{
 			if (is_special(str[i]))

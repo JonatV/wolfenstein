@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 11:48:45 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:59:01 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_exit(t_pars *data, char *str)
 	if (str && str[0])
 	{
 		write (1, "Error: ", 7);
-		write(1, &str, ft_strlen(str));
+		write(1, str, ft_strlen(str));
 	}
 	if (data->no)
 		free(data->no);
