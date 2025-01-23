@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 09:32:02 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/23 09:33:54 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../wolfenstein.h"
 
 /* Behave as a game loop
@@ -5,18 +17,17 @@
 */
 int	update(t_game *game)
 {
-	bool	toogle = false;
+	bool	toggle;
 
-	// handle fps
+	toggle = false;
 	if (timestamp_in_ms(game) - game->updated_at >= (uint64_t)(1000 / game->fps))
 	{
 		game->updated_at = timestamp_in_ms(game);
-		toogle = !toogle;
-		if (toogle)
+		toggle = !toggle;
+		if (toggle)
 			printf("\e[1;31mFPS: %d\e[0m\n", game->fps);
 		else
 			printf("FPS: %d\n", game->fps);
-		// code to update the game here
 		handle_keys(game);
 		if (game->state == home_screen)
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:33 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 17:09:11 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/23 09:30:02 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_img	set_new_xpm(char *path, t_win *window)
 	img.mlx_img = mlx_xpm_file_to_image(window->mlx_ptr, path, &img.width, &img.height);
 	if (!img.mlx_img)
 	{
-		printf("Error: can't read this image file\n"); 
+		printf("Error: can't read this image file\n");
 		exit(1);// !to change
 	}
 	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len, &img.endian);
@@ -46,32 +46,34 @@ t_img	set_new_xpm(char *path, t_win *window)
 
 void	put_img_to_img(t_img *dst, t_img *src, int x, int y)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*src_pixel;
 	char	*dst_pixel;
 
-	for (i = 0; i < src->height; i++)
+	i = -1;
+	while (++i < src->height)
 	{
-		for (j = 0; j < src->width; j++)
+		j = -1;
+		while (++j < src->width)
 		{
 			src_pixel = src->addr + (i * src->line_len + j * (src->bpp / 8));
-			dst_pixel = dst->addr + ((y + i) * dst->line_len + (x + j) * (dst->bpp / 8));
-			if (*(int *)src_pixel != (int)0xFF000000) // Check for transparency
+			dst_pixel = dst->addr + ((y + i) * dst->line_len + (x + j) * \
+			(dst->bpp / 8));
+			if (*(int *)src_pixel != (int)0xFF000000)
 				*(int *)dst_pixel = *(int *)src_pixel;
 		}
 	}
 }
-
 
 /* Copy a pixel from a source image to a destination image at the specified coordinates
  * 
 */
 void	copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_x, int dst_y)
 {
-	unsigned int color;
-	char *src_addr;
-	char *dst_addr;
+	unsigned int	color;
+	char			*src_addr;
+	char			*dst_addr;
 
 	// Get pixel from source image
 	if (src_x >= 0 && src_y >= 0 && src_x < src_img.width && src_y < src_img.height)
@@ -80,9 +82,7 @@ void	copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_
 		color = *(unsigned int *)src_addr;
 	}
 	else
-		return; // Out of bounds, do nothing
-
-	// Put pixel into destination image
+		return ;
 	if (dst_x >= 0 && dst_y >= 0 && dst_x < dst_img.width && dst_y < dst_img.height)
 	{
 		dst_addr = dst_img.addr + (dst_y * dst_img.line_len + dst_x * (dst_img.bpp / 8));

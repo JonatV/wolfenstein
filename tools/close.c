@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:07 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 14:15:31 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/23 09:28:52 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ static void	destroy_map_struct(t_game *game)
 
 static void	destroy_marker_struct(t_game *game)
 {
-	t_lst *current;
-	t_lst *next;
+	t_lst	*current;
+	t_lst	*next;
 
 	next = NULL;
 	current = game->map.pos_sprite.anim;
-	while(current)
+	while (current)
 	{
 		next = current->next;
 		mlx_destroy_image(game->win.mlx_ptr, ((t_marker *)current->content)->frame.mlx_img);
 		free((t_marker *)current->content);
 		free(current);
 		if (next == game->map.pos_sprite.anim)
-			break;
+			break ;
 		current = next;
 	}
 	game->map.pos_sprite.anim = NULL;
@@ -79,12 +79,10 @@ int	close_game(void *p)
 	// destroy window
 	if (game->win.win_ptr)
 		mlx_destroy_window(game->win.mlx_ptr, game->win.win_ptr);
-
 	// destroy display
 	if (game->win.mlx_ptr)
 		mlx_destroy_display(game->win.mlx_ptr);
 	// destroy map grid
-
 	free(game);
 	exit(0);
 }

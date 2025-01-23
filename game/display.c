@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/23 09:34:11 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../wolfenstein.h"
 
 static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
@@ -42,7 +54,7 @@ static void	pixel_put_floor(t_game *game, int x, int y)
 
 	dst = game->win.scr.addr + y * game->win.scr.line_len
 		+ x * game->win.scr.bpp / 8;
-	*(unsigned int *)dst = C_DARK_GREY; // floor color
+	*(unsigned int *)dst = C_DARK_GREY;
 }
 
 static void	pixel_put_sky(t_game *game, int x, int y)
@@ -51,7 +63,7 @@ static void	pixel_put_sky(t_game *game, int x, int y)
 
 	dst = game->win.scr.addr + y * game->win.scr.line_len
 		+ x * game->win.scr.bpp / 8;
-	*(unsigned int *)dst = C_DARK_RED; // sky color
+	*(unsigned int *)dst = C_DARK_RED;
 }
 
 void	put_column_to_win(t_game *game, int x, int number_of_the_wall_hitted)
