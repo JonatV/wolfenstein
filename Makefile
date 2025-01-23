@@ -20,7 +20,7 @@ INCLUDES	=	$(MLX_PATH)mlx.h \
 
 SRC			=	main.c \
 				optimization.c \
-				$(INIT)init_project.c $(INIT)init_game_struct.c $(INIT)init_window_struct.c $(INIT)init_map_struct.c $(INIT)init_player_struct.c $(INIT)init_keys_struct.c $(INIT)init_hooks_logics.c $(INIT)init_xpm_images.c $(INIT)init_animation_struct.c $(INIT)init_pars_struct.c \
+				$(INIT)init_project.c $(INIT)init_game_struct.c $(INIT)init_window_struct.c $(INIT)init_map_struct.c $(INIT)init_player_struct.c $(INIT)init_keys_struct.c $(INIT)init_hooks_logics.c $(INIT)init_xpm_images.c $(INIT)init_animation_struct.c $(INIT)init_pars_struct.c $(INIT)init_animation_minimap_struct.c $(INIT)init_animation_player_struct.c \
 				$(HOOK)expose_hook.c $(HOOK)key_hook.c $(HOOK)mouse_hook.c \
 				$(KEYS)handle_keys.c $(KEYS)key_tab.c $(KEYS)key_space.c $(KEYS)key_m.c $(KEYS)key_left.c $(KEYS)key_right.c $(KEYS)key_w.c $(KEYS)key_s.c $(KEYS)key_a.c $(KEYS)key_d.c $(KEYS)key_e.c $(KEYS)key_esc.c $(KEYS)key_enter.c \
 				$(GAME)update.c $(GAME)layout_home_screen.c $(GAME)layout_game_screen.c $(GAME)layout_map_screen.c $(GAME)display.c $(GAME)raycast.c $(GAME)minimap.c \

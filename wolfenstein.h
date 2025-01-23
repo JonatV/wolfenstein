@@ -403,6 +403,8 @@ t_sprite	new_sprite(char *name, char *file_path, t_win *win);
 
 /*----------------  init_animation_struct.c  ---------------*/
 bool	init_animation_struct(t_game *game);
+bool	init_anim_minimap(t_game *game);
+bool	init_anim_player(t_game *game);
 
 /*----------------  animation_utils.c  ---------------*/
 t_lst	*lst_new_double(void *content);
