@@ -291,7 +291,13 @@ typedef struct s_pars
 	char	*we;
 	char	*ea;
 	int		f;
+	char	*fr;
+	char	*fg;
+	char	*fb;
 	int		c;
+	char	*cr;
+	char	*cg;
+	char	*cb;
 }	t_pars;
 
 typedef struct s_game
@@ -395,7 +401,7 @@ int		update(t_game *game);
 void	parse_all(t_pars *data, char *file);
 
 /*----------------  pars_colours.c  ---------------*/
-void	get_colours(t_pars *data, char **str);
+void	pars_colours(t_pars *data, char *str);
 
 /*----------------  pars_errors.c  ---------------*/
 void	ft_errors(t_pars *d, char *str);

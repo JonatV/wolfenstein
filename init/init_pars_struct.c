@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:19:57 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 11:21:26 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:53:11 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ void	init_pars(t_pars **data)
 	(*data)->ea = NULL;
 	(*data)->f = 0;
 	(*data)->c = 0;
+	(*data)->fr = NULL;
+	(*data)->fg = NULL;
+	(*data)->fb = NULL;
+	(*data)->cr = NULL;
+	(*data)->cg = NULL;
+	(*data)->cb = NULL;
 }
