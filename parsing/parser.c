@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/23 16:01:03 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:49:47 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parse_all(t_pars *data, char *file)
 		checker = get_next_line(fd, &str, data);
 		if (data->error == 1)
 			ft_errors(data, "Error: problem with map\n");
-		get_colours(data, &str);
+		pars_colours(data, str);
 		get_texture(data, str);
 		map_check(data, str);
 		free(str);

@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/23 16:53:36 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:41:52 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	create_map(t_pars *data, char *str, int michel)
 			data->map[j][i] = cast_char(str[i]);
 		}
 	}
-	while (i <= (data->map_w))
-		data->map[j][i++] = 1;
+	// while (i <= (data->map_w))
+	// 	data->map[j][i++] = 1;
 	j++;
 }
 

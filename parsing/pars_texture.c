@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/22 13:59:30 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:54:55 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 void	get_texture(t_pars *data, char *str)
 {
 	int			i;
-	static int	j = 0;
 
 	i = 0;
 	if (str[i] == 'N' && str[i + 1] == 'O')
-		find_texture(data, &data->no, str, 2); // ? why init j = 2 then j = 0 inside the find_texture()
+		find_texture(data, &data->no, str, 2);
 	else if (str[i] == 'S' && str[i + 1] == 'O')
 		find_texture(data, &data->so, str, 2);
 	else if (str[i] == 'W' && str[i + 1] == 'E')
@@ -75,5 +74,4 @@ void	get_texture(t_pars *data, char *str)
 	else if (str[0] != 'N' && str[0] != 'S' && str[0] != 'W' && str[0] != 'E'
 		&& str[0] != 'F' && str[0] != 'C' && str[0] > 65 && str[0] < 122)
 		data->error = 1;
-	j++;
 }
