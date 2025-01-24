@@ -6,20 +6,21 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/23 15:59:01 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:55:18 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-int	wall_utils(int *value)
+int	ft_empty_line(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (value[i])
+	while (str[i])
 	{
-		if (value[i] != 1)
+		if (str[i] != '\t' && str[i] != ' ' && str[i] != '\0' && str[i] != '\n'
+			&& str[i] != '\r' && str[i] != '\v' && str[i] != '\f')
 			return (1);
 		i++;
 	}
@@ -32,14 +33,11 @@ int	wall_check(t_pars *data)
 
 	i = -1;
 	while (++i < data->map_h)
-		if (data->map[i][0] != '1' || data->map[i][data->map_w - 1] != '1')
+		if (data->map[i][0] != 1 || data->map[i][data->map_w - 1] != 1)
 			return (1);
 	i = -1;
-	if (wall_utils(data->map[0]) == 1
-		|| wall_utils(data->map[data->map_h - 1]) == 1)
-		return (1);
-	while (data->map[0][++i] && data->map[data->map_h -1][i])
-		if (data->map[0][i] != '1' && data->map[data->map_h -1][i] != '1')
+	while (++i < data->map_w)
+		if (data->map[0][i] != 1 || data->map[data->map_h - 1][i] != 1)
 			return (1);
 	return (0);
 }
@@ -86,6 +84,7 @@ void	ft_errors(t_pars *d, char *str)
 		ft_exit(d, "Empty line in map\n");
 	if (d->wrongchar)
 		ft_exit(d, "Wrong character in map\n");
+	printf(BOLD YELLOW"Check data:\nNorth texture: %s\nSouth texture: %s\nWest texture: %s\nEast texture: %s\nCeiling colour: %d\nFloor colour: %d\n"BOLD CYAN, d->no, d->so, d->we, d->ea, d->c, d->f);
 	if (!d->no || !d->so || !d->we || !d->ea || !d->c || !d->f)
 		ft_exit(d, "Texture or colour informations missing\n");
 	}
