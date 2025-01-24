@@ -143,6 +143,70 @@ cube_frames=(
     +---+--+.  |
      \\`. |    \\`.|
        \\`+------+"
+
+    "    +------+
+    |\\     |\\ 
+    | +----+-+ 
+    | |    | |
+    +-+----+ |
+     \\|     \\|
+      +------+"
+
+    "    +------+
+    |      |
+    +------+
+    |      |
+    +------+
+    |      |
+    +------+"
+
+    "      +------+
+     /|     /|
+    +-+----+ |
+    | |    | |
+    | +----+-+
+    |/     |/ 
+    +------+"
+
+    "       .+------+
+     .' |    .'|
+    +---+--+'  |
+    |   |  |   |
+    |  .+--+---+
+    |.'    | .'
+    +------+'"
+    
+    "      +------+
+     /|     /|
+    +-+----+ |
+    | |    | |
+    | +----+-+
+    |/     |/ 
+    +------+"
+
+    "    +------+
+    |      |
+    +------+
+    |      |
+    +------+
+    |      |
+    +------+"
+
+    "    +------+
+    |\\     |\\ 
+    | +----+-+ 
+    | |    | |
+    +-+----+ |
+     \\|     \\|
+      +------+"
+
+      "    +------+.
+    |\\`.    | \\`.
+    |  \\`+--+---+ 
+    |   |  |   |
+    +---+--+.  |
+     \\`. |    \\`.|
+       \\`+------+"
 )
 
 # Input parameters
@@ -159,7 +223,7 @@ compile_with_progress() {
     for ((count=0; count<total; count++)); do
         file="$${OBJ_FILES[count]}"
         percent=$$((100 * (count + 1) / total))
-        frame=$$((count % 9))
+        frame=$$((count % 17))
         
         # Create progress bar
         bar=$$(printf "%0.s#" $$(seq 1 $$((percent / 2))))
@@ -171,9 +235,11 @@ compile_with_progress() {
         
         # Actual compilation
         $(CC) $(CFLAGS) -c $$(echo "$$file" | sed "s/\.o$$/.c/") -o "$$file"
-        
-        # Small delay to make animation visible
-        sleep 0.05
+
+        # Small delay to make animation visible, skip sleep on last iteration
+        if [[ $$((count + 1)) -lt $$total ]]; then
+            sleep 0.05
+        fi
     done
     
     printf "\n$${GREEN}✅ Compilation Complete!$${RESET}\n"
