@@ -25,7 +25,7 @@ SRC			=	main.c \
 				$(KEYS)handle_keys.c $(KEYS)key_tab.c $(KEYS)key_space.c $(KEYS)key_m.c $(KEYS)key_left.c $(KEYS)key_right.c $(KEYS)key_w.c $(KEYS)key_s.c $(KEYS)key_a.c $(KEYS)key_d.c $(KEYS)key_e.c $(KEYS)key_esc.c $(KEYS)key_enter.c \
 				$(GAME)update.c $(GAME)layout_home_screen.c $(GAME)layout_game_screen.c $(GAME)layout_map_screen.c $(GAME)display.c $(GAME)raycast.c $(GAME)minimap.c \
 				$(DRAW)draw_rectangle.c \
-				$(ANIM)animation_tools.c $(ANIM)animation_utils.c \
+				$(ANIM)animation_tools.c $(ANIM)animation_utils.c $(ANIM)animation_player_hand.c \
 				$(TOOL)close.c $(TOOL)fps.c $(TOOL)image_helper.c $(TOOL)colors.c \
 				$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_errors.c $(PARS)pars_utils.c $(PARS)pars_map.c $(PARS)pars_texture.c \
 				$(GNL)get_next_line.c $(GNL)get_next_line_utils.c

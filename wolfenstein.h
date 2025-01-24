@@ -2,8 +2,8 @@
 #define WOLFENSTEIN_H
 
 # include "libft/libft.h"			// for libft functions
-# include "minilibx_linux/mlx.h"		// for mlx functions (handle window, image, etc)
-# include <X11/Xutil.h>			// for keycode Macro (XK_SPACE, XK_Escape, etc)
+# include "minilibx_linux/mlx.h"	// for mlx functions (handle window, image, etc)
+# include <X11/Xutil.h>				// for keycode Macro (XK_SPACE, XK_Escape, etc)
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -18,7 +18,7 @@
 #define TITLE "Wolfenstein"
 #define WIN_W 1200
 #define WIN_H 600
-#define FPS 32
+#define FPS 42
 
 // has to be define in the parsing latter
 // #define MAP_H 28
@@ -55,6 +55,15 @@
 #define MAX_M_W 1008
 #define MAX_M_H 402
 #define ID_DOOR 2
+
+// Animation hand/player Macro
+#define H_DELAY 5
+#define H_FRAMES 34
+#define H_W 420
+#define H_H 236
+#define H_X 390
+#define H_Y 364
+
 
 enum game_state
 {
@@ -201,8 +210,8 @@ typedef struct s_lst
 
 typedef struct s_sprite
 {
-	void	*anim;	// void because it can be either the frames list (player marker)
-									//or the structure that content the info of the animation + the frames list 
+	void	*anim;		// void because it can be either the frames list (player marker)
+						//or the structure that content the info of the animation + the frames list 
 	t_lst	*cur_node;
 	char	*name;
 	char	*file_path;
@@ -211,16 +220,10 @@ typedef struct s_sprite
 	int	height;
 }	t_sprite;
 
-typedef struct s_frame
-{
-	t_img			frame;
-	struct s_frame	*next;
-}	t_frame;
-
 typedef struct s_animation
 {
-	t_frame	current_frame;
-	t_frame	*sequence;
+	void	*current_frame;
+	void	*sequence;
 	t_img	sprite_img;
 	int		delay;
 	int		tmp_delay;
@@ -441,6 +444,9 @@ bool	init_anim_hand(t_game *game);
 t_lst	*lst_new_double(void *content);
 void	lstadd_back_double(t_lst **lst, t_lst *new);
 t_lst	*lstlast(t_lst *lst);
+
+/*---------------- animation_player_hand.c  ---------------*/
+void	player_hand(t_game *game);
 
 /*---------------- key_*.c  ---------------*/
 void	key_esc(t_game *game);

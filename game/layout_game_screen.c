@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:09:25 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 14:17:04 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:19:52 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	layout_game_screen(t_game *game)
 	{
 		raycast(game);
 		minimap(game);
+		player_hand(game);
+		mlx_mouse_move(game->win.mlx_ptr, game->win.win_ptr, WIN_W/2, WIN_H/2);
 	}
 	else if (game->state == inventory)
 		put_img_to_img(&game->win.scr, &game->xpm_images[xpm_inventory], 0, 0);
