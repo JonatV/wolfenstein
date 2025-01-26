@@ -119,6 +119,8 @@ typedef struct s_keys
 	bool	tab_pressed;
 	bool	enter_pressed;
 	bool	space_pressed;
+	bool	mouse_left;
+	bool	mouse_right;
 }		t_keys;
 
 typedef struct s_img

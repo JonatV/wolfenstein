@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:15:22 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 15:15:23 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:15:35 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ bool	init_keys_struct(t_game *game)
 	game->keys.tab_pressed = false;
 	game->keys.enter_pressed = false;
 	game->keys.space_pressed = false;
+	game->keys.mouse_left = false;
+	game->keys.mouse_right = false;
 	return (true);
 }

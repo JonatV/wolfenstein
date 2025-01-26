@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:24:38 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 11:25:24 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:30:20 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int	mouse_move(int x, int y, t_game *game)
 {
 	(void)game;
 	printf("Mouse move: x[%d] y[%d]\n", x, y);
+	if (game->state != game_screen)
+		return (0);
+	if (x < WIN_W / 2)
+		rotate(game, 1);
+	else if (x > WIN_W / 2)
+		rotate(game, 0);
 	return (0);
 }
 
