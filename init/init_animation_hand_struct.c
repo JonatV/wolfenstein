@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:25:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/24 15:47:03 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 20:12:09 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,21 @@ t_list	*slice_sprite(t_sprite_slice_data data, int frames, t_img src)
 }
 
 
-bool	init_anim_hand(t_game *game)
+bool	init_anim_hand(t_game *game, char *path, t_animation *anim)
 {
 	t_sprite_slice_data	slice_data;
 
 	slice_data = (t_sprite_slice_data){0, 0, H_W, H_H};
-	game->anim_h.sprite_img = set_new_xpm("assets/player_hand2.xpm", &game->win);
-	game->anim_h.delay = H_DELAY;
-	game->anim_h.tmp_delay = 0;
-	game->anim_h.current_frame_num = 0;
-	game->anim_h.total_frame = H_FRAMES;
-	game->anim_h.w = H_W;
-	game->anim_h.h = H_H;
-	game->anim_h.x = H_X;
-	game->anim_h.y = H_Y;
-	game->anim_h.sequence = slice_sprite(slice_data, H_FRAMES, game->anim_h.sprite_img);
-	game->anim_h.current_frame = game->anim_h.sequence;
+	anim->sprite_img = set_new_xpm(path, &game->win);
+	anim->delay = H_DELAY;
+	anim->tmp_delay = 0;
+	anim->current_frame_num = 0;
+	anim->total_frame = H_FRAMES;
+	anim->w = H_W;
+	anim->h = H_H;
+	anim->x = H_X;
+	anim->y = H_Y;
+	anim->sequence = slice_sprite(slice_data, H_FRAMES, anim->sprite_img);
+	anim->current_frame = anim->sequence;
 	return (true);
 }

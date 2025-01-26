@@ -18,7 +18,9 @@ bool	init_animation_struct(t_game *game)
 {
 	if (!init_anim_minimap(game))
 		return (false);
-	if (!init_anim_hand(game))
+	if (!init_anim_hand(game, "assets/player_hand2.xpm", &game->anim_h))
+		return (false);
+	if (!init_anim_hand(game, "assets/player_hand_light.xpm", &game->anim_h_light))
 		return (false);
 	return (true);
 }

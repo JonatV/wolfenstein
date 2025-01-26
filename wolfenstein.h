@@ -22,8 +22,8 @@
 
 // has to be define in the parsing latter
 // #define MAP_H 28
-#define MAP_H 19
-#define MAP_W 29
+#define MAP_H 26
+#define MAP_W 40
 // #define MAP_W 35
 
 #define C_BLACK		0x1A1A1A
@@ -54,7 +54,11 @@
 #define MINI_W 150
 #define MAX_M_W 1008
 #define MAX_M_H 402
-#define ID_DOOR 2
+#define ID_FLOOR 0
+#define ID_WALL 1
+#define ID_HIDDEN 2
+#define ID_DOOR 3
+#define ID_OUT_OF_BOUND -1
 
 // Animation hand/player Macro
 #define H_DELAY 5
@@ -319,6 +323,7 @@ typedef struct s_game
 	// array of xpm images
 	t_img		xpm_images[xpm_null];
 	t_animation	anim_h;
+	t_animation	anim_h_light;
 }	t_game;
 
 /*----------------  expose_hook.c  ---------------*/
@@ -446,7 +451,7 @@ t_sprite	new_sprite(char *name, char *file_path, t_win *win);
 /*----------------  init_animation_struct.c  ---------------*/
 bool	init_animation_struct(t_game *game);
 bool	init_anim_minimap(t_game *game);
-bool	init_anim_hand(t_game *game);
+bool	init_anim_hand(t_game *game, char *path, t_animation *anim);
 
 /*----------------  animation_utils.c  ---------------*/
 t_lst	*lst_new_double(void *content);

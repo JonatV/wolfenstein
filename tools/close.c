@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:07 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/24 15:48:32 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 20:15:29 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** Free main game struct
 */
 
-static void	destroy_animation_struct(t_game *game)
+static void	destroy_animation_struct(t_game *game, t_animation *anim)
 {
 	t_list	*current;
 	t_list	*next;
@@ -29,22 +29,22 @@ static void	destroy_animation_struct(t_game *game)
 	int		i;
 
 	next = NULL;
-	current = game->anim_h.sequence;
+	current = anim->sequence;
 
-	mlx_destroy_image(game->win.mlx_ptr, game->anim_h.sprite_img.mlx_img);
+	mlx_destroy_image(game->win.mlx_ptr, anim->sprite_img.mlx_img);
 	i = -1;
-	while (++i < game->anim_h.total_frame)
+	while (++i < anim->total_frame)
 	{
 		img = (t_img *)current->content;
 		mlx_destroy_image(game->win.mlx_ptr, img->mlx_img);
 		next = current->next;
 		free(img);
 		free(current);
-		if (next == game->anim_h.sequence)
+		if (next == anim->sequence)
 			break ;
 		current = next;
 	}
-	game->anim_h.sequence = NULL;
+	anim->sequence = NULL;
 }
 static void	destroy_map_struct(t_game *game)
 {
@@ -96,8 +96,9 @@ int	close_game(void *p)
 			mlx_destroy_image(game->win.mlx_ptr, game->xpm_images[i].mlx_img);
 		i++;
 	}
-	// destroy anim hand
-	destroy_animation_struct(game);
+	// destroy anim hand (+ lights on)
+	destroy_animation_struct(game, &game->anim_h);
+	destroy_animation_struct(game, &game->anim_h_light);
 	// destroy img of the dynamic map
 	// destroy the player marker lst
 	destroy_marker_struct(game);
