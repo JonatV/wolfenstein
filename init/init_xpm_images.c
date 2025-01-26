@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:32 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 11:34:04 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 23:58:10 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ bool	init_xpm_images(t_game *game)
 	xpm[xpm_east] = set_new_xpm("assets/EAST.xpm", &game->win);
 	xpm[xpm_west] = set_new_xpm("assets/WEST.xpm", &game->win);
 	xpm[xpm_walls] = set_new_xpm("assets/wallsv2.xpm", &game->win);
-	xpm[xpm_door] = set_new_xpm("assets/walls.xpm", &game->win);
+	xpm[xpm_wall] = set_new_xpm("assets/wall_blank.xpm", &game->win);
+	xpm[xpm_door] = set_new_xpm("assets/door.xpm", &game->win);
+	xpm[xpm_grid] = set_new_xpm("assets/grid.xpm", &game->win);
+	xpm[xpm_pipe] = set_new_xpm("assets/pipe.xpm", &game->win);
 	return (true);
 }

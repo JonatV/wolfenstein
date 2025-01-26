@@ -92,7 +92,10 @@ enum xpm_images
 	xpm_east,
 	xpm_west,
 	xpm_walls,
+	xpm_wall,
 	xpm_door,
+	xpm_grid,
+	xpm_pipe,
 	xpm_null,
 	// add more here
 };
