@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:46:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 23:17:46 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:13:47 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	print_loop_dynamic_map(t_game *game, int start_pos_x, \
 				color = C_GREY;
 			else if (game->map.map_grid[y][x] == ID_DOOR)
 				color = C_DEEP_RED;
+			else if (game->map.map_grid[y][x] == ID_HIDDEN)
+				color = C_BLACK;
 			else
 				color = C_BLACK;
 			draw_rect((t_rect){&game->map.f_map_dynamic, start_pos_x + (x * \
@@ -61,6 +63,8 @@ static void	fixed_focus_map(t_game *game)
 				color = C_GREY;
 			else if (game->map.map_grid[y][x] == ID_DOOR)
 				color = C_DEEP_RED;
+			else if (game->map.map_grid[y][x] == ID_HIDDEN)
+				color = C_BLACK;
 			else
 				color = C_BLACK;
 			draw_rect((t_rect){&game->map.f_map_dynamic, \

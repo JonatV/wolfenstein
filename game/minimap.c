@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:52:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 23:18:02 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:14:48 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,15 @@ static void	draw_minimap_cell(t_game *game, t_cell_param p)
 		else if (game->map.map_grid[p.y][p.x] == ID_DOOR)
 			img_pix_put(&game->win.scr, p.j + \
 			PADDING, p.i + PADDING, C_DEEP_RED);
-		else
+		else if (game->map.map_grid[p.y][p.x] == ID_HIDDEN)
+			img_pix_put(&game->win.scr, p.j + \
+			PADDING, p.i + PADDING, C_BLACK);
+		else if (game->map.map_grid[p.y][p.x] == ID_FLOOR)
 			img_pix_put(&game->win.scr, p.j + \
 			PADDING, p.i + PADDING, C_GREY);
+		else
+			img_pix_put(&game->win.scr, p.j + \
+			PADDING, p.i + PADDING, C_BLACK);
 	}
 	else
 		img_pix_put(&game->win.scr, p.j + PADDING, p.i + PADDING, C_BLACK);

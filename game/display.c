@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/23 09:34:11 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:05:54 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 	int		x2;
 	int		y2;
 	t_img	*wall;
-
-	if (the_wall == 2)
+	
+	if (the_wall == 2 && game->keys.e == true)
 		wall = &game->xpm_images[xpm_door]; 
-	else
+	else if (the_wall == 1 || the_wall == 2)
 		wall = &game->xpm_images[xpm_walls];
+	else if (the_wall == 3)
+		wall = &game->xpm_images[xpm_door];
+	else
+		wall = &game->xpm_images[xpm_east];
 	// if (game->raycast.wall_orientation == NORTH)
 	// 	wall = &game->xpm_images[xpm_north];
 	// else if (game->raycast.wall_orientation == SOUTH)
