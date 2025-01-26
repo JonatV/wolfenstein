@@ -6,20 +6,20 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:07:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/22 17:08:10 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:12:17 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-void	rotate(t_game *game, bool lr)
+void	rotate(t_game *game, bool rl)
 {
 	double	tmp_dir;
 	double	tmp_plane;
 	double	rot_speed;
 
 	rot_speed = game->player.speed;
-	if (lr == 1)
+	if (rl == 1)
 		rot_speed *= -1;
 	tmp_dir = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed) \
