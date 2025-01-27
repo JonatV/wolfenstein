@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:33 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 11:33:51 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:27:48 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ t_img	set_new_xpm(char *path, t_win *window)
 	t_img	img;
 
 	img.win = window;
-	img.mlx_img = mlx_xpm_file_to_image(window->mlx_ptr, path, &img.width, &img.height);
+	img.mlx_img = mlx_xpm_file_to_image(window->mlx_ptr, \
+	path, &img.width, &img.height);
 	if (!img.mlx_img)
 	{
 		printf("Error: can't read this image file\n");
 		printf("unknown file name: \e[31m%s\n\e[0m", path);
 		exit(1);// !to change
 	}
-	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len, &img.endian);
+	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp, \
+	&img.line_len, &img.endian);
 	printf("name: %s\n", path);
 	printf("img: %p\n", img.mlx_img);
 	printf("x: %d\n", img.width);
@@ -67,8 +69,8 @@ void	put_img_to_img(t_img *dst, t_img *src, int x, int y)
 	}
 }
 
-/* Copy a pixel from a source image to a destination image at the specified coordinates
- * 
+/* Copy a pixel from a source image to a destination
+ *  image at the specified coordinates
 */
 void	copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_x, int dst_y)
 {

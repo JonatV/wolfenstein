@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:46:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 15:29:00 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:21:12 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	print_loop_dynamic_map(t_game *game, int start_pos_x, \
 	while (++y < game->map.h)
 	{
 		x = -1;
-		while (++x <  game->map.w)
+		while (++x < game->map.w)
 		{
 			if (game->map.map_grid[y][x] == 1)
 				color = C_DARK_GREY;

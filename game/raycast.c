@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:34:21 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/23 09:34:23 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:20:04 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	raycast(t_game *game)
 	int	number_of_the_wall_hitted;
 
 	number_of_the_wall_hitted = 0;
-	current_x = 0;
-	while (current_x < (int)game->win_w)
+	current_x = -1;
+	while (++current_x < (int)game->win_w)
 	{
 		// STARTwe need to initialize the current column ray index
 		game->raycast.hit = false;
@@ -103,7 +103,6 @@ int	raycast(t_game *game)
 		// START we need to calculate the color of the wall strip
 		put_column_to_win(game, current_x, number_of_the_wall_hitted); // this function will draw the wall strip
 		// END color of the wall strip
-		current_x++;
 	}
 	mlx_put_image_to_window(game->win.mlx_ptr, game->win.win_ptr, game->win.scr.mlx_img, 0, 0);
 	return (0);

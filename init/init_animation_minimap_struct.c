@@ -6,12 +6,11 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:20:03 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/23 13:24:58 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:23:24 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
-
 
 static bool	create_frame_img(t_marker *marker, t_sprite s, \
 	t_sprite_slice_data data)

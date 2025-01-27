@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:32:02 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/23 09:33:54 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:14:41 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	update(t_game *game)
 	bool	toggle;
 
 	toggle = false;
-	if (timestamp_in_ms(game) - game->updated_at >= (uint64_t)(1000 / game->fps))
+	if (timestamp_in_ms(game) - game->updated_at \
+	>= (uint64_t)(1000 / game->fps))
 	{
 		game->updated_at = timestamp_in_ms(game);
 		toggle = !toggle;

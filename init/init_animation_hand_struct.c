@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:25:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 14:59:12 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:24:10 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 // 3. Create a new_node with the new img slot as content
 // 4. Add the new_node to the list
 // 5. Return true if all went well
-// arg needed are the list of frames (a pointer to the list), the data rules, and the source img
-static bool add_frame(t_list **f, t_sprite_slice_data data, t_img src)
+// arg needed are the list of frames (a pointer to the list),
+// the data rules, and the source img
+static bool	add_frame(t_list **f, t_sprite_slice_data data, t_img src)
 {
 	int		y;
 	int		x;
