@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:25:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 20:12:09 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:59:12 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ t_list	*slice_sprite(t_sprite_slice_data data, int frames, t_img src)
 	}
 	return (a);
 }
-
 
 bool	init_anim_hand(t_game *game, char *path, t_animation *anim)
 {

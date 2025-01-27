@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:46:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 21:13:47 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:29:00 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	print_loop_dynamic_map(t_game *game, int start_pos_x, \
 	int	color;
 
 	y = -1;
-	while (++y < MAP_H)
+	while (++y < game->map.h)
 	{
 		x = -1;
-		while (++x < MAP_W)
+		while (++x <  game->map.w)
 		{
 			if (game->map.map_grid[y][x] == 1)
 				color = C_DARK_GREY;
@@ -37,8 +37,7 @@ static void	print_loop_dynamic_map(t_game *game, int start_pos_x, \
 				color = C_BLACK;
 			draw_rect((t_rect){&game->map.f_map_dynamic, start_pos_x + (x * \
 			FOC_SIZE), start_pos_y + \
-			(y * FOC_SIZE), FOC_SIZE, \
-			FOC_SIZE, color});
+			(y * FOC_SIZE), FOC_SIZE, FOC_SIZE, color});
 		}
 	}
 }
@@ -48,14 +47,12 @@ static void	fixed_focus_map(t_game *game)
 	int	x;
 	int	y;
 	int	color;
-	int	size;
 
-	size = FOC_SIZE;
 	y = -1;
-	while (++y < game->map.height)
+	while (++y < game->map.h)
 	{
 		x = -1;
-		while (++x < game->map.width)
+		while (++x < game->map.w)
 		{
 			if (game->map.map_grid[y][x] == 1)
 				color = C_BLACK;
@@ -68,8 +65,8 @@ static void	fixed_focus_map(t_game *game)
 			else
 				color = C_BLACK;
 			draw_rect((t_rect){&game->map.f_map_dynamic, \
-			game->map.f_startx + (x * size), \
-			game->map.f_starty + (y * size), size, size, color});
+			game->map.f_startx + (x * FOC_SIZE), \
+			game->map.f_starty + (y * FOC_SIZE), FOC_SIZE, FOC_SIZE, color});
 		}
 	}
 }

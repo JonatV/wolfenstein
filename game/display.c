@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 23:57:26 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:02:07 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,30 @@ static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 	int		x2;
 	int		y2;
 	t_img	*wall;
+	(void)the_wall;
 	
-	if (the_wall == 2 && game->keys.e == true)
-		wall = &game->xpm_images[xpm_door]; 
-	else if (the_wall == 1 || the_wall == 2)
-		wall = &game->xpm_images[xpm_wall];
-	else if (the_wall == 3)
-		wall = &game->xpm_images[xpm_door];
-	else
-		wall = &game->xpm_images[xpm_east];
-	// if (game->raycast.wall_orientation == NORTH)
-	// 	wall = &game->xpm_images[xpm_north];
-	// else if (game->raycast.wall_orientation == SOUTH)
-	// 	wall = &game->xpm_images[xpm_south];
-	// else if (game->raycast.wall_orientation == EAST)
-	// 	wall = &game->xpm_images[xpm_east];
-	// else if (game->raycast.wall_orientation == WEST)
-	// 	wall = &game->xpm_images[xpm_west];
-	// if (game->raycast.wall_orientation == NORTH || game->raycast.wall_orientation == EAST)
-	// 	x2 = (int)(game->raycast.wall_x * (double)16);
+	// if (the_wall == 2 && game->keys.e == true)
+	// 	wall = &game->xpm_images[xpm_door]; 
+	// else if (the_wall == 1 || the_wall == 2)
+	// 	wall = &game->xpm_images[xpm_wall];
+	// else if (the_wall == 3)
+	// 	wall = &game->xpm_images[xpm_door];
 	// else
-	// 	x2 = (int)((1 - game->raycast.wall_x) * (double)16);
-	x2 = (int)(game->raycast.wall_x * (double)wall->width);
+	// 	wall = &game->xpm_images[xpm_east];
+	wall = NULL;
+	if (game->raycast.wall_orientation == NORTH)
+		wall = &game->xpm_images[xpm_north];
+	else if (game->raycast.wall_orientation == SOUTH)
+		wall = &game->xpm_images[xpm_south];
+	else if (game->raycast.wall_orientation == EAST)
+		wall = &game->xpm_images[xpm_east];
+	else if (game->raycast.wall_orientation == WEST)
+		wall = &game->xpm_images[xpm_west];
+	if (game->raycast.wall_orientation == NORTH || game->raycast.wall_orientation == EAST)
+		x2 = (int)(game->raycast.wall_x * (double)16);
+	else
+		x2 = (int)((1 - game->raycast.wall_x) * (double)16);
+	// x2 = (int)(game->raycast.wall_x * (double)wall->width);
 	if (game->raycast.wall_orientation == NORTH || game->raycast.wall_orientation == EAST)
 		x2 = wall->width - x2 - 1;
 	px = game->win.scr.line_len * y + x * game->win.scr.bpp / 8;
@@ -58,7 +60,7 @@ static void	pixel_put_floor(t_game *game, int x, int y)
 
 	dst = game->win.scr.addr + y * game->win.scr.line_len
 		+ x * game->win.scr.bpp / 8;
-	*(unsigned int *)dst = C_DARK_GREY;
+	*(unsigned int *)dst = game->data.f;
 }
 
 static void	pixel_put_sky(t_game *game, int x, int y)
@@ -67,7 +69,7 @@ static void	pixel_put_sky(t_game *game, int x, int y)
 
 	dst = game->win.scr.addr + y * game->win.scr.line_len
 		+ x * game->win.scr.bpp / 8;
-	*(unsigned int *)dst = C_DARK_RED;
+	*(unsigned int *)dst = game->data.c;
 }
 
 void	put_column_to_win(t_game *game, int x, int number_of_the_wall_hitted)

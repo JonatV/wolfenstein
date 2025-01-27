@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:52:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 21:14:48 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:32:29 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	draw_minimap_cell(t_game *game, t_cell_param p)
 {
 	if ((p.start_y + p.i >= 0 && p.start_y + p.i <= MINI_SIZE * MINI_H) && \
 		(p.start_x + p.j >= 0 && p.start_x + p.j <= MINI_SIZE * MINI_W) && \
-		(p.y >= 0 && p.y < game->map.height) && \
-		(p.x >= 0 && p.x < game->map.width))
+		(p.y >= 0 && p.y < game->map.h) && \
+		(p.x >= 0 && p.x < game->map.w))
 	{
 		if (game->map.map_grid[p.y][p.x] == 1)
 			img_pix_put(&game->win.scr, p.j + \
