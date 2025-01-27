@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 21:14:48 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 22:05:56 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,10 @@ static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 		wall = &game->xpm_images[xpm_east];
 	else if (game->raycast.wall_orientation == WEST)
 		wall = &game->xpm_images[xpm_west];
-	if (game->raycast.wall_orientation == NORTH || game->raycast.wall_orientation == EAST)
-		x2 = (int)(game->raycast.wall_x * (double)16);
+	if (game->raycast.wall_orientation == SOUTH || game->raycast.wall_orientation == WEST)
+		x2 = (int)((1 - game->raycast.wall_x) * (double)wall->width);
 	else
-		x2 = (int)((1 - game->raycast.wall_x) * (double)16);
-	// x2 = (int)(game->raycast.wall_x * (double)wall->width);
-	if (game->raycast.wall_orientation == NORTH || game->raycast.wall_orientation == EAST)
-		x2 = wall->width - x2 - 1;
+		x2 = (int)(game->raycast.wall_x * (double)wall->width);
 	px = game->win.scr.line_len * y + x * game->win.scr.bpp / 8;
 	y = y - (game->win_h / 2 - (int)game->raycast.wall_height / 2);
 	y2 = (int)((double)y * (double)wall->height / game->raycast.wall_height);

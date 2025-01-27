@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:34:21 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 21:33:39 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 22:02:36 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,18 @@ static void	dda(t_game *game)
 			game->raycast.side_dist_x += game->raycast.delta_dist_x;
 			game->raycast.map_x += game->raycast.step_x;
 			game->raycast.side = EW;
-			game->raycast.wall_orientation = WEST;
+			game->raycast.wall_orientation = EAST;
 			if (game->raycast.ray_dir_x < 0)
-				game->raycast.wall_orientation = EAST;
+				game->raycast.wall_orientation = WEST;
 		}
 		else
 		{
 			game->raycast.side_dist_y += game->raycast.delta_dist_y;
 			game->raycast.map_y += game->raycast.step_y;
 			game->raycast.side = NS;
-			game->raycast.wall_orientation = NORTH;
+			game->raycast.wall_orientation = SOUTH;
 			if (game->raycast.ray_dir_y < 0)
-				game->raycast.wall_orientation = SOUTH;
+				game->raycast.wall_orientation = NORTH;
 		}
 		if (game->map.map_grid[(int)game->raycast.map_y][(int)game->raycast.map_x] > 0)
 			set_hit_and_wall_number(game);
