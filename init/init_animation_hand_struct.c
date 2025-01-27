@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:25:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 18:24:10 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:35:21 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static bool	add_frame(t_list **f, t_sprite_slice_data data, t_img src)
 	{
 		x = -1;
 		while (++x < data.width)
-			copy_pixel_img(src, data.x + x, data.y + y, *frame, x, y);
+			copy_pixel_img((t_copy_pix){src, data.x + x, \
+			data.y + y, *frame, x, y});
 	}
 	if (*f == NULL)
 		*f = ft_lstnew(frame);

@@ -68,7 +68,6 @@
 #define H_X 390
 #define H_Y 364
 
-
 enum game_state
 {
 	home_screen,
@@ -77,7 +76,6 @@ enum game_state
 	menu,
 	map_focus,
 	inventory,
-	// add more here
 };
 
 enum xpm_images
@@ -97,7 +95,6 @@ enum xpm_images
 	xpm_grid,
 	xpm_pipe,
 	xpm_null,
-	// add more here
 };
 
 enum wall_orientation
@@ -144,36 +141,6 @@ typedef struct s_img
 	struct s_win	*win;
 }		t_img;
 
-typedef struct s_rect
-{
-	t_img	*img;
-	int		x;
-	int		y;
-	int		w;
-	int		h;
-	int		color;
-}	t_rect;
-
-typedef struct s_copy_pixel
-{
-	t_img	src_img;
-	int		src_x;
-	int		src_y;
-	t_img	dst_img;
-	int		dst_x;
-	int		dst_y;
-}	t_copy_pix;
-
-typedef struct s_cell_param
-{
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-	float		start_x;
-	float		start_y;
-}	t_cell_param;
-
 typedef struct s_win
 {
 	char	*title;
@@ -195,14 +162,6 @@ typedef struct s_player
 	double	plane_x;
 	double	plane_y;
 }		t_player;
-
-typedef struct s_sprite_slice_data
-{
-	int x;
-	int y;
-	int width;
-	int height;
-}	t_sprite_slice_data;
 
 typedef struct s_marker
 {
@@ -281,6 +240,7 @@ typedef struct s_ray
 	bool	side; // it will be used to determine if the ray hit a NS or EW wall
 	enum wall_orientation	wall_orientation;
 	double	wall_height;
+	int		number_of_the_wall_hitted;
 }		t_raycast;
 
 typedef struct s_pars
@@ -328,6 +288,45 @@ typedef struct s_game
 	t_animation	anim_h;
 	t_animation	anim_h_light;
 }	t_game;
+
+/*----------------  FAT ARG HELPER  ---------------*/
+typedef struct s_cell_param
+{
+	int		x;
+	int		y;
+	int		i;
+	int		j;
+	float		start_x;
+	float		start_y;
+}	t_cell_param;
+
+typedef struct s_rect
+{
+	t_img	*img;
+	int		x;
+	int		y;
+	int		w;
+	int		h;
+	int		color;
+}	t_rect;
+
+typedef struct s_copy_pixel
+{
+	t_img	src_img;
+	int		src_x;
+	int		src_y;
+	t_img	dst_img;
+	int		dst_x;
+	int		dst_y;
+}	t_copy_pix;
+
+typedef struct s_sprite_slice_data
+{
+	int x;
+	int y;
+	int width;
+	int height;
+}	t_sprite_slice_data;
 
 /*----------------  expose_hook.c  ---------------*/
 int		expose_hook(t_game *game);
@@ -390,8 +389,7 @@ int		encode_rgb(int r, int g, int b);
 t_img		new_img(int w, int h, t_win *window);
 t_img		set_new_xpm(char *path, t_win *window);
 void		put_img_to_img(t_img *dst, t_img *src, int x, int y);
-void		copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_x, int dst_y);
-// void		copy_pixel_img(t_copy_pix c);
+void		copy_pixel_img(t_copy_pix c);
 
 
 /*----------------  handle_keys.c  ---------------*/
@@ -403,6 +401,9 @@ int		layout_home_screen(t_game *game);
 
 /*----------------  layout_game_screen.c  ---------------*/
 int		layout_game_screen(t_game *game);
+
+/*----------------  layout_map_screen.c  ---------------*/
+void	layout_map_screen(t_game *game);
 
 /*----------------  update.c  ---------------*/
 int		update(t_game *game);
@@ -440,11 +441,14 @@ int		is_special(char c);
 int		get_next_line(int fd, char **line, t_pars *data);
 char	*ft_subbuff(char *buff, int start, int len);
 
-
+/*----------------  raycast.c  ---------------*/
 int		raycast(t_game *game);
-void	put_column_to_win(t_game *game, int x, int number_of_the_wall_hitted);
 
-void	layout_map_screen(t_game *game);
+/*----------------  raycast_utils.c  ---------------*/
+void	set_hit_and_wall_number(t_game *game);
+
+/*----------------  display.c  ---------------*/
+void	put_column_to_win(t_game *game, int x);
 
 /*----------------  minimap.c  ---------------*/
 void	minimap(t_game *game);

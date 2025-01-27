@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 16:02:07 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:14:48 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	pixel_put_sky(t_game *game, int x, int y)
 	*(unsigned int *)dst = game->data.c;
 }
 
-void	put_column_to_win(t_game *game, int x, int number_of_the_wall_hitted)
+void	put_column_to_win(t_game *game, int x)
 {
 	int	y;
 	int	draw_end;
@@ -87,7 +87,7 @@ void	put_column_to_win(t_game *game, int x, int number_of_the_wall_hitted)
 	if (draw_end >= (int)game->win_h)
 		draw_end = game->win_h;
 	while (y < draw_end)
-		pixel_put_wall(game, x, y++, number_of_the_wall_hitted);
+		pixel_put_wall(game, x, y++, game->raycast.number_of_the_wall_hitted);
 	while (y < (int)game->win_h)
 		pixel_put_floor(game, x, y++);
 }

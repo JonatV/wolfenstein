@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:33 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 18:27:48 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:31:13 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,26 @@ void	put_img_to_img(t_img *dst, t_img *src, int x, int y)
 /* Copy a pixel from a source image to a destination
  *  image at the specified coordinates
 */
-void	copy_pixel_img(t_img src_img, int src_x, int src_y, t_img dst_img, int dst_x, int dst_y)
+void	copy_pixel_img(t_copy_pix c)
 {
 	unsigned int	color;
 	char			*src_addr;
 	char			*dst_addr;
 
-	// Get pixel from source image
-	if (src_x >= 0 && src_y >= 0 && src_x < src_img.width && src_y < src_img.height)
+	if (c.src_x >= 0 && c.src_y >= 0 && c.src_x < \
+	c.src_img.width && c.src_y < c.src_img.height)
 	{
-		src_addr = src_img.addr + (src_y * src_img.line_len + src_x * (src_img.bpp / 8));
+		src_addr = c.src_img.addr + (c.src_y * \
+		c.src_img.line_len + c.src_x * (c.src_img.bpp / 8));
 		color = *(unsigned int *)src_addr;
 	}
 	else
 		return ;
-	if (dst_x >= 0 && dst_y >= 0 && dst_x < dst_img.width && dst_y < dst_img.height)
+	if (c.dst_x >= 0 && c.dst_y >= 0 && c.dst_x < \
+	c.dst_img.width && c.dst_y < c.dst_img.height)
 	{
-		dst_addr = dst_img.addr + (dst_y * dst_img.line_len + dst_x * (dst_img.bpp / 8));
+		dst_addr = c.dst_img.addr + (c.dst_y * \
+		c.dst_img.line_len + c.dst_x * (c.dst_img.bpp / 8));
 		*(unsigned int *)dst_addr = color;
 	}
 }

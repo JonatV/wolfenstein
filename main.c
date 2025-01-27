@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 21:30:59 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/27 21:31:10 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolfenstein.h"
 
 void print_pars_info(const t_pars *data)
@@ -36,9 +48,8 @@ void print_pars_info(const t_pars *data)
 	printf(BOLD BLUE "=========================================\n" RESET);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	(void)argc, (void)argv;
 	t_game	*game;
 	t_pars	*data;
 

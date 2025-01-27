@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:20:03 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 18:23:24 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:34:30 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static bool	create_frame_img(t_marker *marker, t_sprite s, \
 	{
 		x = -1;
 		while (++x < data.width)
-			copy_pixel_img(s.sprite_img, data.x + x, \
-			data.y + y, frame_img, x, y);
+			copy_pixel_img((t_copy_pix){s.sprite_img, data.x + x, \
+			data.y + y, frame_img, x, y});
 	}
 	marker->frame = frame_img;
 	return (true);
