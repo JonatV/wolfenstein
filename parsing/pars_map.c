@@ -6,18 +6,19 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/24 13:12:12 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:37:15 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
-int	cast_char(char c)
+
+int	cast_char(t_pars *data, char c)
 {
 	int	ret;
 
 	ret = 0;
 	if (c > '9' || c < '0')
-		exit(1);
+		ft_exit(data, "Wrong character in map");;
 	ret = c - 48;
 	return (ret);
 }
@@ -58,7 +59,7 @@ void	create_map(t_pars *data, char *str, int michel)
 		else if (str[i] == 32)
 			data->map[j][i] = 1;
 		else
-			data->map[j][i] = cast_char(str[i]);
+			data->map[j][i] = cast_char(data, str[i]);
 	}
 	while (i < (data->map_w))
 		data->map[j][i++] = 1;
