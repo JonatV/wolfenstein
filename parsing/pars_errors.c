@@ -6,25 +6,25 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/27 21:56:36 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 22:11:45 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-void	free_map(t_pars *data)
+void	free_map(t_pars *data, int **map)
 {
 	int	y;
 
 	y = 0;
-	if (data->map)
+	if (map)
 	{
-		while (y < data->map_h && data->map[y])
+		while (y < data->map_h && map[y])
 		{
-			free(data->map[y]);
+			free(map[y]);
 			y++;
 		}
-		free(data->map);
+		free(map);
 	}
 }
 
@@ -44,7 +44,7 @@ void	ft_exit(t_pars *data, char *str)
 	if (data->ea)
 		free(data->ea);
 	if (data->map)
-		free_map(data);
+		free_map(data, data->map);
 	if (data)
 		free(data);
 }
@@ -127,18 +127,6 @@ void	ft_errors(t_pars *d, char *str)
 
 	map_copy = NULL;
 	copy_map(d, &map_copy, d->map);
-	for (int i = 0; i < d->map_h; i++)
-	{
-		for (int j = 0; j < d->map_w; j++)
-		{
-			if (map_copy[i][j] >= 0)
-				printf("[ %d]", map_copy[i][j]);
-			else
-				printf("[%d]", map_copy[i][j]);
-		}
-		printf("\n");
-	}
-	
 	if (d->error && str)
 		ft_exit(d, str);
 	if (!str)
@@ -155,5 +143,6 @@ void	ft_errors(t_pars *d, char *str)
 		printf(BOLD YELLOW"Check data:\nNorth texture: %s\nSouth texture: %s\nWest texture: %s\nEast texture: %s\nCeiling colour: %d\nFloor colour: %d\n"BOLD CYAN, d->no, d->so, d->we, d->ea, d->c, d->f);
 		if (!d->no || !d->so || !d->we || !d->ea || !d->c || !d->f)
 			ft_exit(d, "Texture or colour informations missing\n");
+		free_map(d, map_copy);
 	}
 }
