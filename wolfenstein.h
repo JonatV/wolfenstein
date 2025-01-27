@@ -416,6 +416,7 @@ void	pars_colours(t_pars *data, char *str);
 /*----------------  pars_errors.c  ---------------*/
 void	ft_errors(t_pars *d, char *str);
 int		ft_empty_line(char *str);
+void	ft_exit(t_pars *data, char *str);
 
 /*----------------  pars_map.c  ---------------*/
 void	map_pars(t_pars *data, char *file);
