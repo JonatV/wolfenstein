@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/27 17:37:42 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:56:36 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,14 @@ int	ft_empty_line(char *str)
 
 void	flood_fill(t_pars *d, int **map, int x, int y)
 {
+	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1)
+	{
+		ft_exit(d, "Map error\n");	// ! it goes inside the function but theres no exit, just free's 
+									// ! so the algo continues and that's also why the error message is printed more than once
+		exit(1); // ! this is the exit (but its not clean here)
+	}
 	if (map[y][x] == 1 || map[y][x] == -2)
 		return ;
-	if (map[y][x] == -1 || ( map[y][x] != 1
-		&& (x == 0 || y == 0 || x == d->map_w || y == d->map_h)))
-		ft_exit(d, "Map error");
 	map[y][x] = -2;
 	flood_fill(d, map, x + 1, y);
 	flood_fill(d, map, x - 1, y);
@@ -128,7 +131,10 @@ void	ft_errors(t_pars *d, char *str)
 	{
 		for (int j = 0; j < d->map_w; j++)
 		{
-			printf("[%d]", map_copy[i][j]);
+			if (map_copy[i][j] >= 0)
+				printf("[ %d]", map_copy[i][j]);
+			else
+				printf("[%d]", map_copy[i][j]);
 		}
 		printf("\n");
 	}
