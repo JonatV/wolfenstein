@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:34:21 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 21:30:45 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:33:39 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ static void	dda(t_game *game)
 	}
 }
 
-static void	\
-calculate_wall_distance_height_and_texture_x(t_game *game, int x)
+static void	calculate_wall_dist_h_and_text_x(t_game *game)
 {
 	if (game->raycast.side == EW)
 	{
@@ -139,7 +138,7 @@ int	raycast(t_game *game)
 		init_ray(game, current_x);
 		calculate_step_and_initial_side_distance(game);
 		dda(game);
-		calculate_wall_distance_height_and_texture_x(game, current_x);
+		calculate_wall_dist_h_and_text_x(game);
 		put_column_to_win(game, current_x);
 	}
 	mlx_put_image_to_window(game->win.mlx_ptr, game->win.win_ptr, game->win.scr.mlx_img, 0, 0);
