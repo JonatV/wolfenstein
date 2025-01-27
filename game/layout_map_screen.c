@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:46:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 18:21:12 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 22:18:13 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	fixed_focus_map(t_game *game)
 		while (++x < game->map.w)
 		{
 			if (game->map.map_grid[y][x] == 1)
-				color = C_BLACK;
+				color = C_DARK_GREY;
 			else if (game->map.map_grid[y][x] == 0)
 				color = C_GREY;
 			else if (game->map.map_grid[y][x] == ID_DOOR)
