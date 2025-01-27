@@ -22,8 +22,8 @@
 
 // has to be define in the parsing latter
 // #define MAP_H 28
-#define MAP_H 26
-#define MAP_W 40
+// #define MAP_H 26
+// #define MAP_W 40
 // #define MAP_W 35
 
 #define C_BLACK		0x1A1A1A
@@ -58,7 +58,7 @@
 #define ID_WALL 1
 #define ID_HIDDEN 2
 #define ID_DOOR 3
-#define ID_OUT_OF_BOUND -1
+#define ID_OUT_OF_BOUND -1	
 
 // Animation hand/player Macro
 #define H_DELAY 5
@@ -248,8 +248,8 @@ typedef struct s_map
 {
 	int		**map_grid;
 	char	**temp_grid;
-	int		width;
-	int		height;
+	int		w;
+	int		h;
 	// minimap data (little map on left top corner)
 	t_sprite	pos_sprite;
 	// map focus data (full screen map)
@@ -356,7 +356,7 @@ bool		init_keys_struct(t_game *game);
 bool		init_hooks_logics(t_game *game);
 
 /*----------------  init_project.c  ---------------*/
-bool		init_project(t_game **game);
+bool		init_project(t_game **game, t_pars *data);
 
 /*----------------  init_player_struct.c  ---------------*/
 bool		init_player_struct(t_game *game);
@@ -371,7 +371,7 @@ bool		init_map_struct(t_game *game);
 bool		init_window_struct(t_game **game);
 
 /*----------------  init_game_struct.c  ---------------*/
-bool		init_game_struct(t_game **game);
+bool		init_game_struct(t_game **game, t_pars *data);
 
 /*----------------  init_pars_struct.c  ---------------*/
 void		init_pars(t_pars **data);

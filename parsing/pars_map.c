@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/24 13:12:12 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:04:04 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	create_map(t_pars *data, char *str, int michel)
 		if (start(data, j, i, str[i]))
 			data->map[j][i] = 0;
 		else if (str[i] == 32)
-			data->map[j][i] = 1;
+			data->map[j][i] = -1;
 		else
 			data->map[j][i] = cast_char(str[i]);
 	}
 	while (i < (data->map_w))
-		data->map[j][i++] = 1;
+		data->map[j][i++] = -1;
 	j++;
 }
 

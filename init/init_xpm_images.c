@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:32 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 23:58:10 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:56:24 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ bool	init_xpm_images(t_game *game)
 	xpm[xpm_menu] = set_new_xpm("assets/menu.xpm", &game->win);
 	xpm[xpm_map_focus] = set_new_xpm("assets/map.xpm", &game->win);
 	xpm[xpm_inventory] = set_new_xpm("assets/inventory.xpm", &game->win);
-	xpm[xpm_north] = set_new_xpm("assets/NORTH.xpm", &game->win);
-	xpm[xpm_south] = set_new_xpm("assets/SOUTH.xpm", &game->win);
-	xpm[xpm_east] = set_new_xpm("assets/EAST.xpm", &game->win);
-	xpm[xpm_west] = set_new_xpm("assets/WEST.xpm", &game->win);
+	xpm[xpm_north] = set_new_xpm(game->data.no, &game->win);
+	xpm[xpm_south] = set_new_xpm(game->data.so, &game->win);
+	xpm[xpm_east] = set_new_xpm(game->data.ea, &game->win);
+	xpm[xpm_west] = set_new_xpm(game->data.we, &game->win);
 	xpm[xpm_walls] = set_new_xpm("assets/wallsv2.xpm", &game->win);
 	xpm[xpm_wall] = set_new_xpm("assets/wall_blank.xpm", &game->win);
 	xpm[xpm_door] = set_new_xpm("assets/door.xpm", &game->win);

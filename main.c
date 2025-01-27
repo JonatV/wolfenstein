@@ -1,8 +1,7 @@
 #include "wolfenstein.h"
 
-void print_pars_info(const t_game *game)
+void print_pars_info(const t_pars *data)
 {
-	const t_pars *data = &game->data;
 
 	printf(BOLD BLUE "\n=========== Game Parsing Info ===========" RESET "\n");
 
@@ -48,9 +47,9 @@ int main(int argc, char **argv)
 		return (write(1, "Wrong number of arguments\n", 26), 0);
 	init_pars(&data);
 	parse_all(data, argv[1]);
-	if (!init_project(&game))
+	print_pars_info(data);
+	if (!init_project(&game, data))
 		return (1);
-	print_pars_info(game);
 	printf("Initialization successful, entering mlx_loop\n");
 	mlx_loop_hook(game->win.mlx_ptr, update, game);
 	mlx_loop(game->win.mlx_ptr);

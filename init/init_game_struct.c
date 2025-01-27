@@ -6,13 +6,13 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:13:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 15:13:55 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:57:04 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-bool	init_game_struct(t_game **game)
+bool	init_game_struct(t_game **game, t_pars *data)
 {
 	*game = (t_game *)malloc(sizeof(t_game));
 	if (!*game)
@@ -23,5 +23,6 @@ bool	init_game_struct(t_game **game)
 	(*game)->state = home_screen;
 	(*game)->created_at = gettimeofday_ms();
 	(*game)->updated_at = gettimeofday_ms();
+	(*game)->data = *data;
 	return (true);
 }

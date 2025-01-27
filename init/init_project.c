@@ -6,15 +6,15 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:28:40 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/21 11:28:47 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:57:15 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-bool	init_project(t_game **game)
+bool	init_project(t_game **game, t_pars *data)
 {
-	if (!init_game_struct(game))
+	if (!init_game_struct(game, data))
 		return (printf("Error: init_game_struct\n"), false);
 	if (!init_window_struct(game))
 		return (printf("Error: init_window\n"), false);
