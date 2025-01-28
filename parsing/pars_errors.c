@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 10:41:02 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:49:57 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int	ft_empty_line(char *str)
 
 void	flood_fill(t_pars *d, int **map, int x, int y)
 {
-	if (map[y][x] == 1 || map[y][x] == -2)
-		return ;
 	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1) //je pense qu'il y a une couille dans le pate parce que la ca checke pas si c'est entoure par des murs
 		ft_exit(d, "Map error\n");
+	if (map[y][x] == 1 || map[y][x] == -2)
+		return ;
 	map[y][x] = -2;
 	flood_fill(d, map, x + 1, y);
 	flood_fill(d, map, x - 1, y);
@@ -113,7 +113,6 @@ void	ft_errors(t_pars *d, char *str)
 	copy_map(d, &map_copy, d->map);
 	if (!str)
 	{
-		flood_fill(d, map_copy, d->start_x, d->start_y); // wip
 		if (!d->start_dir || !d->start_x || !d->start_dir)
 			ft_exit(d, "Player informations inexistant or wrong\n");
 		if (d->empty_line)
@@ -123,6 +122,7 @@ void	ft_errors(t_pars *d, char *str)
 		printf(BOLD YELLOW"Check data:\nNorth texture: %s\nSouth texture: %s\nWest texture: %s\nEast texture: %s\nCeiling colour: %d\nFloor colour: %d\n"BOLD CYAN, d->no, d->so, d->we, d->ea, d->c, d->f);
 		if (!d->no || !d->so || !d->we || !d->ea || !d->c || !d->f)
 			ft_exit(d, "Texture or colour informations missing\n");
+		flood_fill(d, map_copy, d->start_x, d->start_y); // wip
 		free_map(d, map_copy);
 	}
 }
