@@ -396,9 +396,8 @@ t_img		set_new_xpm(char *path, t_win *window);
 void		put_img_to_img(t_img *dst, t_img *src, int x, int y);
 void		copy_pixel_img(t_copy_pix c);
 
-
 /*----------------  handle_keys.c  ---------------*/
-void	rotate(t_game *game, bool lr);
+void		rotate(t_game *game, bool lr, double speed);
 void		handle_keys(t_game *game);
 
 /*----------------  layout_home_screen.c  ---------------*/

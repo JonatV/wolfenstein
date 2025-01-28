@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:24:38 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 13:56:16 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:26:21 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	mouse_move(int x, int y, t_game *game)
 	if (game->state != game_screen)
 		return (0);
 	if (x < WIN_W / 2)
-		rotate(game, 1);
+		rotate(game, 1, game->player.rot_speed / 3.5);
 	else if (x > WIN_W / 2)
-		rotate(game, 0);
+		rotate(game, 0, game->player.rot_speed / 3.5);
 	return (0);
 }
 
