@@ -6,25 +6,25 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 12:49:57 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:30:44 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-void	free_map(t_pars *data, int **map)
+static void	free_map(t_pars *data, int ***map)
 {
 	int	y;
 
 	y = 0;
-	if (map)
+	if (*map)
 	{
-		while (y < data->map_h && map[y])
+		while (y < data->map_h && (*map)[y])
 		{
-			free(map[y]);
+			free((*map)[y]);
 			y++;
 		}
-		free(map);
+		free(*map);
 	}
 }
 
@@ -34,6 +34,7 @@ void	ft_exit(t_pars *data, char *str)
 	{
 		write (1, "Error: ", 7);
 		write(1, str, ft_strlen(str));
+		write(1, "\n", 1);
 	}
 	if (data->no)
 		free(data->no);
@@ -44,7 +45,7 @@ void	ft_exit(t_pars *data, char *str)
 	if (data->ea)
 		free(data->ea);
 	if (data->map)
-		free_map(data, data->map);
+		free_map(data, &data->map);
 	if (data)
 		free(data);
 	exit(1);
@@ -92,7 +93,7 @@ void	copy_map(t_pars *data, int ***target, int ** source)
 		(*target)[y] = malloc(sizeof(int) * data->map_w);
 		if (!(*target)[y])
 		{
-			//faut rajouter un free target qui passe sur la map
+			free_map(data, target);
 			ft_exit(data, "Malloc failed");
 		}
 	}
@@ -119,10 +120,9 @@ void	ft_errors(t_pars *d, char *str)
 			ft_exit(d, "Empty line in map\n");
 		if (d->wrongchar)
 			ft_exit(d, "Wrong character in map\n");
-		printf(BOLD YELLOW"Check data:\nNorth texture: %s\nSouth texture: %s\nWest texture: %s\nEast texture: %s\nCeiling colour: %d\nFloor colour: %d\n"BOLD CYAN, d->no, d->so, d->we, d->ea, d->c, d->f);
 		if (!d->no || !d->so || !d->we || !d->ea || !d->c || !d->f)
 			ft_exit(d, "Texture or colour informations missing\n");
-		flood_fill(d, map_copy, d->start_x, d->start_y); // wip
-		free_map(d, map_copy);
+		flood_fill(d, map_copy, d->start_x, d->start_y);
+		free_map(d, &map_copy);
 	}
 }
