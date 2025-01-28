@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/24 13:12:20 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:41:30 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 	}
 	*text = malloc(get_text_len(str) + 1);
 	if (!*text)
-		ft_errors(data, "Malloc failed\n");
+		ft_exit(data, "Malloc failed\n");
 	while (str && str[j])
 	{
 		(*text)[i] = str[j];

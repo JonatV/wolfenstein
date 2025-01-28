@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/24 12:49:47 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:42:17 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_all(t_pars *data, char *file)
 	}
 	close (fd);
 	if (!data->map_w || !data->map_h)
-		ft_errors(data, "Error: no map given\n");
+		ft_exit(data, "Error: no map given\n");
 	map_pars(data, file);
 	ft_errors(data, NULL);
 }

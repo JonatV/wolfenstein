@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_errors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/27 22:11:45 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:41:02 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_exit(t_pars *data, char *str)
 		free_map(data, data->map);
 	if (data)
 		free(data);
+	exit(1);
 }
 
 int	ft_empty_line(char *str)
@@ -66,36 +67,16 @@ int	ft_empty_line(char *str)
 
 void	flood_fill(t_pars *d, int **map, int x, int y)
 {
-	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1)
-	{
-		ft_exit(d, "Map error\n");	// ! it goes inside the function but theres no exit, just free's 
-									// ! so the algo continues and that's also why the error message is printed more than once
-		exit(1); // ! this is the exit (but its not clean here)
-	}
 	if (map[y][x] == 1 || map[y][x] == -2)
 		return ;
+	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1) //je pense qu'il y a une couille dans le pate parce que la ca checke pas si c'est entoure par des murs
+		ft_exit(d, "Map error\n");
 	map[y][x] = -2;
 	flood_fill(d, map, x + 1, y);
 	flood_fill(d, map, x - 1, y);
 	flood_fill(d, map, x, y + 1);
 	flood_fill(d, map, x, y - 1);
 }
-
-// int	wall_check(t_pars *data)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < data->map_h)
-// 		if (data->map[i][0] != 1 || data->map[i][data->map_w - 1] != 1)
-// 			return (1);
-// 	i = -1;
-// 	while (++i < data->map_w)
-// 		if (data->map[0][i] != 1 || data->map[data->map_h - 1][i] != 1)
-// 			return (1);
-// 	return (0);
-// }
-
 
 void	copy_map(t_pars *data, int ***target, int ** source)
 {
@@ -110,7 +91,10 @@ void	copy_map(t_pars *data, int ***target, int ** source)
 	{
 		(*target)[y] = malloc(sizeof(int) * data->map_w);
 		if (!(*target)[y])
+		{
+			//faut rajouter un free target qui passe sur la map
 			ft_exit(data, "Malloc failed");
+		}
 	}
 	y = -1;
 	while (++y < data->map_h)
@@ -124,15 +108,11 @@ void	copy_map(t_pars *data, int ***target, int ** source)
 void	ft_errors(t_pars *d, char *str)
 {
 	int	**map_copy;
-
+	
 	map_copy = NULL;
 	copy_map(d, &map_copy, d->map);
-	if (d->error && str)
-		ft_exit(d, str);
 	if (!str)
 	{
-		// if (wall_check(d))
-		// 	ft_exit(d, "Map is not surrounded by walls\n");
 		flood_fill(d, map_copy, d->start_x, d->start_y); // wip
 		if (!d->start_dir || !d->start_x || !d->start_dir)
 			ft_exit(d, "Player informations inexistant or wrong\n");

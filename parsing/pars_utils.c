@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:01 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/23 16:23:27 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:41:40 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	check_fd(t_pars *data, char *file)
 
 	fd = open(file, O_DIRECTORY);
 	if (fd != -1)
-		ft_errors(data, "Error: file is a directory\n");
+		ft_exit(data, "Error: file is a directory\n");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_errors(data, "Error: invalid file\n");
+		ft_exit(data, "Error: invalid file\n");
 	return (fd);
 }

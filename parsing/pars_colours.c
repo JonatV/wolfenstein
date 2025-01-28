@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/24 14:15:52 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:39:52 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,25 +77,25 @@ void	malloc_colour(t_pars *data, char flag)
 	{
 		data->cr = malloc(100);
 		if (!data->cr)
-			ft_errors(data, "Malloc failed");
+			ft_exit(data, "Malloc failed");
 		data->cg = malloc(100);
 		if (!data->cg)
-			ft_errors(data, "Malloc failed");
+			ft_exit(data, "Malloc failed");
 		data->cb = malloc(100);
 		if (!data->cb)
-			ft_errors(data, "Malloc failed");
+			ft_exit(data, "Malloc failed");
 	}
 	else if (flag == 'f')
 	{
 		data->fr = malloc(100);
 		if (!data->fr)
-			ft_errors(data, "Malloc failed");
+			ft_exit(data, "Malloc failed");
 		data->fg = malloc(100);
 		if (!data->fg)
-			ft_errors(data, "Malloc failed");
+			ft_exit(data, "Malloc failed");
 		data->fb = malloc(100);
 		if (!data->fb)
-			ft_errors(data, "Malloc failed");
+			ft_exit(data, "Malloc failed");
 	}
 }
 
@@ -111,7 +111,7 @@ int	is_number(char c)
 int	rgb_to_hex(int r, int g, int b, t_pars *data)
 {
     if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-    	ft_errors(data, "RGB values must be between 0 and 255");
+    	ft_exit(data, "RGB values must be between 0 and 255");
     return (r << 16) | (g << 8) | b;
 }
 
