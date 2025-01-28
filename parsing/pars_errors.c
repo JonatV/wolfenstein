@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 17:53:58 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:55:45 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ void	ft_exit(t_pars *data, char *str)
 		free(data->ea);
 	if (data->map)
 	{
-		// if (data->tmp_map_h < data->map_h)
+		if (data->tmp_map_h < data->map_h)
 			free_tmp_map(data, &data->map);
-		// free_map(data, &data->map);
+		else
+			free_map(data, &data->map);
 	}
 	free_colours(data);
 	if (data)
