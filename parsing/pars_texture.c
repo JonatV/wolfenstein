@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 19:17:36 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:26:13 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 	while (str && str[j] != '.')
 	{
 		if (str[j] != 32)
-		{
-			printf("\e[41;30mData error triggered\e[0m\n");
 			data->error = 1;
-		}
 		j++;
 	}
 	*text = malloc(get_text_len(str) + 1);
