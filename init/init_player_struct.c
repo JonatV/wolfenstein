@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_player_struct.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:28:54 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 14:10:10 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:45:34 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-void	get_play_dir(t_game *game)
+static void	get_play_dir_ns(t_game *game)
 {
 	if (game->data.start_dir == 'N')
 	{
@@ -28,7 +28,11 @@ void	get_play_dir(t_game *game)
 		game->player.plane_x = -0.66;
 		game->player.plane_y = 0.0;
 	}
-	else if (game->data.start_dir == 'E')
+}
+
+static void	get_play_dir_ew(t_game *game)
+{
+	if (game->data.start_dir == 'E')
 	{
 		game->player.dir_x = 1.0;
 		game->player.dir_y = 0.0;
@@ -46,7 +50,8 @@ void	get_play_dir(t_game *game)
 
 bool	init_player_struct(t_game *game)
 {
-	get_play_dir(game);
+	get_play_dir_ns(game);
+	get_play_dir_ew(game);
 	game->player.pos_x = game->data.start_x + 0.5;
 	game->player.pos_y = game->data.start_y + 0.5;
 	game->player.speed = 0.1;
