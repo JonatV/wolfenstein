@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 17:29:09 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:30:11 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	cast_char(t_pars *data, char c)
 	int	ret;
 
 	ret = 0;
-	if (c > '9' || c < '0')
+	if (c > '7' || c < '0')
 		ft_exit(data, "Wrong character in map");
 	ret = c - 48;
 	return (ret);
