@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 18:40:03 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:50:20 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	cast_char(t_pars *data, char c)
 
 	ret = 0;
 	if (c != '1' && c != '0')
-		ft_exit(data, "Wrong character in map");
+		ft_exit(data, "Wrong character in map 1");
 	ret = c - 48;
 	return (ret);
 }

@@ -26,15 +26,13 @@ SRC			=	main.c \
 				$(DRAW)draw_rectangle.c \
 				$(ANIM)animation_tools.c $(ANIM)animation_utils.c $(ANIM)animation_player_hand.c \
 				$(TOOL)close.c $(TOOL)fps.c $(TOOL)image_helper.c $(TOOL)colors.c $(TOOL)optimization.c \
-				$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_errors.c $(PARS)pars_utils.c $(PARS)pars_texture.c \
+				$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_texture.c \
 				$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
 
 ifdef BONUS
-	SRC += $(GAME)display_bonus.c
-	SRC +=  $(PARS)pars_map_bonus.c
+	SRC += $(GAME)display_bonus.c $(PARS)pars_utils_bonus.c $(PARS)pars_map_bonus.c $(PARS)pars_errors_bonus.c
 else
-	SRC += $(GAME)display.c
-	SRC +=  $(PARS)pars_map.c
+	SRC += $(GAME)display.c $(PARS)pars_map.c $(PARS)pars_utils.c $(PARS)pars_errors.c
 endif
 
 OBJ = $(SRC:.c=.o)
@@ -55,7 +53,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make --no-print-directory all -C libft
 	$(CC) $(OBJ) $(LIBFT) -o $@ $(LDFLAGS)
-	./$(NAME) map.cub
 
 %.o: %.c
 	$(CC) -c $< -o $@ $(CFLAGS)
