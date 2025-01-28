@@ -6,11 +6,27 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 17:28:19 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:43:41 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
+
+static void	free_tmp_map(t_pars *data, int ***map)
+{
+	int	y;
+
+	y = 0;
+	if (*map)
+	{
+		while (y < data->tmp_map_h && (*map)[y])
+		{
+			free((*map)[y]);
+			y++;
+		}
+		free(*map);
+	}
+}
 
 static void	free_map(t_pars *data, int ***map)
 {
@@ -19,7 +35,7 @@ static void	free_map(t_pars *data, int ***map)
 	y = 0;
 	if (*map)
 	{
-		while ((y < data->tmp_map_h || y < data->map_h) && (*map)[y])
+		while (y < data->map_h && (*map)[y])
 		{
 			free((*map)[y]);
 			y++;
@@ -45,7 +61,7 @@ void	ft_exit(t_pars *data, char *str)
 	if (data->ea)
 		free(data->ea);
 	if (data->map)
-		free_map(data, &data->map);
+		free_tmp_ma(data, &data->map);
 	if (data)
 		free(data);
 	exit(1);
