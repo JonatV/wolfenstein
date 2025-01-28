@@ -46,6 +46,8 @@
 #define NS false
 #define EW true
 
+#define ST 0.21 // step for the player to move
+
 // Map Macro
 #define PADDING 10
 #define MINI_SIZE 20
