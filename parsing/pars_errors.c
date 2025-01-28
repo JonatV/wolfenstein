@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_errors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 17:43:41 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:53:58 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,22 @@ static void	free_map(t_pars *data, int ***map)
 	}
 }
 
+void	free_colours(t_pars *data)
+{
+	if (data->cr)
+		free(data->cr);
+	if (data->cg)
+		free(data->cg);
+	if (data->cb)
+		free(data->cb);
+	if (data->fr)
+		free(data->fr);
+	if (data->fg)
+		free(data->fg);
+	if (data->fb)
+		free(data->fb);
+}
+
 void	ft_exit(t_pars *data, char *str)
 {
 	if (str && str[0])
@@ -61,7 +77,12 @@ void	ft_exit(t_pars *data, char *str)
 	if (data->ea)
 		free(data->ea);
 	if (data->map)
-		free_tmp_ma(data, &data->map);
+	{
+		// if (data->tmp_map_h < data->map_h)
+			free_tmp_map(data, &data->map);
+		// free_map(data, &data->map);
+	}
+	free_colours(data);
 	if (data)
 		free(data);
 	exit(1);
