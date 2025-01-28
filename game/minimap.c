@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:52:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 15:32:29 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:36:25 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	draw_minimap_cell(t_game *game, t_cell_param p)
 		(p.y >= 0 && p.y < game->map.h) && \
 		(p.x >= 0 && p.x < game->map.w))
 	{
-		if (game->map.map_grid[p.y][p.x] == 1)
+		if (is_wall(game->map.map_grid[p.y][p.x]))
 			img_pix_put(&game->win.scr, p.j + \
 			PADDING, p.i + PADDING, C_DARK_GREY);
 		else if (game->map.map_grid[p.y][p.x] == ID_DOOR)

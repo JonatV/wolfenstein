@@ -47,7 +47,7 @@
 #define EW true
 
 #define ST 0.05 // step for the player to move
-#define RANGE 0.21 // range to detect the door
+#define RANGE 0.04 // range to detect the door
 
 // Map Macro
 #define PADDING 10
@@ -61,7 +61,10 @@
 #define ID_WALL 1
 #define ID_HIDDEN 2
 #define ID_DOOR 3
-#define ID_OUT_OF_BOUND -1	
+#define ID_METAL 4
+#define ID_METAL2 5
+#define ID_GRIDS 6
+#define ID_OUT_OF_BOUND -1
 
 // Animation hand/player Macro
 #define H_DELAY 5
@@ -392,6 +395,9 @@ uint64_t		timestamp_in_ms(t_game *game);
 
 /*----------------  colors.c  ---------------*/
 int		encode_rgb(int r, int g, int b);
+
+/*----------------  is_wall.c  ---------------*/
+bool	is_wall(int num);
 
 /*----------------  image_helpers.c  ---------------*/
 t_img		new_img(int w, int h, t_win *window);
