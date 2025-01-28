@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:07 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 20:22:20 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:10:15 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	destroy_animation_struct(t_game *game, \
 
 	next = NULL;
 	current = anim->sequence;
-
 	mlx_destroy_image(game->win.mlx_ptr, \
 	anim->sprite_img.mlx_img);
 	i = -1;
@@ -88,7 +87,7 @@ static void	destroy_marker_struct(t_game *game)
 static void	destroy_xpms(t_win win, t_img *xpm_images)
 {
 	int		i;
-	
+
 	i = -1;
 	while (++i < xpm_null)
 	{
