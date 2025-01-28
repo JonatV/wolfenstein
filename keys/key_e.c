@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:29:00 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/26 21:09:17 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:40:12 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ static void	detect_door(t_game *game)
 
 void	key_e(t_game *game)
 {
-	if (game->keys.e)
+	if (game->keys.e || game->keys.mouse_1)
 		detect_door(game);
 }

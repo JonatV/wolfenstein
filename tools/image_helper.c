@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:33 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 20:31:13 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:26:18 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,10 @@ t_img	set_new_xpm(char *path, t_win *window)
 	{
 		printf("Error: can't read this image file\n");
 		printf("unknown file name: \e[31m%s\n\e[0m", path);
-		exit(1);// !to change
+		exit(1);
 	}
 	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp, \
 	&img.line_len, &img.endian);
-	printf("name: %s\n", path);
-	printf("img: %p\n", img.mlx_img);
-	printf("x: %d\n", img.width);
-	printf("y: %d\n", img.height);
 	return (img);
 }
 

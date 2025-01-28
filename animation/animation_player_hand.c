@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:53:27 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 18:14:08 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:53:20 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	player_hand(t_game *game)
 		if (++a->tmp_delay >= a->delay && ++b->tmp_delay >= b->delay)
 			update_animatiom_frames(a, b);
 	}
-	if (game->keys.e)
+	if (game->keys.e || game->keys.mouse_1)
 		put_img_to_img(&game->win.scr, \
 		((t_list *)b->current_frame)->content, b->x, b->y);
 	else

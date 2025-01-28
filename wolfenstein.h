@@ -125,6 +125,9 @@ typedef struct s_keys
 	bool	space_pressed;
 	bool	mouse_left;
 	bool	mouse_right;
+	bool	mouse_1;
+	bool	mouse_2;
+	bool	mouse_3;
 }		t_keys;
 
 typedef struct s_img
@@ -334,6 +337,7 @@ int		expose_hook(t_game *game);
 /*----------------  mouse_hook.c  ---------------*/
 int		mouse_move(int x, int y, t_game *game);
 int		mouse_press(int button, int x, int y, t_game *game);
+int		mouse_release(int button, int x, int y, t_game *game);
 
 /*----------------  key_hook.c  ---------------*/
 int		key_press(int keycode, t_game *game);
