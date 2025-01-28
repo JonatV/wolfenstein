@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_errors.c                                      :+:      :+:    :+:   */
+/*   pars_errors_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 19:05:59 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:05:44 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	flood_fill(t_pars *d, int **map, int x, int y)
 		d->tmp_map_h++;
 		ft_exit(d, "Map error\n");
 	}
-	if (map[y][x] == 1 || map[y][x] == -2)
+	if (map[y][x] == 1 || map[y][x] == -2 || (map[y][x] <= 7 && map[y][x] >= 4))
 		return ;
 	map[y][x] = -2;
 	flood_fill(d, map, x + 1, y);
