@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_map_and_colour.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:10:50 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 19:11:14 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:19:30 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
 
-static void	free_tmp_map(t_pars *data, int ***map)
+void	free_tmp_map(t_pars *data, int ***map)
 {
 	int	y;
 
@@ -28,7 +28,7 @@ static void	free_tmp_map(t_pars *data, int ***map)
 	}
 }
 
-static void	free_map(t_pars *data, int ***map)
+void	free_map(t_pars *data, int ***map)
 {
 	int	y;
 

@@ -433,8 +433,8 @@ void	get_texture(t_pars *data, char *str);
 
 /*----------------  free_map_and_colour.c  ---------------*/
 void	free_colours(t_pars *data);
-static void	free_map(t_pars *data, int ***map);
-static void	free_tmp_map(t_pars *data, int ***map);
+void	free_map(t_pars *data, int ***map);
+void	free_tmp_map(t_pars *data, int ***map);
 
 /*----------------  pars_utils.c  ---------------*/
 int		check_fd(t_pars *data, char *file);
