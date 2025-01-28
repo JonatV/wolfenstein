@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 18:47:50 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:05:59 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,10 @@ int	ft_empty_line(char *str)
 void	flood_fill(t_pars *d, int **map, int x, int y)
 {
 	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1) //je pense qu'il y a une couille dans le pate parce que la ca checke pas si c'est entoure par des murs
+	{
+		d->tmp_map_h++;
 		ft_exit(d, "Map error\n");
+	}
 	if (map[y][x] == 1 || map[y][x] == -2)
 		return ;
 	map[y][x] = -2;
