@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 17:27:37 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:40:03 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ int	is_map(t_pars *data, char *str)
 			if (is_special(str[i]))
 			{
 				if (data->in_map == 1)
-					data->wrongchar = 1;
+				{
+					data->tmp_map_h++;
+					ft_exit(data, "Wrong character in map");
+				}
 				return (0);
 			}
 			i++;
