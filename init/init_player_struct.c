@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:28:54 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 14:02:25 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:10:10 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	get_play_dir(t_game *game)
 		game->player.dir_x = 1.0;
 		game->player.dir_y = 0.0;
 		game->player.plane_x = 0.0;
-		game->player.plane_y = -0.66;
+		game->player.plane_y = 0.66;
 	}
 	else if (game->data.start_dir == 'W')
 	{
 		game->player.dir_x = -1.0;
 		game->player.dir_y = 0.0;
 		game->player.plane_x = 0.0;
-		game->player.plane_y = 0.66;
+		game->player.plane_y = -0.66;
 	}
 }
 
