@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 10:39:52 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:52:43 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,14 @@ void	malloc_colour(t_pars *data, char flag)
 	}
 }
 
-int	is_number(char c)
+int	is_number(t_pars *data, char c)
 {
 	if (!c)
 		return (0);
 	if (c >= '0' && c <= '9')
 		return (1);
+	if (c != ',' && c != ' ')
+		ft_exit(data, "Colour code is wrong");
 	return (0);
 }
 
@@ -122,24 +124,25 @@ void	create_colour_c(t_pars *d, char *str)
 
 	i = 0;
 	j = 0;
-	while (!is_number(str[i]))
+	if (str[i] == 'C')
 		i++;
-	while (is_number(str[i]))
+	while (!is_number(d, str[i]))
+		i++;
+	while (is_number(d, str[i]))
 		d->cr[j++] = str[i++];
 	d->cr[j] = '\0';
-	while (!is_number(str[i]))
+	while (!is_number(d, str[i]))
 		i++;
 	j = 0;
-	while (is_number(str[i]))
+	while (is_number(d, str[i]))
 		d->cg[j++] = str[i++];
 	d->cg[j] = '\0';
-	while (!is_number(str[i]))
+	while (!is_number(d, str[i]))
 		i++;
 	j = 0;
-	while (is_number(str[i]))
+	while (is_number(d, str[i]))
 		d->cb[j++] = str[i++];
 	d->cb[j] = '\0';
-	printf("Ceiling colour informations: %s %s %s\n", d->cr, d->cg, d->cb);
 	d->c = rgb_to_hex((int)ft_atoi(d->cr), (int)ft_atoi(d->cg), (int)ft_atoi(d->cb), d);
 }
 
@@ -150,35 +153,36 @@ void	create_colour_f(t_pars *d, char *str)
 
 	i = 0;
 	j = 0;
-	while (!is_number(str[i]))
+	if (str[i] == 'F')
 		i++;
-	while (is_number(str[i]))
+	while (!is_number(d, str[i]))
+		i++;
+	while (is_number(d, str[i]))
 		d->fr[j++] = str[i++];
 	d->fr[j] = '\0';
-	while (!is_number(str[i]))
+	while (!is_number(d, str[i]))
 		i++;
 	j = 0;
-	while (is_number(str[i]))
+	while (is_number(d, str[i]))
 		d->fg[j++] = str[i++];
 	d->fg[j] = '\0';
-	while (!is_number(str[i]))
+	while (!is_number(d, str[i]))
 		i++;
 	j = 0;
-	while (is_number(str[i]))
+	while (is_number(d, str[i]))
 		d->fb[j++] = str[i++];
 	d->fb[j] = '\0';
-	printf("Floor colour informations: %s %s %s\n", d->fr, d->fg, d->fb);
 	d->f = rgb_to_hex(ft_atoi(d->fr), ft_atoi(d->fg), ft_atoi(d->fb), d);
 }
 
 void	pars_colours(t_pars *data, char *str)
 {
-	if (str[0] == 'F' && str[1] == 32)
+	if (str && str[0] == 'F' && str[1] && str[1] == 32)
 	{
 		malloc_colour(data, 'f');
 		create_colour_f(data, str);
 	}
-	else if (str[0] == 'C' && str[1] == 32)
+	else if (str && str[0] == 'C' && str[1] && str[1] == 32)
 	{
 		malloc_colour(data, 'c');
 		create_colour_c(data, str);
