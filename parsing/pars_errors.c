@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_errors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 12:49:57 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:10:05 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ void	copy_map(t_pars *data, int ***target, int ** source)
 		if (!(*target)[y])
 		{
 			//faut rajouter un free target qui passe sur la map
+			while (--y >= 0)
+				free((*target)[y]);
+			free(*target);
 			ft_exit(data, "Malloc failed");
 		}
 	}
@@ -108,7 +111,7 @@ void	copy_map(t_pars *data, int ***target, int ** source)
 void	ft_errors(t_pars *d, char *str)
 {
 	int	**map_copy;
-	
+
 	map_copy = NULL;
 	copy_map(d, &map_copy, d->map);
 	if (!str)

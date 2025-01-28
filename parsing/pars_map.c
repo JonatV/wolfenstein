@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 14:00:04 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:11:09 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	create_map(t_pars *data, char *str, int michel)
 	static int	j = 0;
 
 	i = -1;
-	(void)michel;
+	data->map_h = michel;
 	data->map[j] = malloc(sizeof(int) * (data->map_w));
 	if (!(data->map[j]))
 		return ;
