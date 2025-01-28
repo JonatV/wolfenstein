@@ -26,7 +26,7 @@ SRC			=	main.c \
 				$(DRAW)draw_rectangle.c \
 				$(ANIM)animation_tools.c $(ANIM)animation_utils.c $(ANIM)animation_player_hand.c \
 				$(TOOL)close.c $(TOOL)fps.c $(TOOL)image_helper.c $(TOOL)colors.c $(TOOL)optimization.c \
-				$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_texture.c \
+				$(PARS)parser.c $(PARS)pars_colours.c $(PARS)pars_texture.c $(PARS)free_map_and_colour.c $(PARS)pars_utils2.c \
 				$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
 
 ifdef BONUS

@@ -6,59 +6,11 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 19:05:44 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:13:37 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
-
-static void	free_tmp_map(t_pars *data, int ***map)
-{
-	int	y;
-
-	y = 0;
-	if (*map)
-	{
-		while (y < data->tmp_map_h && (*map)[y])
-		{
-			free((*map)[y]);
-			y++;
-		}
-		free(*map);
-	}
-}
-
-static void	free_map(t_pars *data, int ***map)
-{
-	int	y;
-
-	y = 0;
-	if (*map)
-	{
-		while (y < data->map_h && (*map)[y])
-		{
-			free((*map)[y]);
-			y++;
-		}
-		free(*map);
-	}
-}
-
-void	free_colours(t_pars *data)
-{
-	if (data->cr)
-		free(data->cr);
-	if (data->cg)
-		free(data->cg);
-	if (data->cb)
-		free(data->cb);
-	if (data->fr)
-		free(data->fr);
-	if (data->fg)
-		free(data->fg);
-	if (data->fb)
-		free(data->fb);
-}
 
 void	ft_exit(t_pars *data, char *str)
 {
@@ -106,7 +58,7 @@ int	ft_empty_line(char *str)
 
 void	flood_fill(t_pars *d, int **map, int x, int y)
 {
-	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1) //je pense qu'il y a une couille dans le pate parce que la ca checke pas si c'est entoure par des murs
+	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1)
 	{
 		d->tmp_map_h++;
 		ft_exit(d, "Map error\n");
@@ -120,7 +72,7 @@ void	flood_fill(t_pars *d, int **map, int x, int y)
 	flood_fill(d, map, x, y - 1);
 }
 
-void	copy_map(t_pars *data, int ***target, int ** source)
+void	copy_map(t_pars *data, int ***target, int **source)
 {
 	int	x;
 	int	y;
@@ -134,7 +86,6 @@ void	copy_map(t_pars *data, int ***target, int ** source)
 		(*target)[y] = malloc(sizeof(int) * data->map_w);
 		if (!(*target)[y])
 		{
-			//faut rajouter un free target qui passe sur la map
 			while (--y >= 0)
 				free((*target)[y]);
 			free(*target);

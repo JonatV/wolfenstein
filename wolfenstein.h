@@ -431,12 +431,20 @@ int		is_map(t_pars *data, char *str);
 /*----------------  pars_texture.c  ---------------*/
 void	get_texture(t_pars *data, char *str);
 
+/*----------------  free_map_and_colour.c  ---------------*/
+void	free_colours(t_pars *data);
+static void	free_map(t_pars *data, int ***map);
+static void	free_tmp_map(t_pars *data, int ***map);
+
 /*----------------  pars_utils.c  ---------------*/
 int		check_fd(t_pars *data, char *file);
 void	map_check(t_pars *data, char *str);
 int		detect_char(char *str, char c);
 int		data_check(t_pars *data);
 int		is_special(char c);
+
+/*----------------  pars_utils2.c  ---------------*/
+int		is_number(t_pars *data, char c);
 
 /*----------------  get_next_line.c --------------*/
 # ifndef BUFFER_SIZE

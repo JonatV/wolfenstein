@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 18:50:20 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:17:03 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	start(t_pars *data, int i, int j, char c)
 	{
 		if (checker)
 			ft_exit(data, "At least two start positions");
-		data->start_dir = c; //pour donner la direction de depart du joueur
-		data->start_x = j; //pour donner les coordonnees du depart du joueur
+		data->start_dir = c;
+		data->start_x = j;
 		data->start_y = i;
 		checker = 1;
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 14:05:33 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:17:36 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 
 	i = 0;
 	if (*text || !detect_char(str, '.') || !detect_char(str, '/'))
-		data->error = 1; // todo return
+		data->error = 1;
 	while (str && str[j] != '.')
 	{
 		if (str[j] != 32)
@@ -51,7 +51,6 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 	while (str && str[j])
 	{
 		(*text)[i] = str[j];
-		// printf("Comparison: %c / %c\n", (*text)[i], str[j]);
 		i++;
 		j++;
 	}
