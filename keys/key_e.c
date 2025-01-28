@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:29:00 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 13:40:12 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:11:43 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ static void	check_half(t_game *game, float angle)
 	if (angle >= 45 && angle < 135)
 	{
 		if (game->map.map_grid[(int)(game->player.pos_y + \
-		game->player.dir_y + 0.2)][(int)game->player.pos_x] == ID_DOOR \
+		game->player.dir_y + RANGE)][(int)game->player.pos_x] == ID_DOOR \
 		|| game->map.map_grid[(int)(game->player.pos_y + \
-		game->player.dir_y + 0.2)][(int)game->player.pos_x] == ID_HIDDEN)
+		game->player.dir_y + RANGE)][(int)game->player.pos_x] == ID_HIDDEN)
 			game->map.map_grid[(int)(game->player.pos_y + \
-			game->player.dir_y + 0.2)][(int)game->player.pos_x] = 0;
+			game->player.dir_y + RANGE)][(int)game->player.pos_x] = 0;
 	}
 	else if (angle >= 135 && angle < 225)
 	{
 		if (game->map.map_grid[(int)(game->player.pos_y)] \
-		[(int)(game->player.pos_x + game->player.dir_x - 0.2)] == ID_DOOR \
+		[(int)(game->player.pos_x + game->player.dir_x - RANGE)] == ID_DOOR \
 		|| game->map.map_grid[(int)(game->player.pos_y)] \
-		[(int)(game->player.pos_x + game->player.dir_x - 0.2)] == ID_HIDDEN)
+		[(int)(game->player.pos_x + game->player.dir_x - RANGE)] == ID_HIDDEN)
 			game->map.map_grid[(int)game->player.pos_y] \
-			[(int)(game->player.pos_x + game->player.dir_x - 0.2)] = 0;
+			[(int)(game->player.pos_x + game->player.dir_x - RANGE)] = 0;
 	}
 }
 
@@ -39,20 +39,20 @@ static void	check_other_half(t_game *game, float angle)
 	if (angle >= 225 && angle < 315)
 	{
 		if (game->map.map_grid[(int)(game->player.pos_y + \
-		game->player.dir_y - 0.2)][(int)game->player.pos_x] == ID_DOOR \
+		game->player.dir_y - RANGE)][(int)game->player.pos_x] == ID_DOOR \
 		|| game->map.map_grid[(int)(game->player.pos_y + \
-		game->player.dir_y - 0.2)][(int)game->player.pos_x] == ID_HIDDEN)
+		game->player.dir_y - RANGE)][(int)game->player.pos_x] == ID_HIDDEN)
 			game->map.map_grid[(int)(game->player.pos_y + \
-			game->player.dir_y - 0.2)][(int)game->player.pos_x] = 0;
+			game->player.dir_y - RANGE)][(int)game->player.pos_x] = 0;
 	}
 	else
 	{
 		if (game->map.map_grid[(int)game->player.pos_y] \
-		[(int)(game->player.pos_x + game->player.dir_x + 0.2)] == ID_DOOR \
+		[(int)(game->player.pos_x + game->player.dir_x + RANGE)] == ID_DOOR \
 		|| game->map.map_grid[(int)game->player.pos_y] \
-		[(int)(game->player.pos_x + game->player.dir_x + 0.2)] == ID_HIDDEN)
+		[(int)(game->player.pos_x + game->player.dir_x + RANGE)] == ID_HIDDEN)
 			game->map.map_grid[(int)game->player.pos_y] \
-			[(int)(game->player.pos_x + game->player.dir_x + 0.2)] = 0;
+			[(int)(game->player.pos_x + game->player.dir_x + RANGE)] = 0;
 	}
 }
 

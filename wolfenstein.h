@@ -46,7 +46,8 @@
 #define NS false
 #define EW true
 
-#define ST 0.21 // step for the player to move
+#define ST 0.05 // step for the player to move
+#define RANGE 0.21 // range to detect the door
 
 // Map Macro
 #define PADDING 10
