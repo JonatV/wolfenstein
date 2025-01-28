@@ -6,7 +6,7 @@
 /*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 10:41:12 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:00:04 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	cast_char(t_pars *data, char c)
 	int	ret;
 
 	ret = 0;
-	if (c > '9' || c < '0')
-		ft_exit(data, "Wrong character in map");;
+	if (c != '1' && c != '0')
+		ft_exit(data, "Wrong character in map");
 	ret = c - 48;
 	return (ret);
 }
@@ -30,9 +30,7 @@ int	start(t_pars *data, int i, int j, char c)
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
 		if (checker)
-		{
-			data->error = 1;
-		}
+			ft_exit(data, "Two start positions");
 		data->start_dir = c; //pour donner la direction de depart du joueur
 		data->start_x = j; //pour donner les coordonnees du depart du joueur
 		data->start_y = i;
