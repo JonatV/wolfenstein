@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:14:04 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/24 16:21:34 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:40:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ bool	init_hooks_logics(t_game *game)
 	mlx_hook(game->win.win_ptr, KeyRelease, KeyReleaseMask, key_release, game);
 	mlx_hook(game->win.win_ptr, MotionNotify, PointerMotionMask, \
 	mouse_move, game);
-	mlx_mouse_hook(game->win.win_ptr, mouse_press, game);
+	mlx_hook(game->win.win_ptr, ButtonPress, ButtonPressMask, \
+	mouse_press, game);
+	mlx_hook(game->win.win_ptr, ButtonRelease, ButtonReleaseMask, \
+	mouse_release, game);
 	mlx_hook(game->win.win_ptr, ClientMessage, StructureNotifyMask, \
 	close_game, game);
 	mlx_mouse_hide(game->win.mlx_ptr, game->win.win_ptr);
