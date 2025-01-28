@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 17:14:37 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:28:19 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	free_map(t_pars *data, int ***map)
 	y = 0;
 	if (*map)
 	{
-		while (y < data->map_h && (*map)[y])
+		while ((y < data->tmp_map_h || y < data->map_h) && (*map)[y])
 		{
 			free((*map)[y]);
 			y++;

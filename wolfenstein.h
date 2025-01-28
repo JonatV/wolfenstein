@@ -252,6 +252,7 @@ typedef struct s_pars
 	int		error;
 	int		map_w;
 	int		map_h;
+	int		tmp_map_h;
 	int		empty_line;
 	int		wrongchar;
 	int		in_map;

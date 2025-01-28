@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 17:11:09 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:27:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	start(t_pars *data, int i, int j, char c)
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
 		if (checker)
-			ft_exit(data, "Two start positions");
+			ft_exit(data, "At least two start positions");
 		data->start_dir = c; //pour donner la direction de depart du joueur
 		data->start_x = j; //pour donner les coordonnees du depart du joueur
 		data->start_y = i;
@@ -46,7 +46,7 @@ void	create_map(t_pars *data, char *str, int michel)
 	static int	j = 0;
 
 	i = -1;
-	data->map_h = michel;
+	data->tmp_map_h = michel;
 	data->map[j] = malloc(sizeof(int) * (data->map_w));
 	if (!(data->map[j]))
 		return ;
