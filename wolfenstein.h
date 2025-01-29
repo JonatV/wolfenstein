@@ -20,12 +20,6 @@
 #define WIN_H 600
 #define FPS 42
 
-// has to be define in the parsing latter
-// #define MAP_H 28
-// #define MAP_H 26
-// #define MAP_W 40
-// #define MAP_W 35
-
 #define C_BLACK		0x1A1A1A
 #define C_DARK_RED	0x311F1F
 #define C_DEEP_RED	0x8C2B36
@@ -64,6 +58,8 @@
 #define ID_METAL 4
 #define ID_METAL2 5
 #define ID_GRIDS 6
+#define ID_SCAFFOLD 7
+#define ID_PIPE 8
 #define ID_OUT_OF_BOUND -1
 
 // Animation hand/player Macro
@@ -95,11 +91,13 @@ enum xpm_images
 	xpm_south,
 	xpm_east,
 	xpm_west,
-	xpm_walls,
 	xpm_wall,
 	xpm_door,
 	xpm_grid,
 	xpm_pipe,
+	xpm_scaffold,
+	xpm_metal,
+	xpm_metal2,
 	xpm_null,
 };
 
