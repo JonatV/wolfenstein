@@ -6,12 +6,33 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 15:14:45 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/29 01:20:13 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
-
+static t_img	*select_wall_texture(t_game *game, int the_wall)
+{
+	if (the_wall == ID_HIDDEN && (game->keys.e == true \
+	|| game->keys.mouse_1 == true))
+		return (&game->xpm_images[xpm_door]);
+	else if (the_wall == ID_WALL || the_wall == ID_HIDDEN)
+		return (&game->xpm_images[xpm_wall]);
+	else if (the_wall == ID_DOOR)
+		return (&game->xpm_images[xpm_door]);
+	else if (the_wall == ID_METAL)
+		return (&game->xpm_images[xpm_metal]);
+	else if (the_wall == ID_METAL2)
+		return (&game->xpm_images[xpm_metal2]);
+	else if (the_wall == ID_GRIDS)
+		return (&game->xpm_images[xpm_grid]);
+	else if (the_wall == ID_SCAFFOLD)
+		return (&game->xpm_images[xpm_scaffold]);
+	else if (the_wall == ID_PIPE)
+		return (&game->xpm_images[xpm_pipe]);
+	else
+		return (&game->xpm_images[xpm_wall]);
+}
 static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 {
 	int		px;
@@ -20,14 +41,7 @@ static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 	int		y2;
 	t_img	*wall;
 
-	if (the_wall == ID_HIDDEN && (game->keys.e == true || game->keys.mouse_1 == true))
-		wall = &game->xpm_images[xpm_door]; 
-	else if (the_wall == ID_WALL || the_wall == ID_HIDDEN)
-		wall = &game->xpm_images[xpm_wall];
-	else if (the_wall == ID_DOOR)
-		wall = &game->xpm_images[xpm_door];
-	else
-		wall = &game->xpm_images[xpm_east];
+	wall = select_wall_texture(game, the_wall);
 	x2 = (int)(game->raycast.wall_x * (double)wall->width);
 	px = game->win.scr.line_len * y + x * game->win.scr.bpp / 8;
 	y = y - (game->win_h / 2 - (int)game->raycast.wall_height / 2);

@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:32 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 14:56:24 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/29 00:10:48 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ bool	init_xpm_images(t_game *game)
 	xpm[xpm_south] = set_new_xpm(game->data.so, &game->win);
 	xpm[xpm_east] = set_new_xpm(game->data.ea, &game->win);
 	xpm[xpm_west] = set_new_xpm(game->data.we, &game->win);
-	xpm[xpm_walls] = set_new_xpm("assets/wallsv2.xpm", &game->win);
 	xpm[xpm_wall] = set_new_xpm("assets/wall_blank.xpm", &game->win);
 	xpm[xpm_door] = set_new_xpm("assets/door.xpm", &game->win);
 	xpm[xpm_grid] = set_new_xpm("assets/grid.xpm", &game->win);
+	xpm[xpm_scaffold] = set_new_xpm("assets/scaffold.xpm", &game->win);
 	xpm[xpm_pipe] = set_new_xpm("assets/pipe.xpm", &game->win);
+	xpm[xpm_metal] = set_new_xpm("assets/metal.xpm", &game->win);
+	xpm[xpm_metal2] = set_new_xpm("assets/metal2.xpm", &game->win);
 	return (true);
 }
