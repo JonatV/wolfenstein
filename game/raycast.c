@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:34:21 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 13:03:35 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:17:06 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ int	raycast(t_game *game)
 {
 	int	current_x;
 
+	mlx_clear_window(game->win.mlx_ptr, game->win.win_ptr);
 	current_x = -1;
 	while (++current_x < (int)game->win_w)
 	{

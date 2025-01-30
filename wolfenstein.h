@@ -1,9 +1,23 @@
-#ifndef WOLFENSTEIN_H
-#define WOLFENSTEIN_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolfenstein.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 15:22:28 by jveirman          #+#    #+#             */
+/*   Updated: 2025/01/29 15:40:55 by jveirman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "libft/libft.h"			// for libft functions
-# include "minilibx_linux/mlx.h"	// for mlx functions (handle window, image, etc)
-# include <X11/Xutil.h>				// for keycode Macro (XK_SPACE, XK_Escape, etc)
+#ifndef WOLFENSTEIN_H
+# define WOLFENSTEIN_H
+
+# include "libft/libft.h"
+// for mlx functions (handle window, image, etc)
+# include "minilibx_linux/mlx.h"	
+// for keycode Macro (XK_SPACE, XK_Escape, etc)
+# include <X11/Xutil.h>				
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -15,62 +29,62 @@
 # include <stdint.h>
 # include <math.h>
 
-#define TITLE "Wolfenstein"
-#define WIN_W 1200
-#define WIN_H 600
-#define FPS 42
+# define TITLE "Wolfenstein"
+# define WIN_W 1200
+# define WIN_H 600
+# define FPS 42
 
-#define C_BLACK		0x1A1A1A
-#define C_DARK_RED	0x311F1F
-#define C_DEEP_RED	0x8C2B36
-#define C_RED		0xF53F39
-#define C_DARK_GREY	0x2e2e2e
-#define C_GREY		0xABABAB
-#define C_TRANSPARENT	0xFF000000
+# define C_BLACK		0x1A1A1A
+# define C_DARK_RED	0x311F1F
+# define C_DEEP_RED	0x8C2B36
+# define C_RED		0xF53F39
+# define C_DARK_GREY	0x2e2e2e
+# define C_GREY		0xABABAB
+# define C_TRANSPARENT	0xFF000000
 
-#define RESET "\033[0m"
-#define RED "\033[31m"
-#define GREEN "\033[32m"
-#define YELLOW "\033[33m"
-#define BLUE "\033[34m"
-#define MAGENTA "\033[35m"
-#define CYAN "\033[36m"
-#define BOLD "\033[1m"
+# define RESET "\033[0m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define BLUE "\033[34m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define BOLD "\033[1m"
 
-#define NS false
-#define EW true
+# define NS false
+# define EW true
 
-#define ST 0.05 // step for the player to move
-#define RANGE 0.04 // range to detect the door
+# define ST 0.05 // step for the player to move
+# define RANGE 0.04 // range to detect the door
 
 // Map Macro
-#define PADDING 10
-#define MINI_SIZE 20
-#define FOC_SIZE 20
-#define MINI_H 150
-#define MINI_W 150
-#define MAX_M_W 1008
-#define MAX_M_H 402
-#define ID_FLOOR 0
-#define ID_WALL 1
-#define ID_HIDDEN 2
-#define ID_DOOR 3
-#define ID_METAL 4
-#define ID_METAL2 5
-#define ID_GRIDS 6
-#define ID_SCAFFOLD 7
-#define ID_PIPE 8
-#define ID_OUT_OF_BOUND -1
+# define PADDING 10
+# define MINI_SIZE 20
+# define FOC_SIZE 20
+# define MINI_H 150
+# define MINI_W 150
+# define MAX_M_W 1008
+# define MAX_M_H 402
+# define ID_FLOOR 0
+# define ID_WALL 1
+# define ID_HIDDEN 2
+# define ID_DOOR 3
+# define ID_METAL 4
+# define ID_METAL2 5
+# define ID_GRIDS 6
+# define ID_SCAFFOLD 7
+# define ID_PIPE 8
+# define ID_OUT_OF_BOUND -1
 
 // Animation hand/player Macro
-#define H_DELAY 5
-#define H_FRAMES 34
-#define H_W 420
-#define H_H 236
-#define H_X 390
-#define H_Y 364
+# define H_DELAY 5
+# define H_FRAMES 34
+# define H_W 420
+# define H_H 236
+# define H_X 390
+# define H_Y 364
 
-enum game_state
+enum e_game_state
 {
 	home_screen,
 	game_screen,
@@ -80,7 +94,7 @@ enum game_state
 	inventory,
 };
 
-enum xpm_images
+enum e_xpm_images
 {
 	xpm_home_screen,
 	xpm_game_over,
@@ -98,10 +112,10 @@ enum xpm_images
 	xpm_scaffold,
 	xpm_metal,
 	xpm_metal2,
-	xpm_null,
+	XPM_NULL,
 };
 
-enum wall_orientation
+enum e_wall_or
 {
 	NORTH,
 	SOUTH,
@@ -136,15 +150,13 @@ typedef struct s_keys
 
 typedef struct s_img
 {
-	void	*mlx_img;
-	char	*addr;
-	int		bpp; /* bits per pixel */
-	int		line_len;
-	int		endian;
-
-	int		width;
-	int		height;
-
+	void			*mlx_img;
+	char			*addr;
+	int				bpp;
+	int				line_len;
+	int				endian;
+	int				width;
+	int				height;
 	struct s_win	*win;
 }		t_img;
 
@@ -173,7 +185,7 @@ typedef struct s_player
 typedef struct s_marker
 {
 	t_img	frame;
-	float	min_angle;		// to set the image orientation property
+	float	min_angle;
 }	t_marker;
 
 typedef struct s_lst
@@ -185,14 +197,13 @@ typedef struct s_lst
 
 typedef struct s_sprite
 {
-	void	*anim;		// void because it can be either the frames list (player marker)
-						//or the structure that content the info of the animation + the frames list 
+	void	*anim;
 	t_lst	*cur_node;
 	char	*name;
 	char	*file_path;
 	t_img	sprite_img;
-	int	width;
-	int	height;
+	int		width;
+	int		height;
 }	t_sprite;
 
 typedef struct s_animation
@@ -212,13 +223,11 @@ typedef struct s_animation
 
 typedef struct s_map
 {
-	int		**map_grid;
-	char	**temp_grid;
-	int		w;
-	int		h;
-	// minimap data (little map on left top corner)
+	int			**map_grid;
+	char		**temp_grid;
+	int			w;
+	int			h;
 	t_sprite	pos_sprite;
-	// map focus data (full screen map)
 	bool		dynamic_map;
 	int			start_x;
 	int			start_y;
@@ -228,26 +237,32 @@ typedef struct s_map
 	bool		focus_rendered;
 }		t_map;
 
+/*
+* camera = position of the current column
+* perp_wall_dist = distance from the player to the wall
+* wall_x = exact value of where the wall was hit
+* side = it will be used to determine if the ray hit a NS or EW wall
+*/
 typedef struct s_ray
 {
-	bool	hit;		
-	double	camera;			// position of the current column
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	map_x;
-	double	map_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	step_x;
-	double	step_y;
-	double	perp_wall_dist; // it measures the distance from the player to the wall, it will be used to calculate the height of the wall strip
-	double	wall_x; // exact value of where the wall was hit
-	bool	side; // it will be used to determine if the ray hit a NS or EW wall
-	enum wall_orientation	wall_orientation;
-	double	wall_height;
-	int		number_of_the_wall_hitted;
+	bool			hit;
+	double			camera;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			map_x;
+	double			map_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			step_x;
+	double			step_y;
+	double			perp_wall_dist;
+	double			wall_x;
+	bool			side;
+	enum e_wall_or	wall_orientation;
+	double			wall_height;
+	int				number_of_the_wall_hitted;
 }		t_raycast;
 
 typedef struct s_pars
@@ -279,22 +294,21 @@ typedef struct s_pars
 
 typedef struct s_game
 {
-	t_win		win;
-	t_keys		keys;
-	t_player	player;
-	t_map		map;
-	t_raycast	raycast;
-	unsigned int	win_w;
-	unsigned int	win_h;
-	enum game_state	state;
-	uint64_t	created_at;
-	uint64_t	updated_at;
-	int			fps;
-	t_pars		data;
-	// array of xpm images
-	t_img		xpm_images[xpm_null];
-	t_animation	anim_h;
-	t_animation	anim_h_light;
+	t_win				win;
+	t_keys				keys;
+	t_player			player;
+	t_map				map;
+	t_raycast			raycast;
+	unsigned int		win_w;
+	unsigned int		win_h;
+	enum e_game_state	state;
+	uint64_t			created_at;
+	uint64_t			updated_at;
+	int					fps;
+	t_pars				data;
+	t_img				xpm_images[XPM_NULL];
+	t_animation			anim_h;
+	t_animation			anim_h_light;
 }	t_game;
 
 /*----------------  FAT ARG HELPER  ---------------*/
@@ -304,8 +318,8 @@ typedef struct s_cell_param
 	int		y;
 	int		i;
 	int		j;
-	float		start_x;
-	float		start_y;
+	float	start_x;
+	float	start_y;
 }	t_cell_param;
 
 typedef struct s_rect
@@ -330,26 +344,26 @@ typedef struct s_copy_pixel
 
 typedef struct s_sprite_slice_data
 {
-	int x;
-	int y;
-	int width;
-	int height;
+	int	x;
+	int	y;
+	int	width;
+	int	height;
 }	t_sprite_slice_data;
 
 /*----------------  expose_hook.c  ---------------*/
-int		expose_hook(t_game *game);
+int			expose_hook(t_game *game);
 
 /*----------------  mouse_hook.c  ---------------*/
-int		mouse_move(int x, int y, t_game *game);
-int		mouse_press(int button, int x, int y, t_game *game);
-int		mouse_release(int button, int x, int y, t_game *game);
+int			mouse_move(int x, int y, t_game *game);
+int			mouse_press(int button, int x, int y, t_game *game);
+int			mouse_release(int button, int x, int y, t_game *game);
 
 /*----------------  key_hook.c  ---------------*/
-int		key_press(int keycode, t_game *game);
-int		key_release(int keycode, t_game *game);
+int			key_press(int keycode, t_game *game);
+int			key_release(int keycode, t_game *game);
 
 /*----------------  main.c  ---------------*/
-int		main(int argc, char **argv);
+int			main(int argc, char **argv);
 
 /*----------------  draw_rectangle.c  ---------------*/
 void		draw_rect(t_rect rect);
@@ -385,17 +399,17 @@ bool		init_game_struct(t_game **game, t_pars *data);
 void		init_pars(t_pars **data);
 
 /*----------------  close.c  ---------------*/
-int		close_game(void *p);
+int			close_game(void *p);
 
 /*----------------  fps.c  ---------------*/
-uint64_t		gettimeofday_ms(void);
-uint64_t		timestamp_in_ms(t_game *game);
+uint64_t	gettimeofday_ms(void);
+uint64_t	timestamp_in_ms(t_game *game);
 
 /*----------------  colors.c  ---------------*/
-int		encode_rgb(int r, int g, int b);
+int			encode_rgb(int r, int g, int b);
 
 /*----------------  is_wall.c  ---------------*/
-bool	is_wall(int num);
+bool		is_wall(int num);
 
 /*----------------  image_helpers.c  ---------------*/
 t_img		new_img(int w, int h, t_win *window);
@@ -408,98 +422,98 @@ void		rotate(t_game *game, bool lr, double speed);
 void		handle_keys(t_game *game);
 
 /*----------------  layout_home_screen.c  ---------------*/
-int		layout_home_screen(t_game *game);
+int			layout_home_screen(t_game *game);
 
 /*----------------  layout_game_screen.c  ---------------*/
-int		layout_game_screen(t_game *game);
+int			layout_game_screen(t_game *game);
 
 /*----------------  layout_map_screen.c  ---------------*/
-void	layout_map_screen(t_game *game);
+void		layout_map_screen(t_game *game);
 
 /*----------------  update.c  ---------------*/
-int		update(t_game *game);
+int			update(t_game *game);
 
 /*----------------  parser.c  ---------------*/
-void	parse_all(t_pars *data, char *file);
+void		parse_all(t_pars *data, char *file);
 
 /*----------------  pars_colours.c  ---------------*/
-void	pars_colours(t_pars *data, char *str);
+void		pars_colours(t_pars *data, char *str);
 
 /*----------------  pars_errors.c  ---------------*/
-void	ft_errors(t_pars *d, char *str);
-int		ft_empty_line(char *str);
-void	ft_exit(t_pars *data, char *str);
+void		ft_errors(t_pars *d, char *str);
+int			ft_empty_line(char *str);
+void		ft_exit(t_pars *data, char *str);
 
 /*----------------  pars_map.c  ---------------*/
-void	map_pars(t_pars *data, char *file);
-int		is_map(t_pars *data, char *str);
+void		map_pars(t_pars *data, char *file);
+int			is_map(t_pars *data, char *str);
 
 /*----------------  pars_texture.c  ---------------*/
-void	get_texture(t_pars *data, char *str);
+void		get_texture(t_pars *data, char *str);
 
 /*----------------  free_map_and_colour.c  ---------------*/
-void	free_colours(t_pars *data);
-void	free_map(t_pars *data, int ***map);
-void	free_tmp_map(t_pars *data, int ***map);
+void		free_colours(t_pars *data);
+void		free_map(t_pars *data, int ***map);
+void		free_tmp_map(t_pars *data, int ***map);
 
 /*----------------  pars_utils.c  ---------------*/
-int		check_fd(t_pars *data, char *file);
-void	map_check(t_pars *data, char *str);
-int		detect_char(char *str, char c);
-int		data_check(t_pars *data);
-int		is_special(char c);
+int			check_fd(t_pars *data, char *file);
+void		map_check(t_pars *data, char *str);
+int			detect_char(char *str, char c);
+int			data_check(t_pars *data);
+int			is_special(char c);
 
 /*----------------  pars_utils2.c  ---------------*/
-int		is_number(t_pars *data, char c);
+int			is_number(t_pars *data, char c);
 
 /*----------------  get_next_line.c --------------*/
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
 
-int		get_next_line(int fd, char **line, t_pars *data);
-char	*ft_subbuff(char *buff, int start, int len);
+int			get_next_line(int fd, char **line, t_pars *data);
+char		*ft_subbuff(char *buff, int start, int len);
 
 /*----------------  raycast.c  ---------------*/
-int		raycast(t_game *game);
+int			raycast(t_game *game);
 
 /*----------------  raycast_utils.c  ---------------*/
-void	set_hit_and_wall_number(t_game *game);
+void		set_hit_and_wall_number(t_game *game);
 
 /*----------------  display.c  ---------------*/
-void	put_column_to_win(t_game *game, int x);
+void		put_column_to_win(t_game *game, int x);
 
 /*----------------  minimap.c  ---------------*/
-void	minimap(t_game *game);
+void		minimap(t_game *game);
 
 /*----------------  animation_tools.c  ---------------*/
 t_sprite	new_sprite(char *name, char *file_path, t_win *win);
 
 /*----------------  init_animation_struct.c  ---------------*/
-bool	init_animation_struct(t_game *game);
-bool	init_anim_minimap(t_game *game);
-bool	init_anim_hand(t_game *game, char *path, t_animation *anim);
+bool		init_animation_struct(t_game *game);
+bool		init_anim_minimap(t_game *game);
+bool		init_anim_hand(t_game *game, char *path, t_animation *anim);
 
 /*----------------  animation_utils.c  ---------------*/
-t_lst	*lst_new_double(void *content);
-void	lstadd_back_double(t_lst **lst, t_lst *new);
-t_lst	*lstlast(t_lst *lst);
+t_lst		*lst_new_double(void *content);
+void		lstadd_back_double(t_lst **lst, t_lst *new);
+t_lst		*lstlast(t_lst *lst);
 
 /*---------------- animation_player_hand.c  ---------------*/
-void	player_hand(t_game *game);
+void		player_hand(t_game *game);
 
 /*---------------- key_*.c  ---------------*/
-void	key_esc(t_game *game);
-void	key_enter(t_game *game);
-void	key_tab(t_game *game);
-void	key_space(t_game *game);
-void	key_m(t_game *game);
-void	key_left(t_game *game);
-void	key_right(t_game *game);
-void	key_w(t_game *game);
-void	key_s(t_game *game);
-void	key_a(t_game *game);
-void	key_d(t_game *game);
-void	key_e(t_game *game);
+void		key_esc(t_game *game);
+void		key_enter(t_game *game);
+void		key_tab(t_game *game);
+void		key_space(t_game *game);
+void		key_m(t_game *game);
+void		key_left(t_game *game);
+void		key_right(t_game *game);
+void		key_w(t_game *game);
+void		key_s(t_game *game);
+void		key_a(t_game *game);
+void		key_d(t_game *game);
+void		key_e(t_game *game);
 
 #endif

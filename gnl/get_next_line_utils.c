@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:23:19 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 18:15:33 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:59:51 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolfenstein.h"
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;
@@ -32,7 +32,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char		*ft_subbuff(char *buff, int start, int len)
+char	*ft_subbuff(char *buff, int start, int len)
 {
 	int		i;
 	char	*str;

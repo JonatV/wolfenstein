@@ -31,10 +31,8 @@ SRC			=	main.c \
 
 ifdef BONUS
 	SRC += $(GAME)display_bonus.c $(PARS)pars_utils_bonus.c $(PARS)pars_map_bonus.c $(PARS)pars_errors_bonus.c
-	RUN_CMD = ./$(NAME) map_bonus.cub
 else
 	SRC += $(GAME)display.c $(PARS)pars_map.c $(PARS)pars_utils.c $(PARS)pars_errors.c
-	RUN_CMD = ./$(NAME) map.cub
 endif
 
 OBJ = $(SRC:.c=.o)
@@ -55,7 +53,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make --no-print-directory all -C libft
 	$(CC) $(OBJ) $(LIBFT) -o $@ $(LDFLAGS)
-	$(RUN_CMD)
 
 %.o: %.c
 	$(CC) -c $< -o $@ $(CFLAGS)
@@ -83,4 +80,17 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+norm:
+	norminette $(INIT)
+	norminette $(HOOK)
+	norminette $(GAME)
+	norminette $(KEYS)
+	norminette $(DRAW)
+	norminette $(PARS)
+	norminette $(GNL)
+	norminette $(ANIM)
+	norminette $(TOOL)
+	norminette $(NAME).h
+	norminette main.c
+	
+.PHONY: all clean fclean re bonus bonus_clean bonus_fclean bonus_re norm bonus_norm

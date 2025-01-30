@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:22:41 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/21 16:06:53 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:58:04 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolfenstein.h"
 
-int		ft_check(char *str)
+int	ft_check(char *str)
 {
 	int		i;
 
@@ -26,13 +26,12 @@ int		ft_check(char *str)
 	return (-1);
 }
 
-int		ft_copy(char **line, char **buff)
+int	ft_copy(char **line, char **buff, int start)
 {
-	int		start;
 	char	*temp;
 	char	*line_temp;
 
-	if ((start = ft_check(*buff)) >= 0)
+	if (start >= 0)
 	{
 		temp = ft_substr(*buff, 0, start);
 		line_temp = *line;
@@ -55,7 +54,7 @@ int		ft_copy(char **line, char **buff)
 	return (-1);
 }
 
-int		ft_eof(int ret, char **buff, char **line)
+int	ft_eof(int ret, char **buff, char **line)
 {
 	if (ret == -1)
 		return (-1);
@@ -69,7 +68,7 @@ int		ft_eof(int ret, char **buff, char **line)
 	return (0);
 }
 
-int		ft_free_buff(char **buff, t_pars *data)
+int	ft_free_buff(char **buff, t_pars *data)
 {
 	if (data->error == 1 && *buff)
 	{
@@ -79,7 +78,7 @@ int		ft_free_buff(char **buff, t_pars *data)
 	return (0);
 }
 
-int		get_next_line(int fd, char **line, t_pars *data)
+int	get_next_line(int fd, char **line, t_pars *data)
 {
 	static char	*buff = NULL;
 	int			ret;
@@ -91,7 +90,7 @@ int		get_next_line(int fd, char **line, t_pars *data)
 	*line = NULL;
 	ret = 1;
 	if (buff)
-		ret = ft_copy(line, &buff);
+		ret = ft_copy(line, &buff, ft_check(buff));
 	if (ret == 0)
 		return (1);
 	if (!buff)
@@ -100,7 +99,7 @@ int		get_next_line(int fd, char **line, t_pars *data)
 	while ((ret = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		if (!ft_copy(line, &buff))
+		if (!ft_copy(line, &buff, ft_check(buff)))
 			return (1);
 	}
 	if (ret <= 0)

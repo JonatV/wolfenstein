@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:56:07 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 13:10:15 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:41:06 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	destroy_xpms(t_win win, t_img *xpm_images)
 	int		i;
 
 	i = -1;
-	while (++i < xpm_null)
+	while (++i < XPM_NULL)
 	{
 		if (xpm_images[i].mlx_img)
 			mlx_destroy_image(win.mlx_ptr, \

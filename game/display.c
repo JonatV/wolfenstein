@@ -6,11 +6,24 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 15:46:21 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:37:01 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
+
+static t_img	*select_wall_texture(t_game *game)
+{
+	if (game->raycast.wall_orientation == NORTH)
+		return (&game->xpm_images[xpm_north]);
+	else if (game->raycast.wall_orientation == SOUTH)
+		return (&game->xpm_images[xpm_south]);
+	else if (game->raycast.wall_orientation == EAST)
+		return (&game->xpm_images[xpm_east]);
+	else if (game->raycast.wall_orientation == WEST)
+		return (&game->xpm_images[xpm_west]);
+	return (&game->xpm_images[xpm_north]);
+}
 
 static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 {
@@ -21,15 +34,7 @@ static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 	t_img	*wall;
 
 	(void)the_wall;
-	wall = NULL;
-	if (game->raycast.wall_orientation == NORTH)
-		wall = &game->xpm_images[xpm_north];
-	else if (game->raycast.wall_orientation == SOUTH)
-		wall = &game->xpm_images[xpm_south];
-	else if (game->raycast.wall_orientation == EAST)
-		wall = &game->xpm_images[xpm_east];
-	else if (game->raycast.wall_orientation == WEST)
-		wall = &game->xpm_images[xpm_west];
+	wall = select_wall_texture(game);
 	if (game->raycast.wall_orientation == SOUTH \
 	|| game->raycast.wall_orientation == WEST)
 		x2 = (int)((1 - game->raycast.wall_x) * (double)wall->width);

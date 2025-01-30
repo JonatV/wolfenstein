@@ -6,11 +6,12 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:33:59 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/29 01:20:13 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:47:00 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../wolfenstein.h"
+
 static t_img	*select_wall_texture(t_game *game, int the_wall)
 {
 	if (the_wall == ID_HIDDEN && (game->keys.e == true \
@@ -33,6 +34,7 @@ static t_img	*select_wall_texture(t_game *game, int the_wall)
 	else
 		return (&game->xpm_images[xpm_wall]);
 }
+
 static void	pixel_put_wall(t_game *game, int x, int y, int the_wall)
 {
 	int		px;
