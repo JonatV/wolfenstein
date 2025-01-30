@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/30 10:51:43 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:08:40 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,38 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 	(*text)[i] = '\0';
 }
 
-void	get_texture(t_pars *data, char *str)
+void	texture_error_check(t_pars *data, char *str)
 {
-	int			i;
-
-	i = 0;
-	if (str[i] == 'N' && str[i + 1] == 'O')
-		find_texture(data, &data->no, str, 2);
-	else if (str[i] == 'S' && str[i + 1] == 'O')
-		find_texture(data, &data->so, str, 2);
-	else if (str[i] == 'W' && str[i + 1] == 'E')
-		find_texture(data, &data->we, str, 2);
-	else if (str[i] == 'E' && str[i + 1] == 'A')
-		find_texture(data, &data->ea, str, 2);
-	else if (str[0] != 'N' && str[0] != 'S' && str[0] != 'W' && str[0] != 'E'
+	if (str[0] != 'N' && str[0] != 'S' && str[0] != 'W' && str[0] != 'E'
 		&& str[0] != 'F' && str[0] != 'C' && str[0] > 65 && str[0] < 122)
 		data->error = 1;
+}
+
+void	get_texture(t_pars *data, char *str)
+{
+	if (str[0] == 'N' && str[1] == 'O')
+	{
+		if (data->no)
+			ft_exit(data, "Two NO textures were given");
+		find_texture(data, &data->no, str, 2);
+	}
+	else if (str[0] == 'S' && str[1] == 'O')
+	{
+		if (data->so)
+			ft_exit(data, "Two SO textures were given");
+		find_texture(data, &data->so, str, 2);
+	}
+	else if (str[0] == 'W' && str[1] == 'E')
+	{
+		if (data->we)
+			ft_exit(data, "Two WE textures were given");
+		find_texture(data, &data->we, str, 2);
+	}
+	else if (str[0] == 'E' && str[1] == 'A')
+	{
+		if (data->ea)
+			ft_exit(data, "Two EA textures were given");
+		find_texture(data, &data->ea, str, 2);
+	}
+	texture_error_check(data, str);
 }

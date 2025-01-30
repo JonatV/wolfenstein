@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_colours.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:10:01 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,15 @@ void	pars_colours(t_pars *data, char *str)
 {
 	if (str && str[0] == 'F' && str[1] && str[1] == 32)
 	{
+		if (data->f)
+			ft_exit(data, "Two floor colours were given");
 		malloc_colour(data, 'f');
 		create_colour_f(data, str);
 	}
 	else if (str && str[0] == 'C' && str[1] && str[1] == 32)
 	{
+		if (data->c)
+			ft_exit(data, "Two floor colours were given");
 		malloc_colour(data, 'c');
 		create_colour_c(data, str);
 	}

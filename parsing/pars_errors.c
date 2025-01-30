@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_errors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/30 11:34:55 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:03:05 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,19 @@ void	ft_errors(t_pars *d, char *str)
 	int	**map_copy;
 
 	map_copy = NULL;
+	if (!d->no || !d->so || !d->we || !d->ea)
+		ft_exit(d, "Texture informations missing");
+	if (!d->c || !d->f)
+		ft_exit2(d, "Colour informations missing");
 	copy_map(d, &map_copy, d->map);
 	if (!str)
 	{
 		if (!d->start_dir || !d->start_x || !d->start_y)
 			ft_exit2(d, "Player informations inexistant or wrong");
 		if (d->empty_line)
-			ft_exit(d, "Empty line in map");
+			ft_exit2(d, "Empty line in map");
 		if (d->wrongchar)
 			ft_exit(d, "Wrong character in map");
-		if (!d->no || !d->so || !d->we || !d->ea || !d->c || !d->f)
-			ft_exit(d, "Texture or colour informations missing");
 		flood_fill(d, map_copy, d->start_x, d->start_y);
 		free_map(d, &map_copy);
 	}
