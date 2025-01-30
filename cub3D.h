@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolfenstein.h                                      :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:22:28 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/29 15:40:55 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:51:43 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLFENSTEIN_H
-# define WOLFENSTEIN_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "libft/libft.h"
 // for mlx functions (handle window, image, etc)
@@ -29,7 +29,7 @@
 # include <stdint.h>
 # include <math.h>
 
-# define TITLE "Wolfenstein"
+# define TITLE "(: Edou ------ Cub3D ------ Johnny :)"
 # define WIN_W 1200
 # define WIN_H 600
 # define FPS 42
@@ -459,7 +459,7 @@ void		free_tmp_map(t_pars *data, int ***map);
 /*----------------  pars_utils.c  ---------------*/
 int			check_fd(t_pars *data, char *file);
 void		map_check(t_pars *data, char *str);
-int			detect_char(char *str, char c);
+int			det_c(char *str, char c);
 int			data_check(t_pars *data);
 int			is_special(char c);
 

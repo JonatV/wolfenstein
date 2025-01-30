@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:22:41 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/30 10:16:55 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolfenstein.h"
+#include "cub3D.h"
 
 int	ft_check(char *str)
 {
@@ -68,16 +68,29 @@ int	ft_eof(int ret, char **buff, char **line)
 	return (0);
 }
 
-
+static int	gnl_the_hell_of_a_nation(int ret, int fd, char **line, char **buff)
+{
+	ret = read(fd, *buff, BUFFER_SIZE);
+	while (ret > 0)
+	{
+		(*buff)[ret] = '\0';
+		if (!ft_copy(line, buff, ft_check(*buff)))
+			return (1);
+		ret = read(fd, *buff, BUFFER_SIZE);
+	}
+	if (ret <= 0)
+		return (ft_eof(ret, buff, line));
+	return (1);
+}
 
 int	get_next_line(int fd, char **line, t_pars *data)
 {
 	static char	*buff = NULL;
 	int			ret;
 
-	if (data->error == 1 && *buff)
+	if (data->error == 1 && buff)
 	{
-		free(*buff);
+		free(buff);
 		return (0);
 	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
@@ -94,15 +107,5 @@ int	get_next_line(int fd, char **line, t_pars *data)
 		if (!buff)
 			return (-1);
 	}
-	ret = read(fd, buff, BUFFER_SIZE);
-	while (ret > 0)
-	{
-		buff[ret] = '\0';
-		if (!ft_copy(line, &buff, ft_check(buff)))
-			return (1);
-		ret = read(fd, buff, BUFFER_SIZE);
-	}
-	if (ret <= 0)
-		return (ft_eof(ret, &buff, line));
-	return (1);
+	return (gnl_the_hell_of_a_nation(ret, fd, line, &buff));
 }

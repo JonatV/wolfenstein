@@ -6,11 +6,11 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:07:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/28 22:20:42 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 void	rotate(t_game *game, bool rl, double speed)
 {

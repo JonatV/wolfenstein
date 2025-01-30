@@ -6,11 +6,11 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:25:50 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 20:35:21 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 // 1. Get the new img slot t_img
 // 2. Copy on the new img slot the pixel from the source img

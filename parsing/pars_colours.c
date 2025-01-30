@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_colours.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:05 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 19:24:03 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 void	malloc_colour(t_pars *data, char flag)
 {

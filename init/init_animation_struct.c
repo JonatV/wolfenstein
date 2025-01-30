@@ -11,7 +11,7 @@
                                                                        */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 bool	init_animation_struct(t_game *game)
 {

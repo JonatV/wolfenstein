@@ -6,11 +6,11 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:30:27 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/27 18:26:27 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolfenstein.h"
+#include "cub3D.h"
 //todo: check if mandatory: it seems like if 
 // it is activated, it will be black instead of transparent
 void	img_pix_put(t_img *img, int x, int y, int color)

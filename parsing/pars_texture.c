@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:11:07 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 19:26:13 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:51:43 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 int	get_text_len(char *str)
 {
@@ -34,7 +34,7 @@ void	find_texture(t_pars *data, char **text, char *str, int j)
 	int	i;
 
 	i = 0;
-	if (*text || !detect_char(str, '.') || !detect_char(str, '/'))
+	if (*text || !det_c(str, '.') || !det_c(str, '/'))
 		data->error = 1;
 	while (str && str[j] != '.')
 	{

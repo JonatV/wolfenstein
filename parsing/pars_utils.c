@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:01 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 18:32:23 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:51:43 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 int	is_special(char c)
 {
@@ -28,7 +28,7 @@ int	data_check(t_pars *data)
 	return (0);
 }
 
-int	detect_char(char *str, char c)
+int	det_c(char *str, char c)
 {
 	int	i;
 

@@ -6,11 +6,11 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/29 01:25:04 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:52:00 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 int	cast_char(t_pars *data, char c)
 {
@@ -71,7 +71,9 @@ int	is_map(t_pars *data, char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	if (detect_char(str, '1') == 1 || detect_char(str, '0') == 1)
+	if (det_c(str, '1') || det_c(str, '0') || det_c(str, '2') || det_c(str, '3')
+		|| det_c(str, '4') || det_c(str, '5') || det_c(str, '6')
+		|| det_c(str, '7') || det_c(str, '8'))
 	{
 		while (str[i])
 		{

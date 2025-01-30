@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/28 19:17:03 by eschmitz         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:51:43 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../wolfenstein.h"
+#include "../cub3D.h"
 
 int	cast_char(t_pars *data, char c)
 {
@@ -71,7 +71,7 @@ int	is_map(t_pars *data, char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	if (detect_char(str, '1') == 1 || detect_char(str, '0') == 1)
+	if (det_c(str, '1') == 1 || det_c(str, '0') == 1)
 	{
 		while (str[i])
 		{

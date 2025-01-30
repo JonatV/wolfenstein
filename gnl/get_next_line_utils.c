@@ -6,11 +6,11 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:23:19 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/29 15:59:51 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolfenstein.h"
+#include "cub3D.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

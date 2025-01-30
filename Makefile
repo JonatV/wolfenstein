@@ -1,4 +1,16 @@
-NAME = wolfenstein
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/30 10:45:35 by jveirman          #+#    #+#              #
+#    Updated: 2025/01/30 10:57:31 by jveirman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = cub3D
 
 INCPATH		=	./
 MLX_PATH	=	minilibx_linux/
@@ -16,7 +28,7 @@ ANIM		=	animation/
 TOOL		=	tools/
 
 INCLUDES	=	$(MLX_PATH)mlx.h \
-				wolfenstein.h
+				cub3D.h
 
 SRC			=	main.c \
 				$(INIT)init_project.c $(INIT)init_game_struct.c $(INIT)init_window_struct.c $(INIT)init_map_struct.c $(INIT)init_player_struct.c $(INIT)init_keys_struct.c $(INIT)init_hooks_logics.c $(INIT)init_xpm_images.c $(INIT)init_animation_struct.c $(INIT)init_pars_struct.c $(INIT)init_animation_minimap_struct.c $(INIT)init_animation_hand_struct.c \
@@ -42,11 +54,10 @@ INCS		=	-I./
 LIBS		=	minilibx_linux/libmlx_Linux.a \
 				-Lminilibx_linux -lmlx -lXext -lX11 -lm
 
-# Separate flags for compilation and linking
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g $(INCS)
-LDFLAGS = -fsanitize=address -g $(LIBS)
-# CFLAGS = -Wall -Wextra -Werror $(INCS)
-# LDFLAGS = $(LIBS)
+# CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g $(INCS)
+# LDFLAGS = -fsanitize=address -g $(LIBS)
+CFLAGS = -Wall -Wextra -Werror $(INCS) 
+LDFLAGS = $(LIBS)
 
 all: $(NAME)
 
