@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:22:28 by jveirman          #+#    #+#             */
-/*   Updated: 2025/01/30 10:51:43 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:35:50 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -465,6 +465,7 @@ int			is_special(char c);
 
 /*----------------  pars_utils2.c  ---------------*/
 int			is_number(t_pars *data, char c);
+void		ft_exit2(t_pars *data, char *str);
 
 /*----------------  get_next_line.c --------------*/
 # ifndef BUFFER_SIZE

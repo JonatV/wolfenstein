@@ -6,7 +6,7 @@
 #    By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 10:45:35 by jveirman          #+#    #+#              #
-#    Updated: 2025/01/30 10:57:31 by jveirman         ###   ########.fr        #
+#    Updated: 2025/01/30 11:45:34 by jveirman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,10 +54,10 @@ INCS		=	-I./
 LIBS		=	minilibx_linux/libmlx_Linux.a \
 				-Lminilibx_linux -lmlx -lXext -lX11 -lm
 
-# CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g $(INCS)
-# LDFLAGS = -fsanitize=address -g $(LIBS)
-CFLAGS = -Wall -Wextra -Werror $(INCS) 
-LDFLAGS = $(LIBS)
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g $(INCS)
+LDFLAGS = -fsanitize=address -g $(LIBS)
+# CFLAGS = -Wall -Wextra -Werror $(INCS) 
+# LDFLAGS = $(LIBS)
 
 all: $(NAME)
 

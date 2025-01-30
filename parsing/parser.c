@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:05:49 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:23:44 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_all(t_pars *data, char *file)
 	{
 		checker = get_next_line(fd, &str, data);
 		if (data->error == 1)
-			ft_errors(data, "Error: problem with map\n");
+			ft_errors(data, "Problem with map");
 		pars_colours(data, str);
 		get_texture(data, str);
 		map_check(data, str);
@@ -33,7 +33,7 @@ void	parse_all(t_pars *data, char *file)
 	}
 	close (fd);
 	if (!data->map_w || !data->map_h)
-		ft_exit(data, "Error: no map given\n");
+		ft_exit(data, "No map given");
 	map_pars(data, file);
 	ft_errors(data, NULL);
 }

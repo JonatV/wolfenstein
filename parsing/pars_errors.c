@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:23:15 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/30 10:37:37 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:34:55 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	flood_fill(t_pars *d, int **map, int x, int y)
 	if ((x < 0 || y < 0 || x >= d->map_w || y >= d->map_h) || map[y][x] == -1)
 	{
 		d->tmp_map_h++;
-		ft_exit(d, "Map error\n");
+		ft_exit(d, "Map error");
 	}
 	if (map[y][x] == 1 || map[y][x] == -2)
 		return ;
@@ -109,8 +109,8 @@ void	ft_errors(t_pars *d, char *str)
 	copy_map(d, &map_copy, d->map);
 	if (!str)
 	{
-		if (!d->start_dir || !d->start_x || !d->start_dir)
-			ft_exit(d, "Player informations inexistant or wrong");
+		if (!d->start_dir || !d->start_x || !d->start_y)
+			ft_exit2(d, "Player informations inexistant or wrong");
 		if (d->empty_line)
 			ft_exit(d, "Empty line in map");
 		if (d->wrongchar)

@@ -6,7 +6,7 @@
 /*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:13:08 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/30 10:51:43 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:22:37 by jveirman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	cast_char(t_pars *data, char c)
 
 	ret = 0;
 	if (c != '1' && c != '0')
-		ft_exit(data, "Wrong character in map 1");
+		ft_exit(data, "Wrong character in map");
 	ret = c - 48;
 	return (ret);
 }
