@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jveirman <jveirman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: eschmitz <eschmitz@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:22:41 by eschmitz          #+#    #+#             */
-/*   Updated: 2025/01/29 15:58:04 by jveirman         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:16:55 by eschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,18 @@ int	ft_eof(int ret, char **buff, char **line)
 	return (0);
 }
 
-int	ft_free_buff(char **buff, t_pars *data)
-{
-	if (data->error == 1 && *buff)
-	{
-		free(*buff);
-		return (1);
-	}
-	return (0);
-}
+
 
 int	get_next_line(int fd, char **line, t_pars *data)
 {
 	static char	*buff = NULL;
 	int			ret;
 
-	if (ft_free_buff(&buff, data) == 1)
+	if (data->error == 1 && *buff)
+	{
+		free(*buff);
 		return (0);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
 		return (-1);
 	*line = NULL;
@@ -94,13 +89,18 @@ int	get_next_line(int fd, char **line, t_pars *data)
 	if (ret == 0)
 		return (1);
 	if (!buff)
-		if (!(buff = malloc(sizeof(char) * BUFFER_SIZE + 1)))
+	{
+		buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
+		if (!buff)
 			return (-1);
-	while ((ret = read(fd, buff, BUFFER_SIZE)) > 0)
+	}
+	ret = read(fd, buff, BUFFER_SIZE);
+	while (ret > 0)
 	{
 		buff[ret] = '\0';
 		if (!ft_copy(line, &buff, ft_check(buff)))
 			return (1);
+		ret = read(fd, buff, BUFFER_SIZE);
 	}
 	if (ret <= 0)
 		return (ft_eof(ret, &buff, line));
